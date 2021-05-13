@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="357.0" prefWidth="546.0" style="-fx-background-color: #ffFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="43.0" prefWidth="546.0" style="-fx-background-color: #009975;">
+         <children>
+            <Label layoutX="105.0" layoutY="7.0" text="GENERAR REPORTE DE ALQUILERES" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="18.0" layoutY="51.0" prefHeight="236.0" prefWidth="509.0" style="-fx-background-color: #f4efef;">
+         <children>
+            <JFXButton layoutX="132.0" layoutY="14.0" style="-fx-background-color: #009975;" text="Generar todos los reportes" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/Images/impresora.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <Label layoutX="195.0" layoutY="58.0" text="Flitrar por fechas">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Button layoutX="231.0" layoutY="176.0" mnemonicParsing="false">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/Images/impresora.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <JFXDatePicker layoutX="45.0" layoutY="122.0" prefHeight="31.0" prefWidth="174.0" />
+            <Label layoutX="89.0" layoutY="101.0" text="Fecha inicial">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="340.0" layoutY="101.0" text="Fecha final">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXDatePicker layoutX="291.0" layoutY="122.0" prefHeight="31.0" prefWidth="174.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="19.0" layoutY="300.0" prefHeight="43.0" prefWidth="509.0" style="-fx-background-color: #f3f3f3;">
+         <children>
+            <JFXProgressBar layoutY="23.0" prefHeight="1.0" prefWidth="509.0" />
+         </children>
+      </Pane>
+   </children>
+</Pane>

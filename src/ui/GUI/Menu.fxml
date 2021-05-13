@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="1304.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar layoutY="-2.0" prefHeight="32.0" prefWidth="1304.0" style="-fx-background-color: #009975;">
+        <menus>
+          <Menu mnemonicParsing="false" text="Registro">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Registro de Clientes ⮞" />
+                  <MenuItem mnemonicParsing="false" text="Registro de Ciudades ⮞" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Vehiculos">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Registro de Vehiculo ⮞" />
+                  <MenuItem mnemonicParsing="false" text="Registro de  Tipos ⮞" />
+                  <MenuItem mnemonicParsing="false" text="Registro de Marcas ⮞" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Alquileres">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Alquilar Vehiculo ⮞" />
+                  <MenuItem mnemonicParsing="false" text="Devolver Vehiculo ⮞" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Reportes">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Clientes ⮞" />
+                  <MenuItem mnemonicParsing="false" text="Vehiculos ⮞" />
+                  <MenuItem mnemonicParsing="false" text="Alquileres ⮞" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Importar">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Clientes ⮞" />
+                  <MenuItem mnemonicParsing="false" text="Vehiculos ⮞" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Empleados">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Listado de Empleados ⮞" />
+                  <MenuItem mnemonicParsing="false" text="Top Empleados ⮞" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Salir">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Cerrar Sesión" />
+                  <MenuItem mnemonicParsing="false" text="Salir" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <Pane layoutY="30.0" prefHeight="795.0" prefWidth="365.0" style="-fx-background-color: #646464;">
+         <children>
+            <JFXButton layoutX="103.0" layoutY="74.0" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="  Vehiculos">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/Images/CohesPlus.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="103.0" layoutY="163.0" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="  Clientes">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/Images/Clientes.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="103.0" layoutY="244.0" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="  Alquiler">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/Images/1996148.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="103.0" layoutY="326.0" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="  Devolución">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/Images/Devolución.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="103.0" layoutY="418.0" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="  Reportes">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/Images/Reporte.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <Label layoutX="139.0" layoutY="560.0" text="\@CopryRight" textFill="WHITE" />
+            <Label layoutX="78.0" layoutY="581.0" text="Gabriel Suarez | David Montaño" textFill="WHITE" />
+         </children>
+      </Pane>
+      <ImageView fitHeight="423.0" fitWidth="508.0" layoutX="589.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</Pane>

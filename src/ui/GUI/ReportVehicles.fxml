@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="283.0" prefWidth="546.0" style="-fx-background-color: #ffFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="43.0" prefWidth="546.0" style="-fx-background-color: #009975;">
+         <children>
+            <Label layoutX="108.0" layoutY="7.0" text="GENERAR REPORTE DE VEHICULOS" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="18.0" layoutY="51.0" prefHeight="164.0" prefWidth="509.0" style="-fx-background-color: #f4efef;">
+         <children>
+            <JFXButton layoutX="132.0" layoutY="14.0" style="-fx-background-color: #009975;" text="Generar todos los reportes" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/Images/impresora.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <Label layoutX="160.0" layoutY="61.0" text="Flitrar por tipo de vehiculo">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXComboBox focusColor="#4d4d4d" layoutX="61.0" layoutY="92.0" prefHeight="31.0" prefWidth="309.0" unFocusColor="#009975" />
+            <Button layoutX="389.0" layoutY="92.0" mnemonicParsing="false">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/Images/impresora.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="18.0" layoutY="226.0" prefHeight="43.0" prefWidth="509.0" style="-fx-background-color: #f3f3f3;">
+         <children>
+            <JFXProgressBar layoutY="23.0" prefHeight="1.0" prefWidth="509.0" />
+         </children>
+      </Pane>
+   </children>
+</Pane>
