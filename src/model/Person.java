@@ -1,15 +1,58 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package model;
 
-/**
- * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
- */
 public class Person {
+    
+    private int codeP;
+    private int refP;
+    private String name;
+    private String lastName;
+    private long id;
 
+    public Person(int codeP, int refP, String name, String lastName, long id) {
+        this.codeP = codeP;
+        this.refP = refP;
+        this.name = name;
+        this.lastName = lastName;
+        this.id = id;
+    }
+
+    public int getCodeP() {
+        return codeP;
+    }
+
+    public void setCodeP(int codeP) {
+        this.codeP = codeP;
+    }
+
+    public int getRefP() {
+        return refP;
+    }
+
+    public void setRefP(int refP) {
+        this.refP = refP;
+    }
+    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
