@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="434.0" prefWidth="779.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="43.0" prefWidth="779.0" style="-fx-background-color: #009975;">
@@ -31,7 +30,7 @@
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/agregar-archivo.png" />
+                        <Image url="@../../../resources/Images/add-file.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -40,7 +39,7 @@
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/954564.png" />
+                        <Image url="@../../../resources/Images/save-disk.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -49,7 +48,7 @@
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/Añadir.png" />
+                        <Image url="@../../../resources/Images/add-report.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -58,7 +57,7 @@
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/expediente.png" />
+                        <Image url="@../../../resources/Images/remove-report.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -67,7 +66,7 @@
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/Ciudad.png" />
+                        <Image url="@../../../resources/Images/city.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -125,7 +124,7 @@
                <graphic>
                   <ImageView fitHeight="51.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/buscar.png" />
+                        <Image url="@../../../resources/Images/search.png" />
                      </image>
                   </ImageView>
                </graphic>

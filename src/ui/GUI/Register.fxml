@@ -52,7 +52,7 @@
                               <Font name="SansSerif Regular" size="18.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton layoutX="152.0" layoutY="496.0" onAction="#onIhaveAccount" text="Ya tengo una cuenta" underline="true" />
+                        <JFXButton layoutX="168.0" layoutY="496.0" onAction="#onIhaveAccount" text="Ya tengo una cuenta" underline="true" />
                         <JFXPasswordField fx:id="txtRegisterPassword1" alignment="CENTER" focusColor="BLACK" layoutX="101.0" layoutY="358.0" prefHeight="39.0" prefWidth="259.0" promptText="Llave Virtual" unFocusColor="#009975">
                            <font>
                               <Font size="18.0" />

@@ -28,7 +28,7 @@
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/agregar-archivo.png" />
+                        <Image url="@../../../resources/Images/add-file.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -37,7 +37,7 @@
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/954564.png" />
+                        <Image url="@../../../resources/Images/save-disk.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -46,7 +46,7 @@
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/Añadir.png" />
+                        <Image url="@../../../resources/Images/add-report.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -55,7 +55,7 @@
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/expediente.png" />
+                        <Image url="@../../../resources/Images/remove-report.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -82,7 +82,7 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/buscar.png" />
+                        <Image url="@../../../resources/Images/search.png" />
                      </image>
                   </ImageView>
                </graphic>

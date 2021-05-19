@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="1304.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar layoutY="-2.0" prefHeight="32.0" prefWidth="1304.0" style="-fx-background-color: #009975;">
@@ -70,7 +69,7 @@
                <graphic>
                   <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/CohesPlus.png" />
+                        <Image url="@../../../resources/Images/vehicles.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -82,7 +81,7 @@
                <graphic>
                   <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/Clientes.png" />
+                        <Image url="@../../../resources/Images/clients.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -94,7 +93,7 @@
                <graphic>
                   <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/1996148.png" />
+                        <Image url="@../../../resources/Images/car-key.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -106,7 +105,7 @@
                <graphic>
                   <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/Devolución.png" />
+                        <Image url="@../../../resources/Images/return.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -118,7 +117,7 @@
                <graphic>
                   <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/Reporte.png" />
+                        <Image url="@../../../resources/Images/report.png" />
                      </image>
                   </ImageView>
                </graphic>

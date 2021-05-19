@@ -41,7 +41,7 @@
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/1996148.png" />
+                        <Image url="@../../../resources/Images/car-key.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -113,7 +113,7 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../resources/Images/metodo-de-pago.png" />
+                        <Image url="@../../../resources/Images/pay-check.png" />
                      </image>
                   </ImageView>
                </graphic>
