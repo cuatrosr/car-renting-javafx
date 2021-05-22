@@ -2,6 +2,7 @@ package ui;
 
 import com.sun.javafx.application.LauncherImpl;
 import model.*;
+import controller.*;
 
 import javafx.application.Application;
 import javafx.application.Preloader;
@@ -15,19 +16,19 @@ public class Main extends Application {
     @SuppressWarnings("FieldMayBeFinal")
     private RentingCar rc;
     @SuppressWarnings("FieldMayBeFinal")
-    private FXMainController fxController;
+    private FXMainController fxGUI;
 
     private static final int COUNT_LIMIT = 30000;
 
     public Main() {
         rc = new RentingCar();
-        fxController = new FXMainController(rc);
+        fxGUI = new FXMainController(rc);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/Login.fxml"));
-        fxmlLoader.setController(fxController);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/PrincipalMain.fxml"));
+        fxmlLoader.setController(fxGUI);
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -43,7 +44,6 @@ public class Main extends Application {
             LauncherImpl.notifyPreloader(this, new Preloader.ProgressNotification(progress));
         }
     }
-
 
     public static void main(String[] args) {
         LauncherImpl.launchApplication(Main.class, FXSplashScreen.class, args);

@@ -1,4 +1,4 @@
-package ui;
+package controller;
 
 import java.io.IOException;
 import javafx.application.Preloader;
@@ -13,19 +13,19 @@ public class FXSplashScreen extends Preloader{
     @SuppressWarnings("FieldMayBeFinal")
     private RentingCar rc;
     @SuppressWarnings("FieldMayBeFinal")
-    private FXMainController fxController;
+    private FXMainController fxGUI;
     private Stage preloaderStage;
     private Scene scene;
 
     public FXSplashScreen() throws IOException {
         rc = new RentingCar();
-        fxController = new FXMainController(rc);
+        fxGUI = new FXMainController(rc);
     }  
     
     @Override
     public void init() throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/Welcome.fxml"));
-        fxmlLoader.setController(fxController);
+        fxmlLoader.setController(fxGUI);
         Parent root = fxmlLoader.load();
         scene = new Scene(root);
         /*
