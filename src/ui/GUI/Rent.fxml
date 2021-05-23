@@ -82,7 +82,7 @@
                </font>
             </Label>
             <JFXTextField editable="false" focusColor="#4d4d4d" layoutX="562.0" layoutY="45.0" unFocusColor="#009975" />
-            <Button layoutX="755.0" layoutY="26.0" mnemonicParsing="false">
+            <Button layoutX="755.0" layoutY="26.0" mnemonicParsing="false" onAction="#onSearchClientsInRent">
                <graphic>
                   <ImageView fx:id="iSelectClientRent" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -111,7 +111,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button layoutX="408.0" layoutY="8.0" mnemonicParsing="false">
+            <Button layoutX="408.0" layoutY="8.0" mnemonicParsing="false" onAction="#onSearchVehicleInRent">
                <graphic>
                   <ImageView fx:id="iSelectVehicleRent" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -1,7 +1,9 @@
 package ui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -35,5 +37,10 @@ public class FXDevol implements Initializable {
         Image iPayDevolPNG = new Image("Images/pay-check.png");
         iSelectRentDevol.setImage(iSelectRentDevolPNG);
         iPayDevol.setImage(iPayDevolPNG);
+    }
+
+    @FXML
+    public void onListRentoinDevol(ActionEvent event) throws IOException {
+        fxGUI.showListRent();
     }
 }

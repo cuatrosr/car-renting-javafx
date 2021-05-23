@@ -1,14 +1,13 @@
 package ui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.*;
 
-public class FXVehicle implements Initializable {
+public class FXVehicle {
 
     //********* Set Images *********\\
     @FXML
@@ -35,17 +34,15 @@ public class FXVehicle implements Initializable {
     @FXML
     private ImageView iSelectPhotoVehicle;
 
+    @FXML
+    private ImageView iSearchInListVehicle;
+
     private RentingCar rc;
     private FXController fxGUI;
 
     public FXVehicle(RentingCar rc, FXController fxGUI) {
         this.rc = rc;
         this.fxGUI = fxGUI;
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        setImagesButton();
     }
 
     public void setImagesButton() {
@@ -65,5 +62,25 @@ public class FXVehicle implements Initializable {
         iNextVehicle.setImage(iNextVehiclePNG);
         iSearchVehicle.setImage(iSearchVehiclePNG);
         iSelectPhotoVehicle.setImage(iSelectPhotoVechiclePNG);
+    }
+
+    public void setImagesList() {
+        Image iSearchVehiclePNG = new Image("Images/search.png");
+        iSearchInListVehicle.setImage(iSearchVehiclePNG);
+    }
+
+    @FXML
+    public void onGBrand(ActionEvent event) throws IOException {
+        fxGUI.showGBrand();
+    }
+
+    @FXML
+    public void onGType(ActionEvent event) throws IOException {
+        fxGUI.showGType();
+    }
+
+    @FXML
+    public void onListVehicle(ActionEvent event) throws IOException {
+        fxGUI.showListVehicle();
     }
 }

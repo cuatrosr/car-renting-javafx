@@ -1,16 +1,13 @@
 package ui;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.*;
 
-public class FXClient implements Initializable {
+public class FXClient {
 
     //********* Set Images *********\\
     @FXML
@@ -42,11 +39,6 @@ public class FXClient implements Initializable {
         this.fxGUI = fxGUI;
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        setImagesButton();
-    }
-
     public void setImagesButton() {
         Image iAddClientPNG = new Image("Images/add-file.png");
         Image iSaveClientPNG = new Image("Images/save-disk.png");
@@ -62,6 +54,11 @@ public class FXClient implements Initializable {
         iSearchClient.setImage(iSearchClientPNG);
     }
 
+    public void setImagesList() {
+        Image iSearchClientPNG = new Image("Images/search.png");
+        iSearchInListClient.setImage(iSearchClientPNG);
+    }
+
     @FXML
     public void onGCity(ActionEvent event) throws IOException {
         fxGUI.showGCity();
@@ -70,7 +67,5 @@ public class FXClient implements Initializable {
     @FXML
     public void onListClients(ActionEvent event) throws IOException {
         fxGUI.showListClient();
-        Image iSearchClientPNG = new Image("Images/search.png");
-        iSearchInListClient.setImage(iSearchClientPNG);
     }
 }

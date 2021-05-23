@@ -37,7 +37,7 @@
                </font>
             </Label>
             <JFXTextField editable="false" focusColor="#4d4d4d" layoutX="346.0" layoutY="19.0" prefHeight="31.0" prefWidth="348.0" unFocusColor="#009975" />
-            <Button layoutX="706.0" layoutY="10.0" mnemonicParsing="false" text="Alquileres">
+            <Button layoutX="706.0" layoutY="10.0" mnemonicParsing="false" onAction="#onListRentoinDevol" text="Alquileres">
                <graphic>
                   <ImageView fx:id="iSelectRentDevol" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>

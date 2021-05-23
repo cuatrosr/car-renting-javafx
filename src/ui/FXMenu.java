@@ -116,12 +116,13 @@ public class FXMenu implements Initializable {
 
     @FXML
     public void onRClient(ActionEvent event) throws IOException {
-        fxGUI.showSelectReport();
+        fxGUI.showReportClient();
     }
 
     @FXML
     public void onRRent(ActionEvent event) throws IOException {
         fxGUI.showReportRent();
+        
     }
 
     @FXML

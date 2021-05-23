@@ -33,7 +33,7 @@
             </JFXButton>
             <Button layoutX="210.0" layoutY="13.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iSearchTicketRent" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/search.png" />
                      </image>
@@ -44,7 +44,7 @@
             <JFXTextField focusColor="#4d4d4d" layoutX="393.0" layoutY="13.0" prefHeight="31.0" prefWidth="385.0" unFocusColor="#009975" />
             <Button layoutX="795.0" layoutY="13.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iSearchIDRent" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/search.png" />
                      </image>

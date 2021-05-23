@@ -33,7 +33,7 @@
             </JFXButton>
             <Button layoutX="471.0" layoutY="13.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iSearchTopEmployee" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/search.png" />
                      </image>

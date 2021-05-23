@@ -92,6 +92,7 @@ public class FXController {
         fxmlLoader.setController(xClient);
         Parent root = fxmlLoader.load();
         newStage(root);
+        xClient.setImagesButton();
     }
 
     public void showGVehicle() throws IOException {
@@ -99,6 +100,7 @@ public class FXController {
         fxmlLoader.setController(xVehicle);
         Parent root = fxmlLoader.load();
         newStage(root);
+        xVehicle.setImagesButton();
     }
 
     public void showGCity() throws IOException {
@@ -141,6 +143,7 @@ public class FXController {
         fxmlLoader.setController(xClient);
         Parent root = fxmlLoader.load();
         newStage(root);
+        xClient.setImagesList();
     }
 
     public void showListEmployee() throws IOException {
@@ -148,6 +151,7 @@ public class FXController {
         fxmlLoader.setController(xEmployee);
         Parent root = fxmlLoader.load();
         newStage(root);
+        xEmployee.setImageEmployee();
     }
 
     public void showListRent() throws IOException {
@@ -155,6 +159,7 @@ public class FXController {
         fxmlLoader.setController(xRent);
         Parent root = fxmlLoader.load();
         newStage(root);
+        xRent.setImagesList();
     }
 
     public void showListVehicle() throws IOException {
@@ -162,27 +167,34 @@ public class FXController {
         fxmlLoader.setController(xVehicle);
         Parent root = fxmlLoader.load();
         newStage(root);
+        xVehicle.setImagesList();
     }
 
     public void showReportClient() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ReportClients.fxml"));
         fxmlLoader.setController(xReport);
         Parent root = fxmlLoader.load();
+        closeStage(xReport.getPane());
         newStage(root);
+        xReport.setImagesClientReport();
     }
 
     public void showReportRent() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ReportRent.fxml"));
         fxmlLoader.setController(xReport);
         Parent root = fxmlLoader.load();
+        closeStage(xReport.getPane());
         newStage(root);
+        xReport.setImagesRentReport();
     }
 
     public void showReportVehicles() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ReportVehicles.fxml"));
         fxmlLoader.setController(xReport);
         Parent root = fxmlLoader.load();
+        closeStage(xReport.getPane());
         newStage(root);
+        xReport.setImagesVehiclesReport();
     }
 
     public void showSelectReport() throws IOException {
@@ -190,6 +202,7 @@ public class FXController {
         fxmlLoader.setController(xReport);
         Parent root = fxmlLoader.load();
         newStage(root);
+        xReport.setImagesButton();
     }
 
     public void showTopEmployee() throws IOException {
@@ -197,5 +210,6 @@ public class FXController {
         fxmlLoader.setController(xEmployee);
         Parent root = fxmlLoader.load();
         newStage(root);
+        xEmployee.setImageTopEmployee();
     }
 }

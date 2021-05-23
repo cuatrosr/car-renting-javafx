@@ -156,7 +156,7 @@
             <JFXRadioButton layoutX="360.0" layoutY="105.0" text="No" />
             <JFXTextField focusColor="#4d4d4d" layoutX="271.0" layoutY="130.0" prefHeight="31.0" prefWidth="107.0" unFocusColor="#009975" />
             <JFXTextField focusColor="#4d4d4d" layoutX="271.0" layoutY="161.0" prefHeight="31.0" prefWidth="107.0" unFocusColor="#009975" />
-            <Button layoutX="385.0" layoutY="7.0" mnemonicParsing="false">
+            <Button layoutX="385.0" layoutY="7.0" mnemonicParsing="false" onAction="#onListVehicle">
                <graphic>
                   <ImageView fx:id="iSearchVehicle" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -165,8 +165,8 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="385.0" layoutY="38.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="41.0" text="....." />
-            <Button layoutX="385.0" layoutY="69.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="41.0" text="....." />
+            <Button layoutX="385.0" layoutY="38.0" mnemonicParsing="false" onAction="#onGType" prefHeight="31.0" prefWidth="41.0" text="....." />
+            <Button layoutX="385.0" layoutY="69.0" mnemonicParsing="false" onAction="#onGBrand" prefHeight="31.0" prefWidth="41.0" text="....." />
             <JFXButton layoutX="508.0" layoutY="159.0" style="-fx-background-color: #009975;" text="Seleccionar Imagen" textFill="WHITE">
                <graphic>
                   <ImageView fx:id="iSelectPhotoVehicle" fitHeight="26.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
