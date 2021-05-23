@@ -31,7 +31,7 @@
                         <Font size="18.0" />
                      </font>
                   </JFXPasswordField>
-                  <JFXButton buttonType="RAISED" layoutX="161.0" layoutY="314.0" prefHeight="57.0" prefWidth="139.0" ripplerFill="BLACK" style="-fx-background-color: #009975;" text="Inicia Sesión" textAlignment="CENTER" textFill="#fffefe">
+                  <JFXButton buttonType="RAISED" layoutX="161.0" layoutY="314.0" onAction="#onLogIn" prefHeight="57.0" prefWidth="139.0" ripplerFill="BLACK" style="-fx-background-color: #009975;" text="Inicia Sesión" textAlignment="CENTER" textFill="#fffefe">
                      <font>
                         <Font name="SansSerif Regular" size="18.0" />
                      </font>
