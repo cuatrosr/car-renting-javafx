@@ -3,6 +3,7 @@ import model.*;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
@@ -31,12 +32,14 @@ public class FXLogin {
     }
 
     @FXML
-    void onCreateAccount(ActionEvent event) {
-
+    public void onCreateAccount(ActionEvent event) throws IOException {
+        fxGUI.showRegister();
     }
 
     @FXML
-    void onLogIn(ActionEvent event) {
+    public void onLogIn(ActionEvent event) throws IOException {
+        fxGUI.closeStage(fxGUI.getPMain());
+        fxGUI.showMenu();
 
     }
 

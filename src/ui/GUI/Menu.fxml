@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="1304.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="pMainMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="1304.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar layoutY="-2.0" prefHeight="32.0" prefWidth="1304.0" style="-fx-background-color: #009975;">
         <menus>
@@ -62,24 +62,24 @@
       </MenuBar>
       <Pane layoutY="30.0" prefHeight="795.0" prefWidth="365.0" style="-fx-background-color: #646464;">
          <children>
-            <JFXButton layoutX="103.0" layoutY="74.0" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="  Vehiculos">
+            <JFXButton layoutX="103.0" layoutY="74.0" onAction="#onGVehicle" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="  Vehiculos">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iVehicle" fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/vehicles.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="103.0" layoutY="163.0" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="  Clientes">
+            <JFXButton layoutX="103.0" layoutY="163.0" onAction="#onGClient" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="  Clientes">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iClient" fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/clients.png" />
                      </image>
@@ -91,7 +91,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iRent" fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/car-key.png" />
                      </image>
@@ -103,7 +103,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iDevol" fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/return.png" />
                      </image>
@@ -115,7 +115,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iReport" fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/report.png" />
                      </image>

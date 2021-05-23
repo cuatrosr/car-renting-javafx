@@ -27,12 +27,12 @@
                               <Font size="18.0" />
                            </font>
                         </JFXTextField>
-                        <JFXTextField fx:id="txtRegisterLastName" alignment="CENTER" focusColor="BLACK" layoutX="101.0" layoutY="155.0" prefHeight="39.0" prefWidth="259.0" promptText="Apeliidos" unFocusColor="#009975">
+                        <JFXTextField fx:id="txtRegisterLastName" alignment="CENTER" focusColor="BLACK" layoutX="101.0" layoutY="161.0" prefHeight="39.0" prefWidth="259.0" promptText="Apeliidos" unFocusColor="#009975">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </JFXTextField>
-                        <JFXTextField fx:id="txtRegisterID" alignment="CENTER" focusColor="BLACK" layoutX="101.0" layoutY="206.0" prefHeight="39.0" prefWidth="259.0" promptText="Identificación" unFocusColor="#009975">
+                        <JFXTextField fx:id="txtRegisterID" alignment="CENTER" focusColor="BLACK" layoutX="101.0" layoutY="210.0" prefHeight="39.0" prefWidth="259.0" promptText="Identificación" unFocusColor="#009975">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -42,18 +42,18 @@
                               <Font size="18.0" />
                            </font>
                         </JFXTextField>
-                        <JFXPasswordField fx:id="txtRegisterPassword" alignment="CENTER" focusColor="BLACK" layoutX="101.0" layoutY="308.0" prefHeight="39.0" prefWidth="259.0" promptText="Contraseña" unFocusColor="#009975">
+                        <JFXPasswordField fx:id="txtRegisterPassword" alignment="CENTER" focusColor="BLACK" layoutX="101.0" layoutY="298.0" prefHeight="39.0" prefWidth="259.0" promptText="Contraseña" unFocusColor="#009975">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </JFXPasswordField>
-                        <JFXButton buttonType="RAISED" layoutX="161.0" layoutY="426.0" onAction="#onRegister" prefHeight="57.0" prefWidth="139.0" ripplerFill="BLACK" style="-fx-background-color: #009975;" text="Crear Cuenta" textFill="WHITE">
+                        <JFXButton buttonType="RAISED" layoutX="167.0" layoutY="401.0" onAction="#onRegister" prefHeight="57.0" prefWidth="139.0" ripplerFill="BLACK" style="-fx-background-color: #009975;" text="Crear Cuenta" textFill="WHITE">
                            <font>
                               <Font name="SansSerif Regular" size="18.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton layoutX="152.0" layoutY="495.0" onAction="#onIhaveAccount" text="Ya tengo una cuenta" underline="true" />
-                        <JFXPasswordField fx:id="txtRegisterPassword1" alignment="CENTER" focusColor="BLACK" layoutX="101.0" layoutY="358.0" prefHeight="39.0" prefWidth="259.0" promptText="Llave Virtual" unFocusColor="#009975">
+                        <JFXButton layoutX="158.0" layoutY="470.0" onAction="#onIhaveAccount" text="Ya tengo una cuenta" underline="true" />
+                        <JFXPasswordField fx:id="txtRegisterPassword1" alignment="CENTER" focusColor="BLACK" layoutX="101.0" layoutY="345.0" prefHeight="39.0" prefWidth="259.0" promptText="Llave Virtual" unFocusColor="#009975">
                            <font>
                               <Font size="18.0" />
                            </font>
