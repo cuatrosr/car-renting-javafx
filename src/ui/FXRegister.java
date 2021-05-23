@@ -52,6 +52,7 @@ public class FXRegister {
     @FXML
     public void onRegister(ActionEvent event) throws IOException{
         fxGUI.closeStage(fxGUI.getPMain());
+        fxGUI.closeStage(bpMain);
         fxGUI.showMenu();
     } 
 }

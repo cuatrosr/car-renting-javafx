@@ -16,28 +16,28 @@
         <menus>
           <Menu mnemonicParsing="false" text="Registro">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Registro de Clientes ⮞" />
-                  <MenuItem mnemonicParsing="false" text="Registro de Ciudades ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onGClient" text="Registro de Clientes ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onGCity" text="Registro de Ciudades ⮞" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Vehiculos">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Registro de Vehiculo ⮞" />
-                  <MenuItem mnemonicParsing="false" text="Registro de  Tipos ⮞" />
-                  <MenuItem mnemonicParsing="false" text="Registro de Marcas ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onGVehicle" text="Registro de Vehiculo ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onGType" text="Registro de  Tipos ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onGBrand" text="Registro de Marcas ⮞" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Alquileres">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Alquilar Vehiculo ⮞" />
-                  <MenuItem mnemonicParsing="false" text="Devolver Vehiculo ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onGRent" text="Alquilar Vehiculo ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onGDevol" text="Devolver Vehiculo ⮞" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Reportes">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Clientes ⮞" />
-                  <MenuItem mnemonicParsing="false" text="Vehiculos ⮞" />
-                  <MenuItem mnemonicParsing="false" text="Alquileres ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onRClient" text="Clientes ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onRVehicle" text="Vehiculos ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onRRent" text="Alquileres ⮞" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Importar">
@@ -48,14 +48,13 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Empleados">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Listado de Empleados ⮞" />
-                  <MenuItem mnemonicParsing="false" text="Top Empleados ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onListEmployee" text="Listado de Empleados ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onTopEmployee" text="Top Empleados ⮞" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Salir">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Cerrar Sesión" />
-                  <MenuItem mnemonicParsing="false" text="Salir" />
+                  <MenuItem mnemonicParsing="false" onAction="#onExit" text="Salir" />
                </items>
             </Menu>
         </menus>
@@ -86,7 +85,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="103.0" layoutY="244.0" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="  Alquiler">
+            <JFXButton layoutX="103.0" layoutY="244.0" onAction="#onGRent" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="  Alquiler">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -98,7 +97,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="103.0" layoutY="326.0" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="  Devolución">
+            <JFXButton layoutX="103.0" layoutY="326.0" onAction="#onGDevol" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="  Devolución">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -110,7 +109,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="103.0" layoutY="418.0" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="  Reportes">
+            <JFXButton layoutX="103.0" layoutY="418.0" onAction="#onGReport" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="  Reportes">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

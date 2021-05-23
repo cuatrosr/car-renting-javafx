@@ -39,6 +39,7 @@ public class FXLogin {
     @FXML
     public void onLogIn(ActionEvent event) throws IOException {
         fxGUI.closeStage(fxGUI.getPMain());
+        fxGUI.closeStage(mainPane);
         fxGUI.showMenu();
 
     }

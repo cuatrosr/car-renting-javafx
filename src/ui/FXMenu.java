@@ -61,13 +61,76 @@ public class FXMenu implements Initializable {
 
     @FXML
     public void onGClient(ActionEvent event) throws IOException {
-        fxGUI.disablePane(pMainMenu, true);
+        //fxGUI.disablePane(pMainMenu, true);
         fxGUI.showGClient();
     }
 
     @FXML
     public void onGVehicle(ActionEvent event) throws IOException {
-        fxGUI.disablePane(pMainMenu, true);
+        //fxGUI.disablePane(pMainMenu, true);
         fxGUI.showGVehicle();
+    }
+
+    @FXML
+    public void onGDevol(ActionEvent event) throws IOException {
+        //fxGUI.disablePane(pMainMenu, true);
+        fxGUI.showGDevolution();
+    }
+
+    @FXML
+    public void onGRent(ActionEvent event) throws IOException {
+        //fxGUI.disablePane(pMainMenu, true);
+        fxGUI.showGRent();
+    }
+
+    @FXML
+    public void onGReport(ActionEvent event) throws IOException {
+        //fxGUI.disablePane(pMainMenu, true);
+        fxGUI.showSelectReport();
+    }
+
+    @FXML
+    public void onExit(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    public void onGBrand(ActionEvent event) throws IOException {
+        fxGUI.showGBrand();
+    }
+
+    @FXML
+    public void onGCity(ActionEvent event) throws IOException {
+        fxGUI.showGCity();
+    }
+
+    @FXML
+    public void onGType(ActionEvent event) throws IOException {
+        fxGUI.showGType();
+    }
+
+    @FXML
+    public void onListEmployee(ActionEvent event) throws IOException {
+        fxGUI.showListEmployee();
+    }
+
+    @FXML
+    public void onRClient(ActionEvent event) throws IOException {
+        fxGUI.showSelectReport();
+    }
+
+    @FXML
+    public void onRRent(ActionEvent event) throws IOException {
+        fxGUI.showReportRent();
+    }
+
+    @FXML
+    public void onRVehicle(ActionEvent event) throws IOException {
+        fxGUI.showReportVehicles();
+    }
+
+    @FXML
+    public void onTopEmployee(ActionEvent event) throws IOException {
+        fxGUI.showTopEmployee();
     }
 }
