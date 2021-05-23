@@ -30,7 +30,7 @@
          <children>
             <Button layoutX="14.0" layoutY="5.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iAddVehicle" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/add-file.png" />
                      </image>
@@ -39,7 +39,7 @@
             </Button>
             <Button layoutX="84.0" layoutY="5.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iSaveVehicle" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/save-disk.png" />
                      </image>
@@ -48,7 +48,7 @@
             </Button>
             <Button layoutX="159.0" layoutY="5.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iEditVehicle" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/add-report.png" />
                      </image>
@@ -57,7 +57,7 @@
             </Button>
             <Button layoutX="232.0" layoutY="5.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iRemoveVehicle" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/remove-report.png" />
                      </image>
@@ -66,7 +66,7 @@
             </Button>
             <Button layoutX="306.0" layoutY="5.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iPrevVehicle" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/back-button.png" />
                      </image>
@@ -75,7 +75,7 @@
             </Button>
             <Button layoutX="379.0" layoutY="5.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iNextVehicle" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/next-button.png" />
                      </image>
@@ -158,7 +158,7 @@
             <JFXTextField focusColor="#4d4d4d" layoutX="271.0" layoutY="161.0" prefHeight="31.0" prefWidth="107.0" unFocusColor="#009975" />
             <Button layoutX="385.0" layoutY="7.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iSearchVehicle" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/search.png" />
                      </image>
@@ -169,7 +169,7 @@
             <Button layoutX="385.0" layoutY="69.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="41.0" text="....." />
             <JFXButton layoutX="508.0" layoutY="159.0" style="-fx-background-color: #009975;" text="Seleccionar Imagen" textFill="WHITE">
                <graphic>
-                  <ImageView fitHeight="26.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iSelectPhotoVehicle" fitHeight="26.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/picture.png" />
                      </image>

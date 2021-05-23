@@ -29,7 +29,7 @@
          <children>
             <Button layoutX="14.0" layoutY="5.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iAddRent" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/add-file.png" />
                      </image>
@@ -38,7 +38,7 @@
             </Button>
             <Button layoutX="84.0" layoutY="5.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iRefreshRent" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/return-sign.png" />
                      </image>
@@ -84,7 +84,7 @@
             <JFXTextField editable="false" focusColor="#4d4d4d" layoutX="562.0" layoutY="45.0" unFocusColor="#009975" />
             <Button layoutX="755.0" layoutY="26.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iSelectClientRent" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/clients.png" />
                      </image>
@@ -113,7 +113,7 @@
             </Label>
             <Button layoutX="408.0" layoutY="8.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iSelectVehicleRent" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/vehicles.png" />
                      </image>

@@ -28,7 +28,7 @@
          <children>
             <Button layoutX="14.0" layoutY="5.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iAddClient" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/add-file.png" />
                      </image>
@@ -37,7 +37,7 @@
             </Button>
             <Button layoutX="84.0" layoutY="5.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iSaveClient" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/save-disk.png" />
                      </image>
@@ -46,7 +46,7 @@
             </Button>
             <Button layoutX="159.0" layoutY="5.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iEditClient" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/add-report.png" />
                      </image>
@@ -55,16 +55,16 @@
             </Button>
             <Button layoutX="232.0" layoutY="5.0" mnemonicParsing="false">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iRemoveClient" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/remove-report.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="307.0" layoutY="5.0" mnemonicParsing="false" text="Ciudades">
+            <Button layoutX="307.0" layoutY="5.0" mnemonicParsing="false" onAction="#onGCity" text="Ciudades">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iOpenCity" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/city.png" />
                      </image>
@@ -120,9 +120,9 @@
                   </Label>
                </children>
             </GridPane>
-            <Button layoutX="536.0" layoutY="14.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="Ver Clientes">
+            <Button layoutX="536.0" layoutY="14.0" mnemonicParsing="false" onAction="#onListClients" prefHeight="100.0" prefWidth="200.0" text="Ver Clientes">
                <graphic>
-                  <ImageView fitHeight="51.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iSearchClient" fitHeight="51.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../resources/Images/search.png" />
                      </image>
