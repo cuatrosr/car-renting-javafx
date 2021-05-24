@@ -58,10 +58,14 @@ public class FXMenu implements Initializable {
         iDevol.setImage(iDevolPNG);
         iReport.setImage(iReportPNG);
     }
+    
+    public Pane getPane(){
+        return pMainMenu;
+    }
 
     @FXML
     public void onGClient(ActionEvent event) throws IOException {
-        //fxGUI.disablePane(pMainMenu, true);
+        fxGUI.disablePane(pMainMenu, true);
         fxGUI.showGClient();
     }
 

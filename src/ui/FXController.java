@@ -1,12 +1,14 @@
 package ui;
 
 import java.io.IOException;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.*;
 
 public class FXController {
@@ -44,13 +46,14 @@ public class FXController {
         xDevol = new FXDevol(rc, this);
     }
 
-    public void newStage(Parent root) {
+    public Stage newStage(Parent root) {
         Stage newStage = new Stage();
         Scene scene = new Scene(root);
         newStage.setScene(scene);
         newStage.setTitle("RentingCar");
         newStage.setResizable(false);
         newStage.show();
+        return newStage;
     }
 
     public void closeStage(Pane bpMain) {
@@ -60,6 +63,12 @@ public class FXController {
 
     public void disablePane(Pane bpMain, boolean status) {
         bpMain.setDisable(status);
+    }
+
+    public void habilityPane(Pane bpMain, Stage closed) {
+        closed.setOnCloseRequest((WindowEvent event) -> {
+            disablePane(bpMain, false);
+        });
     }
 
     public void showLogin() throws IOException {
@@ -91,8 +100,9 @@ public class FXController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/AddClient.fxml"));
         fxmlLoader.setController(xClient);
         Parent root = fxmlLoader.load();
-        newStage(root);
+        Stage clientStage = newStage(root);
         xClient.setImagesButton();
+        habilityPane(xMenu.getPane(), clientStage);
     }
 
     public void showGVehicle() throws IOException {
