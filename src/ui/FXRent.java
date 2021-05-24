@@ -1,16 +1,17 @@
 package ui;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import model.*;
 
-public class FXRent implements Initializable {
+public class FXRent {
+
+    @FXML
+    private Pane rPane;
 
     //********* Set Images *********\\
     @FXML
@@ -39,11 +40,6 @@ public class FXRent implements Initializable {
         this.fxGUI = fxGUI;
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        setImagesButton();
-    }
-
     public void setImagesButton() {
         Image iAddRentPNG = new Image("Images/add-file.png");
         Image iRefreshRentPNG = new Image("Images/return-sign.png");
@@ -54,20 +50,26 @@ public class FXRent implements Initializable {
         iSelectClientRent.setImage(iSelectClientRentPNG);
         iSelectVehicleRent.setImage(iSelectVehicleRentPNG);
     }
-    
-    public void setImagesList(){
+
+    public void setImagesList() {
         Image iSearchRentPNG = new Image("Images/search.png");
         iSearchIDRent.setImage(iSearchRentPNG);
         iSearchTicketRent.setImage(iSearchRentPNG);
     }
+    
+    public Pane getPane(){
+        return rPane;
+    }
 
     @FXML
     public void onSearchClientsInRent(ActionEvent event) throws IOException {
-        fxGUI.showListClient();
+        fxGUI.disablePane(rPane, true);
+        fxGUI.showListClient(false);
     }
 
     @FXML
     public void onSearchVehicleInRent(ActionEvent event) throws IOException {
-        fxGUI.showListVehicle();
+        fxGUI.disablePane(rPane, true);
+        fxGUI.showListVehicle(false);
     }
 }

@@ -5,9 +5,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import model.*;
 
 public class FXClient {
+
+    @FXML
+    private Pane pClient;
 
     //********* Set Images *********\\
     @FXML
@@ -58,14 +62,20 @@ public class FXClient {
         Image iSearchClientPNG = new Image("Images/search.png");
         iSearchInListClient.setImage(iSearchClientPNG);
     }
+    
+    public Pane getPane(){
+        return pClient;
+    }
 
     @FXML
     public void onGCity(ActionEvent event) throws IOException {
-        fxGUI.showGCity();
+        fxGUI.disablePane(pClient, true);
+        fxGUI.showGCity(false);
     }
 
     @FXML
     public void onListClients(ActionEvent event) throws IOException {
-        fxGUI.showListClient();
+        fxGUI.disablePane(pClient, true);
+        fxGUI.showListClient(true);
     }
 }

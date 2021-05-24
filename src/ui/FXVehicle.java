@@ -5,10 +5,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import model.*;
 
 public class FXVehicle {
-
+    
+    @FXML
+    private Pane vPane;
+    
     //********* Set Images *********\\
     @FXML
     private ImageView iAddVehicle;
@@ -68,19 +72,26 @@ public class FXVehicle {
         Image iSearchVehiclePNG = new Image("Images/search.png");
         iSearchInListVehicle.setImage(iSearchVehiclePNG);
     }
+    
+    public Pane getPane(){
+        return vPane;
+    }
 
     @FXML
     public void onGBrand(ActionEvent event) throws IOException {
-        fxGUI.showGBrand();
+        fxGUI.disablePane(vPane, true);
+        fxGUI.showGBrand(false);
     }
 
     @FXML
     public void onGType(ActionEvent event) throws IOException {
-        fxGUI.showGType();
+        fxGUI.disablePane(vPane, true);
+        fxGUI.showGType(false);
     }
 
     @FXML
     public void onListVehicle(ActionEvent event) throws IOException {
-        fxGUI.showListVehicle();
+        fxGUI.disablePane(vPane, true);
+        fxGUI.showListVehicle(true);
     }
 }

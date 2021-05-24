@@ -1,7 +1,6 @@
 package ui;
 
 import java.io.IOException;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -71,15 +70,15 @@ public class FXController {
         });
     }
 
+    public Pane getPMain() {
+        return pMain;
+    }
+
     public void showLogin() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/Login.fxml"));
         fxmlLoader.setController(xLogin);
         Parent root = fxmlLoader.load();
         pMain.getChildren().setAll(root);
-    }
-
-    public Pane getPMain() {
-        return pMain;
     }
 
     public void showRegister() throws IOException {
@@ -109,117 +108,162 @@ public class FXController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/AddVehicle.fxml"));
         fxmlLoader.setController(xVehicle);
         Parent root = fxmlLoader.load();
-        newStage(root);
+        Stage vehicleStage = newStage(root);
         xVehicle.setImagesButton();
+        habilityPane(xMenu.getPane(), vehicleStage);
     }
 
-    public void showGCity() throws IOException {
+    public void showGCity(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/AddCity.fxml"));
         fxmlLoader.setController(xCity);
         Parent root = fxmlLoader.load();
-        newStage(root);
+        Stage cityStage = newStage(root);
+        if (out) {
+            habilityPane(xMenu.getPane(), cityStage);
+        } else {
+            habilityPane(xClient.getPane(), cityStage);
+        }
     }
 
-    public void showGBrand() throws IOException {
+    public void showGBrand(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/AddBrand.fxml"));
         fxmlLoader.setController(xBrand);
         Parent root = fxmlLoader.load();
-        newStage(root);
+        Stage brandStage = newStage(root);
+        if (out) {
+            habilityPane(xMenu.getPane(), brandStage);
+        } else {
+            habilityPane(xVehicle.getPane(), brandStage);
+        }
     }
 
-    public void showGType() throws IOException {
+    public void showGType(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/AddType.fxml"));
         fxmlLoader.setController(xType);
         Parent root = fxmlLoader.load();
-        newStage(root);
+        Stage typeStage = newStage(root);
+        if (out) {
+            habilityPane(xMenu.getPane(), typeStage);
+        } else {
+            habilityPane(xVehicle.getPane(), typeStage);
+        }
     }
 
     public void showGRent() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/Rent.fxml"));
         fxmlLoader.setController(xRent);
         Parent root = fxmlLoader.load();
-        newStage(root);
+        Stage rentStage = newStage(root);
+        xRent.setImagesButton();
+        habilityPane(xMenu.getPane(), rentStage);
     }
 
     public void showGDevolution() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/Devolution.fxml"));
         fxmlLoader.setController(xDevol);
         Parent root = fxmlLoader.load();
-        newStage(root);
+        Stage devolStage = newStage(root);
+        habilityPane(xMenu.getPane(), devolStage);
     }
 
-    public void showListClient() throws IOException {
+    public void showListClient(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ListClients.fxml"));
         fxmlLoader.setController(xClient);
         Parent root = fxmlLoader.load();
-        newStage(root);
+        Stage listClientStage = newStage(root);
         xClient.setImagesList();
+        if (out) {
+            habilityPane(xClient.getPane(), listClientStage);
+        } else {
+            habilityPane(xRent.getPane(), listClientStage);
+        }
     }
 
     public void showListEmployee() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ListEmployee.fxml"));
         fxmlLoader.setController(xEmployee);
         Parent root = fxmlLoader.load();
-        newStage(root);
+        Stage listEmployeeStage = newStage(root);
         xEmployee.setImageEmployee();
+        habilityPane(xMenu.getPane(), listEmployeeStage);
     }
 
     public void showListRent() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ListRent.fxml"));
         fxmlLoader.setController(xRent);
         Parent root = fxmlLoader.load();
-        newStage(root);
+        Stage listRentStage = newStage(root);
         xRent.setImagesList();
+        habilityPane(xDevol.getPane(), listRentStage);
     }
 
-    public void showListVehicle() throws IOException {
+    public void showListVehicle(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ListVehicles.fxml"));
         fxmlLoader.setController(xVehicle);
         Parent root = fxmlLoader.load();
-        newStage(root);
+        Stage listVehicleStage = newStage(root);
         xVehicle.setImagesList();
+        if(out){
+            habilityPane(xVehicle.getPane(), listVehicleStage);
+        } else {
+            habilityPane(xRent.getPane(), listVehicleStage);
+        }
     }
 
-    public void showReportClient() throws IOException {
+    public void showReportClient(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ReportClients.fxml"));
         fxmlLoader.setController(xReport);
         Parent root = fxmlLoader.load();
-        closeStage(xReport.getPane());
-        newStage(root);
+        Stage rClientStage = newStage(root);
         xReport.setImagesClientReport();
+        if(out){
+            habilityPane(xMenu.getPane(), rClientStage);
+        } else {
+            habilityPane(xReport.getPane(), rClientStage);
+        }
     }
 
-    public void showReportRent() throws IOException {
+    public void showReportRent(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ReportRent.fxml"));
         fxmlLoader.setController(xReport);
         Parent root = fxmlLoader.load();
-        closeStage(xReport.getPane());
-        newStage(root);
+        Stage rRentStage = newStage(root);
         xReport.setImagesRentReport();
+        if (out) {
+            habilityPane(xMenu.getPane(), rRentStage);
+        } else {
+            habilityPane(xReport.getPane(), rRentStage);
+        }
     }
 
-    public void showReportVehicles() throws IOException {
+    public void showReportVehicles(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ReportVehicles.fxml"));
         fxmlLoader.setController(xReport);
         Parent root = fxmlLoader.load();
-        closeStage(xReport.getPane());
-        newStage(root);
+        Stage rVehicleStage = newStage(root);
         xReport.setImagesVehiclesReport();
+        if(out){
+            habilityPane(xMenu.getPane(), rVehicleStage);
+        } else {
+            habilityPane(xReport.getPane(), rVehicleStage);
+        }
     }
 
     public void showSelectReport() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/SelectReport.fxml"));
         fxmlLoader.setController(xReport);
         Parent root = fxmlLoader.load();
-        newStage(root);
+        Stage sReportStage = newStage(root);
         xReport.setImagesButton();
+        habilityPane(xMenu.getPane(), sReportStage);
     }
 
     public void showTopEmployee() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/TopEmployee.fxml"));
         fxmlLoader.setController(xEmployee);
         Parent root = fxmlLoader.load();
-        newStage(root);
+        Stage topEmployeeStage = newStage(root);
         xEmployee.setImageTopEmployee();
+        habilityPane(xMenu.getPane(), topEmployeeStage);
     }
 }

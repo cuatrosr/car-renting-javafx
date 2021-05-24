@@ -16,7 +16,7 @@ public class Main extends Application {
     @SuppressWarnings("FieldMayBeFinal")
     private FXController fxGUI;
 
-    private static final int COUNT_LIMIT = 20000;
+    private static final int COUNT_LIMIT = 1000;
 
     public Main() {
         rc = new RentingCar();

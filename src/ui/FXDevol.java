@@ -8,9 +8,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import model.*;
 
 public class FXDevol implements Initializable {
+
+    @FXML
+    private Pane dPane;
 
     //********* Set Images *********\\
     @FXML
@@ -38,9 +42,14 @@ public class FXDevol implements Initializable {
         iSelectRentDevol.setImage(iSelectRentDevolPNG);
         iPayDevol.setImage(iPayDevolPNG);
     }
+    
+    public Pane getPane(){
+        return dPane;
+    }
 
     @FXML
     public void onListRentoinDevol(ActionEvent event) throws IOException {
+        fxGUI.disablePane(dPane, true);
         fxGUI.showListRent();
     }
 }

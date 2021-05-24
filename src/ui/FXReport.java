@@ -85,16 +85,19 @@ public class FXReport {
 
     @FXML
     void onSelecetClientReport(ActionEvent event) throws IOException {
-        fxGUI.showReportClient();
+        fxGUI.disablePane(reportPane, true);
+        fxGUI.showReportClient(false);
     }
 
     @FXML
     void onSelecetRentReport(ActionEvent event) throws IOException {
-        fxGUI.showReportRent();
+        fxGUI.disablePane(reportPane, true);
+        fxGUI.showReportRent(false);
     }
 
     @FXML
     void onSelecetVehicleReport(ActionEvent event) throws IOException {
-        fxGUI.showReportVehicles();
+        fxGUI.disablePane(reportPane, true);
+        fxGUI.showReportVehicles(false);
     }
 }
