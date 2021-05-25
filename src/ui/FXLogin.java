@@ -1,4 +1,5 @@
 package ui;
+
 import model.*;
 
 import com.jfoenix.controls.JFXPasswordField;
@@ -11,6 +12,7 @@ import javafx.scene.layout.StackPane;
 
 public class FXLogin {
 
+    private static final long serialVersionUID = 1;
     @FXML
     private Pane mainPane;
 

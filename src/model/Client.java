@@ -1,7 +1,10 @@
 package model;
 
-public class Client extends Person{
-    
+import java.io.Serializable;
+
+public class Client extends Person implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private String addressC;
     private long phoneC;
     private String emailC;

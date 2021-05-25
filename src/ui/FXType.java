@@ -10,6 +10,7 @@ import model.*;
 
 public class FXType implements Initializable {
 
+    private static final long serialVersionUID = 1;
     //********* Set Images *********\\
     @FXML
     private ImageView iAddType;

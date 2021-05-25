@@ -1,9 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import javafx.scene.image.Image;
 
-public class Vehicle {
-    
+public class Vehicle implements Serializable {
+
+    private static final long serialVersionUID = 1;
+    private Vehicle next;
     private int codeV;
     private String plate;
     private boolean dispV;
@@ -14,6 +17,11 @@ public class Vehicle {
         this.plate = plate;
         this.dispV = dispV;
         this.photo = photo;
+        next = null;
+    }
+
+    public Vehicle getNext() {
+        return next;
     }
 
     public int getCodeV() {

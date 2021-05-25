@@ -1,7 +1,10 @@
 package model;
 
-public class Person {
-    
+import java.io.Serializable;
+
+public class Person implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private int codeP;
     private int refP;
     private String name;
@@ -31,7 +34,7 @@ public class Person {
     public void setRefP(int refP) {
         this.refP = refP;
     }
-    
+
     public String getName() {
         return name;
     }

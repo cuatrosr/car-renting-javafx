@@ -7,9 +7,10 @@ import model.*;
 
 public class FXEmployee {
 
+    private static final long serialVersionUID = 1;
     @FXML
     private ImageView iSearchEmployee;
-    
+
     @FXML
     private ImageView iSearchTopEmployee;
 
@@ -20,17 +21,17 @@ public class FXEmployee {
         this.rc = rc;
         this.fxGUI = fxGUI;
     }
-    
+
     public Image getImageButton() {
         Image iSearchEmployee = new Image("Images/search.png");
         return iSearchEmployee;
     }
-    
-    public void setImageEmployee(){
+
+    public void setImageEmployee() {
         iSearchEmployee.setImage(getImageButton());
     }
-    
-    public void setImageTopEmployee(){
+
+    public void setImageTopEmployee() {
         iSearchTopEmployee.setImage(getImageButton());
     }
 }

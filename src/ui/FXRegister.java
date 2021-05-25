@@ -34,7 +34,7 @@ public class FXRegister {
     private JFXPasswordField txtRegisterPassword;
 
     @FXML
-    private JFXPasswordField txtRegisterPassword1;
+    private JFXPasswordField txtRegisterKey;
 
     private RentingCar rc;
     private FXController fxGUI;
@@ -50,9 +50,33 @@ public class FXRegister {
     }
 
     @FXML
-    public void onRegister(ActionEvent event) throws IOException{
-        fxGUI.closeStage(fxGUI.getPMain());
-        fxGUI.closeStage(bpMain);
-        fxGUI.showMenu();
-    } 
+    public void onRegister(ActionEvent event) throws IOException {
+        boolean added = addRegister();
+        if (added) {
+            fxGUI.closeStage(fxGUI.getPMain());
+            fxGUI.closeStage(bpMain);
+            fxGUI.showMenu();
+        }
+    }
+
+    public boolean addRegister() {
+        try {
+            if (!txtRegisterName.getText().equals("") && !txtRegisterLastName.getText().equals("") && !txtRegisterID.getText().equals("")
+                    && !txtRegisterUserName.getText().equals("") && !txtRegisterPassword.getText().equals("") && !txtRegisterKey.getText().equals("")) {
+                if (txtRegisterKey.getText().equals("x")) {
+                    rc.addEmployee(txtRegisterName.getText(), txtRegisterPassword.getText(), 0, 0, rc.getCode(), 0, txtRegisterUserName.getText(), txtRegisterLastName.getText(), Long.parseLong(txtRegisterID.getText()));
+                    return true;
+                } else {
+                    fxGUI.showAlert(true, "Acceso denegado!", stackPane);
+                    return false;
+                }
+            } else {
+                fxGUI.showAlert(false, "Porfavor, llena todo los campos!", stackPane);
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            fxGUI.showAlert(false, "La identificacion debe ser numerica!", stackPane);
+            return false;
+        }
+    }
 }

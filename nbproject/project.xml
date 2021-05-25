@@ -13,8 +13,9 @@
             </extension>
         </buildExtensions>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
-            <name>complaint-colombia</name>
+            <name>car-renting-javafx</name>
             <source-roots>
+                <root id="src.data.dir"/>
                 <root id="src.resources.dir"/>
                 <root id="src.dir"/>
             </source-roots>

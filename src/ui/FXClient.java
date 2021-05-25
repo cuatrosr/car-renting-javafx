@@ -10,6 +10,7 @@ import model.*;
 
 public class FXClient {
 
+    private static final long serialVersionUID = 1;
     @FXML
     private Pane pClient;
 
@@ -62,8 +63,8 @@ public class FXClient {
         Image iSearchClientPNG = new Image("Images/search.png");
         iSearchInListClient.setImage(iSearchClientPNG);
     }
-    
-    public Pane getPane(){
+
+    public Pane getPane() {
         return pClient;
     }
 

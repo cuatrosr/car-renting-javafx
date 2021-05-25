@@ -1,9 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Rent {
+public class Rent implements Serializable {
 
+    private static final long serialVersionUID = 1;
     private int codeR;
     private int ticket;
     private Client clientR;

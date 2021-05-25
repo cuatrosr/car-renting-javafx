@@ -1,7 +1,10 @@
 package model;
 
-public class City {
-    
+import java.io.Serializable;
+
+public class City implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private int codeCi;
     private String nameCi;
     private int refCi;

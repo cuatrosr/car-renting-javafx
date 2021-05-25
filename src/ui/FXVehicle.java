@@ -9,10 +9,11 @@ import javafx.scene.layout.Pane;
 import model.*;
 
 public class FXVehicle {
-    
+
+    private static final long serialVersionUID = 1;
     @FXML
     private Pane vPane;
-    
+
     //********* Set Images *********\\
     @FXML
     private ImageView iAddVehicle;
@@ -72,8 +73,8 @@ public class FXVehicle {
         Image iSearchVehiclePNG = new Image("Images/search.png");
         iSearchInListVehicle.setImage(iSearchVehiclePNG);
     }
-    
-    public Pane getPane(){
+
+    public Pane getPane() {
         return vPane;
     }
 

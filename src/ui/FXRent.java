@@ -10,6 +10,7 @@ import model.*;
 
 public class FXRent {
 
+    private static final long serialVersionUID = 1;
     @FXML
     private Pane rPane;
 
@@ -56,8 +57,8 @@ public class FXRent {
         iSearchIDRent.setImage(iSearchRentPNG);
         iSearchTicketRent.setImage(iSearchRentPNG);
     }
-    
-    public Pane getPane(){
+
+    public Pane getPane() {
         return rPane;
     }
 

@@ -1,7 +1,10 @@
 package model;
 
-public class Brand {
-    
+import java.io.Serializable;
+
+public class Brand implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private int codeB;
     private String name;
     private int refB;

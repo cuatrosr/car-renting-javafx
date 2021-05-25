@@ -1,7 +1,10 @@
 package model;
 
-public class TypeV {
-    
+import java.io.Serializable;
+
+public class TypeV implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private int codeTv;
     private String nameTv;
     private int refTv;

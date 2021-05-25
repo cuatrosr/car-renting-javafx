@@ -13,6 +13,7 @@ import model.*;
 
 public class FXMenu implements Initializable {
 
+    private static final long serialVersionUID = 1;
     @FXML
     private Pane pMainMenu;
 

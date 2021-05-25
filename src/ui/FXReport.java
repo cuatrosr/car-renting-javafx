@@ -10,10 +10,11 @@ import model.*;
 
 public class FXReport {
 
-    
+    private static final long serialVersionUID = 1;
+
     @FXML
     private Pane reportPane;
-    
+
     //********* Set Images *********\\
     @FXML
     private ImageView iReportClient;
@@ -78,8 +79,8 @@ public class FXReport {
         iPrintAllRentReport.setImage(getImagePrint());
         iPrintFilterRentReport.setImage(getImagePrint());
     }
-    
-    public Pane getPane(){
+
+    public Pane getPane() {
         return reportPane;
     }
 

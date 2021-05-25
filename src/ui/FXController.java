@@ -1,20 +1,34 @@
 package ui;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.*;
 
-public class FXController {
+public class FXController implements Serializable {
 
     @FXML
     private Pane pMain;
-
+    private static final long serialVersionUID = 1;
+    private final String SAVE_PATH_FILE = "data/RentingCar.cgd";
     private RentingCar rc;
     private FXLogin xLogin;
     private FXRegister xRegister;
@@ -43,6 +57,23 @@ public class FXController {
         xEmployee = new FXEmployee(rc, this);
         xRent = new FXRent(rc, this);
         xDevol = new FXDevol(rc, this);
+    }
+
+    public void loadData() throws IOException, FileNotFoundException {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE)));
+            RentingCar rc = (RentingCar) ois.readObject();
+            this.rc = rc;
+            ois.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveData() throws IOException {
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE));
+        oos.writeObject(this.rc);
+        oos.close();
     }
 
     public Stage newStage(Parent root) {
@@ -203,7 +234,7 @@ public class FXController {
         Parent root = fxmlLoader.load();
         Stage listVehicleStage = newStage(root);
         xVehicle.setImagesList();
-        if(out){
+        if (out) {
             habilityPane(xVehicle.getPane(), listVehicleStage);
         } else {
             habilityPane(xRent.getPane(), listVehicleStage);
@@ -216,7 +247,7 @@ public class FXController {
         Parent root = fxmlLoader.load();
         Stage rClientStage = newStage(root);
         xReport.setImagesClientReport();
-        if(out){
+        if (out) {
             habilityPane(xMenu.getPane(), rClientStage);
         } else {
             habilityPane(xReport.getPane(), rClientStage);
@@ -242,7 +273,7 @@ public class FXController {
         Parent root = fxmlLoader.load();
         Stage rVehicleStage = newStage(root);
         xReport.setImagesVehiclesReport();
-        if(out){
+        if (out) {
             habilityPane(xMenu.getPane(), rVehicleStage);
         } else {
             habilityPane(xReport.getPane(), rVehicleStage);
@@ -265,5 +296,24 @@ public class FXController {
         Stage topEmployeeStage = newStage(root);
         xEmployee.setImageTopEmployee();
         habilityPane(xMenu.getPane(), topEmployeeStage);
+    }
+
+    public void showAlert(boolean success, String msg, StackPane stackPane) {
+        JFXDialogLayout content = new JFXDialogLayout();
+        JFXButton button = new JFXButton("Okay");
+        JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+        button.setOnAction((ActionEvent event) -> {
+            dialog.close();
+        });
+        content.setActions(button);
+        if (success) {
+            content.setHeading(new Text("¡Listo!"));
+            content.setBody(new Text(msg));
+            dialog.show();
+        } else {
+            content.setHeading(new Text("¡Error!"));
+            content.setBody(new Text(msg));
+            dialog.show();
+        }
     }
 }

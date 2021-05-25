@@ -13,6 +13,7 @@ import model.*;
 
 public class FXDevol implements Initializable {
 
+    private static final long serialVersionUID = 1;
     @FXML
     private Pane dPane;
 
@@ -42,8 +43,8 @@ public class FXDevol implements Initializable {
         iSelectRentDevol.setImage(iSelectRentDevolPNG);
         iPayDevol.setImage(iPayDevolPNG);
     }
-    
-    public Pane getPane(){
+
+    public Pane getPane() {
         return dPane;
     }
 

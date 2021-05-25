@@ -1,9 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import javafx.scene.image.Image;
 
-public class Car extends Vehicle {
-    
+public class Car extends Vehicle implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private String model;
     private String color;
     private Brand brand;
