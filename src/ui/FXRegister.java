@@ -39,7 +39,7 @@ public class FXRegister {
     private RentingCar rc;
     private FXController fxGUI;
 
-    public FXRegister(RentingCar rc, FXController fxGUI) {
+    public FXRegister(RentingCar rc, FXController fxGUI) throws IOException {
         this.rc = rc;
         this.fxGUI = fxGUI;
     }
@@ -53,6 +53,7 @@ public class FXRegister {
     public void onRegister(ActionEvent event) throws IOException {
         boolean added = addRegister();
         if (added) {
+            fxGUI.saveData();
             fxGUI.closeStage(fxGUI.getPMain());
             fxGUI.closeStage(bpMain);
             fxGUI.showMenu();

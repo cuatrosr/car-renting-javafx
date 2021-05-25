@@ -28,7 +28,7 @@ public class FXLogin {
     private RentingCar rc;
     private FXController fxGUI;
 
-    public FXLogin(RentingCar rc, FXController fxGUI) {
+    public FXLogin(RentingCar rc, FXController fxGUI) throws IOException {
         this.rc = rc;
         this.fxGUI = fxGUI;
     }
@@ -40,6 +40,8 @@ public class FXLogin {
 
     @FXML
     public void onLogIn(ActionEvent event) throws IOException {
+        System.out.println(rc.getFirstE());
+        System.out.println(rc.getFirstE().getNext() + "null");
         fxGUI.closeStage(fxGUI.getPMain());
         fxGUI.closeStage(mainPane);
         fxGUI.showMenu();

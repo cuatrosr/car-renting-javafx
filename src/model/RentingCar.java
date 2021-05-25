@@ -14,7 +14,11 @@ public class RentingCar implements Serializable {
         firstE = null;
         code = 0;
     }
-
+    
+    public Employee getFirstE() {
+        return firstE;
+    }
+    
     public int getCode() {
         return code;
     }

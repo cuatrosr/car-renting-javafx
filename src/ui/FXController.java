@@ -43,23 +43,24 @@ public class FXController implements Serializable {
     private FXRent xRent;
     private FXDevol xDevol;
 
-    public FXController(RentingCar rc) {
-        this.rc = new RentingCar();
-        xLogin = new FXLogin(rc, this);
-        xRegister = new FXRegister(rc, this);
-        xMenu = new FXMenu(rc, this);
-        xClient = new FXClient(rc, this);
-        xVehicle = new FXVehicle(rc, this);
-        xCity = new FXCity(rc, this);
-        xBrand = new FXBrand(rc, this);
-        xType = new FXType(rc, this);
-        xReport = new FXReport(rc, this);
-        xEmployee = new FXEmployee(rc, this);
-        xRent = new FXRent(rc, this);
-        xDevol = new FXDevol(rc, this);
+    public FXController(RentingCar rc) throws IOException {
+        this.rc = rc;
+        loadData();
+        xLogin = new FXLogin(this.rc, this);
+        xRegister = new FXRegister(this.rc, this);
+        xMenu = new FXMenu(this.rc, this);
+        xClient = new FXClient(this.rc, this);
+        xVehicle = new FXVehicle(this.rc, this);
+        xCity = new FXCity(this.rc, this);
+        xBrand = new FXBrand(this.rc, this);
+        xType = new FXType(this.rc, this);
+        xReport = new FXReport(this.rc, this);
+        xEmployee = new FXEmployee(this.rc, this);
+        xRent = new FXRent(this.rc, this);
+        xDevol = new FXDevol(this.rc, this);
     }
 
-    public void loadData() throws IOException, FileNotFoundException {
+    public void loadData() throws FileNotFoundException {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE)));
             RentingCar rc = (RentingCar) ois.readObject();

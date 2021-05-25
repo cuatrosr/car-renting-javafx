@@ -1,6 +1,7 @@
 package ui;
 
 import com.sun.javafx.application.LauncherImpl;
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.application.Preloader;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,7 @@ public class Main extends Application {
 
     private static final int COUNT_LIMIT = 1000;
 
-    public Main() {
+    public Main() throws IOException {
         rc = new RentingCar();
         fxGUI = new FXController(rc);
     }
