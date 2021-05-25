@@ -8,17 +8,22 @@ public class RentingCar implements Serializable {
     public Vehicle firstV;
     public Employee firstE;
     public int code;
+    public Employee empActive;
 
     public RentingCar() {
         firstV = null;
         firstE = null;
         code = 0;
     }
-    
+
+    public Employee getEmpActive() {
+        return empActive;
+    }
+
     public Employee getFirstE() {
         return firstE;
     }
-    
+
     public int getCode() {
         return code;
     }
@@ -37,10 +42,32 @@ public class RentingCar implements Serializable {
     }
 
     private void addEmp(Employee emp, Employee current) {
-        if (current.getName() == null) {
+        if (current.getNext() == null) {
             current.setNext(emp);
         } else {
             addEmp(emp, current.getNext());
+        }
+    }
+
+    public boolean loginEmployee(String userName, String password) {
+        if (firstE.getUsername().equals(userName) && firstE.getPassword().equals(password)) {
+            empActive = firstE;
+            return true;
+        } else if (firstE.getNext() != null) {
+            return loginEmployee(firstE.getNext(), userName, password);
+        } else {
+            return false;
+        }
+    }
+
+    private boolean loginEmployee(Employee current, String userName, String password) {
+        if (current.getUsername().equals(userName) && current.getPassword().equals(password)) {
+            empActive = firstE;
+            return true;
+        } else if (current.getNext() != null) {
+            return loginEmployee(current.getNext(), userName, password);
+        } else {
+            return false;
         }
     }
 }

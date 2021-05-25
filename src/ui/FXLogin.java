@@ -40,12 +40,26 @@ public class FXLogin {
 
     @FXML
     public void onLogIn(ActionEvent event) throws IOException {
-        System.out.println(rc.getFirstE());
-        System.out.println(rc.getFirstE().getNext() + "null");
-        fxGUI.closeStage(fxGUI.getPMain());
-        fxGUI.closeStage(mainPane);
-        fxGUI.showMenu();
-
+        boolean login = checkLogin();
+        if (login) {
+            fxGUI.closeStage(fxGUI.getPMain());
+            fxGUI.closeStage(mainPane);
+            fxGUI.showMenu();
+        }
     }
 
+    private boolean checkLogin() {
+        if (!txtUserLogin.getText().equals("") && !txtPassWordLogin.getText().equals("")) {
+            boolean login = rc.loginEmployee(txtUserLogin.getText(), txtPassWordLogin.getText());
+            if (login) {
+                return true;
+            } else {
+                fxGUI.showAlert(false, "Usuario o Contraseña Incorrecta!", stackPane);
+                return false;
+            }
+        } else {
+            fxGUI.showAlert(false, "Debes llenar todos los campos!", stackPane);
+            return false;
+        }
+    }
 }
