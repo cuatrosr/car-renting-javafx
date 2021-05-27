@@ -42,6 +42,7 @@ public class FXController implements Serializable {
     private FXEmployee xEmployee;
     private FXRent xRent;
     private FXDevol xDevol;
+    private int selectObjectCode;
 
     public FXController(RentingCar rc) throws IOException {
         this.rc = rc;
@@ -67,7 +68,6 @@ public class FXController implements Serializable {
             this.rc = rc;
             ois.close();
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -104,6 +104,14 @@ public class FXController implements Serializable {
 
     public Pane getPMain() {
         return pMain;
+    }
+    
+    public int getSelectObjectCode(){
+        return selectObjectCode;
+    }
+    
+    public void setSelectObjectCode(int code){
+        this.selectObjectCode = code;
     }
 
     public void showLogin() throws IOException {
@@ -150,6 +158,7 @@ public class FXController implements Serializable {
         fxmlLoader.setController(xCity);
         Parent root = fxmlLoader.load();
         Stage cityStage = newStage(root);
+        xCity.onTableListCities();
         if (out) {
             habilityPane(xMenu.getPane(), cityStage);
         } else {

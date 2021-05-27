@@ -1,5 +1,6 @@
 package ui;
 
+import com.jfoenix.controls.*;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,6 +36,11 @@ public class FXClient {
 
     @FXML
     private ImageView iSearchInListClient;
+    
+    //********* Text Field *********\\
+    
+    @FXML
+    private JFXTextField codeClient;
 
     private RentingCar rc;
     private FXController fxGUI;
@@ -78,5 +84,9 @@ public class FXClient {
     public void onListClients(ActionEvent event) throws IOException {
         fxGUI.disablePane(pClient, true);
         fxGUI.showListClient(true);
+    }
+    
+    @FXML
+    public void onNewClient(ActionEvent event) {
     }
 }

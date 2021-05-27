@@ -26,7 +26,7 @@
       </Pane>
       <Pane layoutY="43.0" prefHeight="57.0" prefWidth="779.0" style="-fx-background-color: #f4efef;">
          <children>
-            <Button layoutX="14.0" layoutY="5.0" mnemonicParsing="false">
+            <Button layoutX="14.0" layoutY="5.0" mnemonicParsing="false" onAction="#onNewClient">
                <graphic>
                   <ImageView fx:id="iAddClient" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -139,7 +139,7 @@
             </Label>
             <JFXTextField focusColor="#4d4d4d" layoutX="112.0" layoutY="54.0" prefHeight="31.0" prefWidth="414.0" unFocusColor="#009975" />
             <JFXTextField focusColor="#4d4d4d" layoutX="112.0" layoutY="116.0" prefHeight="31.0" prefWidth="626.0" unFocusColor="#009975" />
-            <JFXTextField focusColor="#4d4d4d" layoutX="112.0" layoutY="15.0" prefHeight="31.0" prefWidth="135.0" unFocusColor="#009975" />
+            <JFXTextField fx:id="codeClient" focusColor="#4d4d4d" layoutX="112.0" layoutY="15.0" prefHeight="31.0" prefWidth="135.0" unFocusColor="#009975" />
             <JFXTextField focusColor="#4d4d4d" layoutX="319.0" layoutY="15.0" prefHeight="31.0" prefWidth="200.0" unFocusColor="#009975" />
             <JFXTextField focusColor="#4d4d4d" layoutX="112.0" layoutY="85.0" prefHeight="31.0" prefWidth="414.0" unFocusColor="#009975" />
             <JFXTextField focusColor="#4d4d4d" layoutX="111.0" layoutY="147.0" prefHeight="31.0" prefWidth="626.0" unFocusColor="#009975" />

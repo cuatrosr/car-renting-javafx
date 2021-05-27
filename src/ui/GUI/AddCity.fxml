@@ -9,97 +9,103 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="472.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+
+<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="43.0" prefWidth="472.0" style="-fx-background-color: #009975;">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="472.0" style="-fx-background-color: #ffffff;">
          <children>
-            <Label layoutX="148.0" layoutY="7.0" text="AGREGAR CIUDAD" textFill="WHITE">
+            <Pane prefHeight="43.0" prefWidth="472.0" style="-fx-background-color: #009975;">
+               <children>
+                  <Label layoutX="148.0" layoutY="7.0" text="AGREGAR CIUDAD" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="7.0" layoutY="49.0" prefHeight="57.0" prefWidth="458.0" style="-fx-background-color: #f4efef;">
+               <children>
+                  <Button fx:id="btnNewCity" layoutX="14.0" layoutY="5.0" mnemonicParsing="false" onAction="#onNewCity">
+                     <graphic>
+                        <ImageView fx:id="iAddCity" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/Images/add-file.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnSaveCity" layoutX="84.0" layoutY="5.0" mnemonicParsing="false" onAction="#onSaveCity">
+                     <graphic>
+                        <ImageView fx:id="iSaveCity" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/Images/save-disk.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnEditCity" layoutX="159.0" layoutY="5.0" mnemonicParsing="false" onAction="#onEditCity">
+                     <graphic>
+                        <ImageView fx:id="iEditCity" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/Images/add-report.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnRemoveCity" layoutX="232.0" layoutY="5.0" mnemonicParsing="false" onAction="#onRemoveCity">
+                     <graphic>
+                        <ImageView fx:id="iRemoveCity" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/Images/remove-report.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
+            <JFXTextField fx:id="txtCodeCity" editable="false" focusColor="#4d4d4d" layoutX="101.0" layoutY="107.0" prefHeight="31.0" prefWidth="135.0" unFocusColor="#009975" />
+            <Label layoutX="21.0" layoutY="158.0" text="Nombre:">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Label>
+            <Label layoutX="21.0" layoutY="122.0" text="Codigo:">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtNameCity" focusColor="#4d4d4d" layoutX="101.0" layoutY="143.0" prefHeight="31.0" prefWidth="343.0" unFocusColor="#009975" />
+            <Pane layoutX="15.0" layoutY="187.0" prefHeight="57.0" prefWidth="442.0" style="-fx-background-color: #f3f3f3;">
+               <children>
+                  <Label layoutX="14.0" layoutY="18.0" text="Buscar por nombre:" />
+                  <JFXTextField focusColor="#4d4d4d" layoutX="154.0" layoutY="6.0" prefHeight="31.0" prefWidth="212.0" unFocusColor="#009975" />
+                  <Button fx:id="btnSearchCity" layoutX="383.0" layoutY="11.0" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fx:id="iSearchCity" fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/Images/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane layoutX="15.0" layoutY="509.0" prefHeight="43.0" prefWidth="442.0" style="-fx-background-color: #f3f3f3;">
+               <children>
+                  <JFXProgressBar layoutY="20.0" prefHeight="4.0" prefWidth="442.0" />
+               </children>
+            </Pane>
+            <Label layoutX="108.0" layoutY="475.0" text="Doble Clic para seleccionar una ciudad" />
+            <TableView fx:id="tblCity" layoutX="15.0" layoutY="261.0" onMouseClicked="#onSelectCity" prefHeight="200.0" prefWidth="442.0" style="-fx-border-color: #009975;">
+              <columns>
+                <TableColumn fx:id="tblcCodeCity" prefWidth="104.0" text="Codigo" />
+                <TableColumn fx:id="tblcNameCity" prefWidth="337.0" text="Ciudad" />
+              </columns>
+            </TableView>
          </children>
       </Pane>
-      <Pane layoutX="7.0" layoutY="49.0" prefHeight="57.0" prefWidth="458.0" style="-fx-background-color: #f4efef;">
-         <children>
-            <Button layoutX="14.0" layoutY="5.0" mnemonicParsing="false">
-               <graphic>
-                  <ImageView fx:id="iAddCity" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../resources/Images/add-file.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button layoutX="84.0" layoutY="5.0" mnemonicParsing="false">
-               <graphic>
-                  <ImageView fx:id="iSaveCity" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../resources/Images/save-disk.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button layoutX="159.0" layoutY="5.0" mnemonicParsing="false">
-               <graphic>
-                  <ImageView fx:id="iEditCity" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../resources/Images/add-report.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button layoutX="232.0" layoutY="5.0" mnemonicParsing="false">
-               <graphic>
-                  <ImageView fx:id="iRemoveCity" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../resources/Images/remove-report.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </Pane>
-      <JFXTextField focusColor="#4d4d4d" layoutX="101.0" layoutY="107.0" prefHeight="31.0" prefWidth="135.0" unFocusColor="#009975" />
-      <Label layoutX="21.0" layoutY="158.0" text="Nombre:">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="21.0" layoutY="122.0" text="Codigo:">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <JFXTextField focusColor="#4d4d4d" layoutX="101.0" layoutY="143.0" prefHeight="31.0" prefWidth="343.0" unFocusColor="#009975" />
-      <Pane layoutX="15.0" layoutY="187.0" prefHeight="57.0" prefWidth="442.0" style="-fx-background-color: #f3f3f3;">
-         <children>
-            <Label layoutX="14.0" layoutY="18.0" text="Buscar por nombre:" />
-            <JFXTextField focusColor="#4d4d4d" layoutX="154.0" layoutY="6.0" prefHeight="31.0" prefWidth="212.0" unFocusColor="#009975" />
-            <Button layoutX="383.0" layoutY="11.0" mnemonicParsing="false">
-               <graphic>
-                  <ImageView fx:id="iSearchCity" fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../resources/Images/search.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </Pane>
-      <Pane layoutX="15.0" layoutY="509.0" prefHeight="43.0" prefWidth="442.0" style="-fx-background-color: #f3f3f3;">
-         <children>
-            <JFXProgressBar layoutY="20.0" prefHeight="4.0" prefWidth="442.0" />
-         </children>
-      </Pane>
-      <Label layoutX="108.0" layoutY="475.0" text="Doble Clic para seleccionar una ciudad" />
-      <TableView layoutX="15.0" layoutY="261.0" prefHeight="200.0" prefWidth="442.0" style="-fx-border-color: #009975;">
-        <columns>
-          <TableColumn prefWidth="104.0" text="Codigo" />
-          <TableColumn prefWidth="337.0" text="Ciudad" />
-        </columns>
-      </TableView>
    </children>
-</Pane>
+</StackPane>

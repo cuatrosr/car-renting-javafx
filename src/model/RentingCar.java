@@ -1,19 +1,30 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+//import java.util.List;
 
 public class RentingCar implements Serializable {
 
     private static final long serialVersionUID = 1;
-    public Vehicle firstV;
-    public Employee firstE;
     public int code;
+    public Employee firstE;
     public Employee empActive;
+    public Vehicle firstV;
+    public List<City> listCities;
+    public List<Client> listClients;
 
     public RentingCar() {
+        code = 1;
         firstV = null;
         firstE = null;
-        code = 0;
+        listCities = new ArrayList<>();
+        listClients = new ArrayList<>();
+    }
+
+    public int getCode() {
+        return code;
     }
 
     public Employee getEmpActive() {
@@ -24,8 +35,8 @@ public class RentingCar implements Serializable {
         return firstE;
     }
 
-    public int getCode() {
-        return code;
+    public List<City> getListCities() {
+        return listCities;
     }
 
     public void addEmployee(String username, String password, int nSold, double vComision, int codeP, int refP, String name, String lastName, long id) {
@@ -69,5 +80,60 @@ public class RentingCar implements Serializable {
         } else {
             return false;
         }
+    }
+
+    public boolean addCity(int codeCi, String nameCi, int refCi) {
+        int count = 0;
+        if (listCities.isEmpty()) {
+            City newCity = new City(code++, nameCi, refCi);
+            listCities.add(newCity);
+            return true;
+        } else {
+            for (int i = 0; i < listCities.size(); i++) {
+                if (listCities.get(i).getNameCi().equalsIgnoreCase(nameCi)) {
+                    count++;
+                }
+            }
+            if (count == 0) {
+                City newCity = new City(code++, nameCi, refCi);
+                listCities.add(newCity);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+    
+    public boolean uptadeCity(int code, String name){
+        int count = 0;
+        for(int i = 0; i<listCities.size(); i++){
+            if(listCities.get(i).getNameCi().equalsIgnoreCase(name)){
+                count++;
+            }
+        }
+        if(count == 0){
+            for(int i = 0; i<listCities.size(); i++){
+                if(listCities.get(i).getCodeCi() == code){
+                    listCities.get(i).setNameCi(name);
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean removeCity(int code) {
+        for (int i = 0; i < listCities.size(); i++) {
+            if (listCities.get(i).getCodeCi() == code) {
+                if (listCities.get(i).getRefCi() == 0) {
+                    listCities.remove(i);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return false;
     }
 }
