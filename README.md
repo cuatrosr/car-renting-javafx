@@ -22,7 +22,7 @@ _We used [GitHub](https://github.com/) to the versioned. For all the updates of 
 
 ## <b>_Documentation And Images_</b> 💬📷
 
-* _All the documentation can be found [here](https://github.com/cuatrosr/car-renting-javafx/blob/master/resources/Car%20Rentig.pdf)_<br>
+* _All the documentation can be found [here](https://github.com/cuatrosr/car-renting-javafx/tree/master/resources/docs/Entregas)_<br>
 ```
 /resources/docs/
 ```
