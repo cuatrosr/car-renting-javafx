@@ -53,4 +53,11 @@ public class FXDevol implements Initializable {
         fxGUI.disablePane(dPane, true);
         fxGUI.showListRent();
     }
+
+    @FXML
+    public void onSavePay(ActionEvent event) throws IOException {
+        fxGUI.disablePane(dPane, true);
+        fxGUI.showSavePay();
+    }
+
 }

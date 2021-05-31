@@ -106,7 +106,7 @@
             <JFXTextField editable="false" focusColor="#4d4d4d" layoutX="104.0" layoutY="96.0" prefHeight="31.0" prefWidth="67.0" unFocusColor="#009975" />
             <JFXTextField editable="false" focusColor="#4d4d4d" layoutX="241.0" layoutY="96.0" prefHeight="31.0" prefWidth="80.0" unFocusColor="#009975" />
             <JFXTextField editable="false" focusColor="#4d4d4d" layoutX="104.0" layoutY="127.0" prefHeight="31.0" prefWidth="217.0" unFocusColor="#009975" />
-            <JFXButton layoutX="368.0" layoutY="76.0" style="-fx-background-color: #009975;" text="Pagar" textFill="WHITE">
+            <JFXButton layoutX="368.0" layoutY="76.0" onAction="#onSavePay" style="-fx-background-color: #009975;" text="Pagar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

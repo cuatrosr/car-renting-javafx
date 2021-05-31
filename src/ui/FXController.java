@@ -105,12 +105,12 @@ public class FXController implements Serializable {
     public Pane getPMain() {
         return pMain;
     }
-    
-    public int getSelectObjectCode(){
+
+    public int getSelectObjectCode() {
         return selectObjectCode;
     }
-    
-    public void setSelectObjectCode(int code){
+
+    public void setSelectObjectCode(int code) {
         this.selectObjectCode = code;
     }
 
@@ -306,6 +306,14 @@ public class FXController implements Serializable {
         Stage topEmployeeStage = newStage(root);
         xEmployee.setImageTopEmployee();
         habilityPane(xMenu.getPane(), topEmployeeStage);
+    }
+
+    public void showSavePay() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/SavePay.fxml"));
+        fxmlLoader.setController(xDevol);
+        Parent root = fxmlLoader.load();
+        Stage savePayStage = newStage(root);
+        habilityPane(xDevol.getPane(), savePayStage);
     }
 
     public void showAlert(boolean success, String msg, StackPane stackPane) {
