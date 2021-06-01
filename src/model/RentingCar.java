@@ -15,6 +15,7 @@ public class RentingCar implements Serializable {
     public List<City> listCities;
     public List<Client> listClients;
     public List<TypeV> listTypeV;
+    public List<Brand> listBrands;
 
     public RentingCar() {
         code = 1;
@@ -23,6 +24,7 @@ public class RentingCar implements Serializable {
         listCities = new ArrayList<>();
         listClients = new ArrayList<>();
         listTypeV = new ArrayList<>();
+        listBrands = new ArrayList<>();
     }
 
     public int getCode() {
@@ -43,6 +45,10 @@ public class RentingCar implements Serializable {
 
     public List<TypeV> getListTypeV() {
         return listTypeV;
+    }
+    
+    public List<Brand> getListBrand(){
+        return listBrands;
     }
 
     public void addEmployee(String username, String password, int nSold, double vComision, int codeP, int refP, String name, String lastName, long id) {
@@ -149,7 +155,7 @@ public class RentingCar implements Serializable {
             return true;
         } else {
             for (int i = 0; i < listTypeV.size(); i++) {
-                if (listTypeV.get(i).getNameTB().equalsIgnoreCase(nameTB)) {
+                if (listTypeV.get(i).getNameTB().equalsIgnoreCase(nameTB) && listTypeV.get(i).getQuality() == quality) {
                     count++;
                 }
             }
@@ -162,17 +168,17 @@ public class RentingCar implements Serializable {
             }
         }
     }
-    
-    public boolean uptadeTypeV(int code, String name, int quality){
+
+    public boolean uptadeTypeV(int code, String name, int quality) {
         int count = 0;
         for (int i = 0; i < listTypeV.size(); i++) {
-            if(listTypeV.get(i).getNameTB().equalsIgnoreCase(name)){
+            if (listTypeV.get(i).getNameTB().equalsIgnoreCase(name) && listTypeV.get(i).getQuality() == quality) {
                 count++;
             }
         }
-        if(count == 0){
+        if (count == 0) {
             for (int i = 0; i < listTypeV.size(); i++) {
-                if(listTypeV.get(i).getCodeA() == code){
+                if (listTypeV.get(i).getCodeA() == code) {
                     listTypeV.get(i).setNameTB(name);
                     listTypeV.get(i).setQuality(quality);
                 }
@@ -182,14 +188,68 @@ public class RentingCar implements Serializable {
             return false;
         }
     }
-    
-    public void removTypeV(int code) throws Reference{
+
+    public void removTypeV(int code) throws Reference {
         for (int i = 0; i < listTypeV.size(); i++) {
-            if(listTypeV.get(i).getCodeA() == code){
-                if(listTypeV.get(i).getRefTv() == 0){
+            if (listTypeV.get(i).getCodeA() == code) {
+                if (listTypeV.get(i).getRefTv() == 0) {
                     listTypeV.remove(i);
                 } else {
                     throw new Reference(listTypeV.get(i).getCodeA());
+                }
+            }
+        }
+    }
+
+    public boolean addBrand(String country, int refB, int codeA, String nameTB) {
+        int count = 0;
+        if (listBrands.isEmpty()) {
+            Brand newBrand = new Brand(country, refB, code++, nameTB);
+            listBrands.add(newBrand);
+            return true;
+        } else {
+            for (int i = 0; i < listBrands.size(); i++) {
+                if (listBrands.get(i).getNameTB().equalsIgnoreCase(nameTB) && listBrands.get(i).getCountry().equalsIgnoreCase(country)) {
+                    count++;
+                }
+            }
+            if (count == 0) {
+                Brand newBrand = new Brand(country, refB, code++, nameTB);
+                listBrands.add(newBrand);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public boolean uptadeBrand(int code, String name, String country) {
+        int count = 0;
+        for (int i = 0; i < listBrands.size(); i++) {
+            if(listBrands.get(i).getNameTB().equalsIgnoreCase(name) && listBrands.get(i).getCountry().equalsIgnoreCase(country)){
+                count++;
+            }
+        }
+        if(count == 0){
+            for (int i = 0; i < listBrands.size(); i++) {
+                if(listBrands.get(i).getCodeA() == code){
+                    listBrands.get(i).setNameTB(name);
+                    listBrands.get(i).setCountry(country);
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public void removeBrand(int code) throws Reference {
+        for (int i = 0; i < listBrands.size(); i++) {
+            if(listBrands.get(i).getCodeA() == code){
+                if(listBrands.get(i).getRefB() == 0){
+                    listBrands.remove(i);
+                } else {
+                    throw new Reference(listBrands.get(i).getCodeA());
                 }
             }
         }

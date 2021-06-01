@@ -197,12 +197,16 @@ public class FXCity implements Initializable {
 
     @FXML
     public void onEditCity(ActionEvent event) throws IOException {
-        if (rc.uptadeCity(fxGUI.getSelectObjectCode(), txtNameCity.getText())) {
-            fxGUI.showAlert(true, "Se ha actualizado correctamente", stackPane);
-            fxGUI.saveData();
-            onTableListCities();
+        if (!txtNameCity.getText().equals("")) {
+            if (rc.uptadeCity(fxGUI.getSelectObjectCode(), txtNameCity.getText())) {
+                fxGUI.showAlert(true, "Se ha actualizado correctamente", stackPane);
+                fxGUI.saveData();
+                onTableListCities();
+            } else {
+                fxGUI.showAlert(false, "No se ha actualizado,\n debido a que hay otra ciudad con el mismo nombre", stackPane);
+            }
         } else {
-            fxGUI.showAlert(false, "No se ha actualizado,\n debido a que hay otra ciudad con el mismo nombre", stackPane);
+            fxGUI.showAlert(false, "No se puede actualizar sin un nombre\nNo se actualizo", stackPane);
         }
         txtCodeCity.setText("");
         txtNameCity.setText("");

@@ -163,16 +163,20 @@ public class FXType implements Initializable {
 
     @FXML
     public void onEditTypeV(ActionEvent event) throws IOException {
-        try {
-            if (rc.uptadeTypeV(fxGUI.getSelectObjectCode(), txtNameTypeV.getText(), Integer.parseInt(txtQuialityTypeV.getText()))) {
-                fxGUI.showAlert(true, "Se ha actualizado correctamente el tipo de vehículo", stackPane);
-                fxGUI.saveData();
-                onTableListTypeV();
-            } else {
-                fxGUI.showAlert(false, "Ya existe otro tipo de vehículo con el mismo nombre, no se actualizo", stackPane);
+        if (!txtNameTypeV.getText().equals("") && !txtQuialityTypeV.getText().equals("")) {
+            try {
+                if (rc.uptadeTypeV(fxGUI.getSelectObjectCode(), txtNameTypeV.getText(), Integer.parseInt(txtQuialityTypeV.getText()))) {
+                    fxGUI.showAlert(true, "Se ha actualizado correctamente el tipo de vehículo", stackPane);
+                    fxGUI.saveData();
+                    onTableListTypeV();
+                } else {
+                    fxGUI.showAlert(false, "Ya existe otro tipo de vehículo con el mismo nombre, no se actualizo", stackPane);
+                }
+            } catch (NumberFormatException e) {
+                fxGUI.showAlert(false, "Por favor ingresa un numero en el apartado de calidad, no se actualizo", stackPane);
             }
-        } catch (NumberFormatException e) {
-            fxGUI.showAlert(false, "Por favor ingresa un numero en el apartado de calidad, no se actualizo", stackPane);
+        } else {
+            fxGUI.showAlert(false, "Por favor, ingresa todos los campos\nNo se actualizo", stackPane);
         }
         fxGUI.setSelectObjectCode(0);
         txtCodeTypeV.clear();
