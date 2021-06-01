@@ -2,8 +2,10 @@ package model;
 
 import java.io.Serializable;
 
-public class Money  extends Pay implements Serializable {
-    
+public class Money extends Pay implements Serializable {
+
+    private static final long serialVersionUID = 1;
+
     private double valueMoney;
 
     public Money(double valueMoney, String namePay) {

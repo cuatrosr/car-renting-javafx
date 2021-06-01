@@ -13,6 +13,7 @@ public class RentingCar implements Serializable {
     public Vehicle firstV;
     public List<City> listCities;
     public List<Client> listClients;
+    public List<TypeV> listTypeV;
 
     public RentingCar() {
         code = 1;
@@ -20,6 +21,7 @@ public class RentingCar implements Serializable {
         firstE = null;
         listCities = new ArrayList<>();
         listClients = new ArrayList<>();
+        listTypeV = new ArrayList<>();
     }
 
     public int getCode() {
@@ -36,6 +38,10 @@ public class RentingCar implements Serializable {
 
     public List<City> getListCities() {
         return listCities;
+    }
+
+    public List<TypeV> getListTypeV() {
+        return listTypeV;
     }
 
     public void addEmployee(String username, String password, int nSold, double vComision, int codeP, int refP, String name, String lastName, long id) {
@@ -102,17 +108,17 @@ public class RentingCar implements Serializable {
             }
         }
     }
-    
-    public boolean uptadeCity(int code, String name){
+
+    public boolean uptadeCity(int code, String name) {
         int count = 0;
-        for(int i = 0; i<listCities.size(); i++){
-            if(listCities.get(i).getNameCi().equalsIgnoreCase(name)){
+        for (int i = 0; i < listCities.size(); i++) {
+            if (listCities.get(i).getNameCi().equalsIgnoreCase(name)) {
                 count++;
             }
         }
-        if(count == 0){
-            for(int i = 0; i<listCities.size(); i++){
-                if(listCities.get(i).getCodeCi() == code){
+        if (count == 0) {
+            for (int i = 0; i < listCities.size(); i++) {
+                if (listCities.get(i).getCodeCi() == code) {
                     listCities.get(i).setNameCi(name);
                 }
             }
@@ -130,6 +136,60 @@ public class RentingCar implements Serializable {
                     return true;
                 } else {
                     return false;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean addTypeV(int quality, int refTv, int codeA, String nameTB) {
+        int count = 0;
+        if (listTypeV.isEmpty()) {
+            TypeV newTypeV = new TypeV(quality, refTv, code++, nameTB);
+            listTypeV.add(newTypeV);
+            return true;
+        } else {
+            for (int i = 0; i < listTypeV.size(); i++) {
+                if (listTypeV.get(i).getNameTB().equalsIgnoreCase(nameTB)) {
+                    count++;
+                }
+            }
+            if (count == 0) {
+                TypeV newTypeV = new TypeV(quality, refTv, code++, nameTB);
+                listTypeV.add(newTypeV);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+    
+    public boolean uptadeTypeV(int code, String name, int quality){
+        int count = 0;
+        for (int i = 0; i < listTypeV.size(); i++) {
+            if(listTypeV.get(i).getNameTB().equalsIgnoreCase(name)){
+                count++;
+            }
+        }
+        if(count == 0){
+            for (int i = 0; i < listTypeV.size(); i++) {
+                if(listTypeV.get(i).getCodeA() == code){
+                    listTypeV.get(i).setNameTB(name);
+                    listTypeV.get(i).setQuality(quality);
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean removTypeV(int code){
+        for (int i = 0; i < listTypeV.size(); i++) {
+            if(listTypeV.get(i).getCodeA() == code){
+                if(listTypeV.get(i).getRefTv() == 0){
+                    listTypeV.remove(i);
+                    return true;
                 }
             }
         }

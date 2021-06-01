@@ -2,33 +2,25 @@ package model;
 
 import java.io.Serializable;
 
-public class Brand implements Serializable {
+public class Brand extends Accessory implements Serializable {
 
     private static final long serialVersionUID = 1;
-    private int codeB;
-    private String name;
+    
+    private String country;
     private int refB;
 
-    public Brand(int codeB, String name, int refB) {
-        this.codeB = codeB;
-        this.name = name;
+    public Brand(String country, int refB, int codeA, String nameTB) {
+        super(codeA, nameTB);
+        this.country = country;
         this.refB = refB;
     }
 
-    public int getCodeB() {
-        return codeB;
+    public String getCountry() {
+        return country;
     }
 
-    public void setCodeB(int codeB) {
-        this.codeB = codeB;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public int getRefB() {

@@ -24,7 +24,7 @@
       </Pane>
       <Pane layoutX="7.0" layoutY="49.0" prefHeight="57.0" prefWidth="458.0" style="-fx-background-color: #f4efef;">
          <children>
-            <Button layoutX="14.0" layoutY="5.0" mnemonicParsing="false">
+            <Button fx:id="btnNewTypeV" layoutX="14.0" layoutY="5.0" mnemonicParsing="false" onAction="#onNewTypeV">
                <graphic>
                   <ImageView fx:id="iAddType" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -33,7 +33,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="84.0" layoutY="5.0" mnemonicParsing="false">
+            <Button fx:id="btnSaveTypeV" layoutX="84.0" layoutY="5.0" mnemonicParsing="false" onAction="#onSaveTypeV">
                <graphic>
                   <ImageView fx:id="iSaveType" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -42,7 +42,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="159.0" layoutY="5.0" mnemonicParsing="false">
+            <Button fx:id="btnEditTypeV" layoutX="159.0" layoutY="5.0" mnemonicParsing="false" onAction="#onEditTypeV">
                <graphic>
                   <ImageView fx:id="iEditType" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -51,7 +51,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="232.0" layoutY="5.0" mnemonicParsing="false">
+            <Button fx:id="btnRemoveTypeV" layoutX="232.0" layoutY="5.0" mnemonicParsing="false" onAction="#onRemoveTypeV">
                <graphic>
                   <ImageView fx:id="iRemoveType" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -62,7 +62,7 @@
             </Button>
          </children>
       </Pane>
-      <JFXTextField focusColor="#4d4d4d" layoutX="101.0" layoutY="107.0" prefHeight="31.0" prefWidth="135.0" unFocusColor="#009975" />
+      <JFXTextField fx:id="txtCodeTypeV" focusColor="#4d4d4d" layoutX="101.0" layoutY="107.0" prefHeight="31.0" prefWidth="135.0" unFocusColor="#009975" />
       <Label layoutX="21.0" layoutY="158.0" text="Nombre:">
          <font>
             <Font name="System Bold" size="15.0" />
@@ -73,12 +73,12 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <JFXTextField focusColor="#4d4d4d" layoutX="101.0" layoutY="143.0" prefHeight="31.0" prefWidth="343.0" unFocusColor="#009975" />
+      <JFXTextField fx:id="txtNameTypeV" focusColor="#4d4d4d" layoutX="101.0" layoutY="143.0" prefHeight="31.0" prefWidth="135.0" unFocusColor="#009975" />
       <Pane layoutX="15.0" layoutY="187.0" prefHeight="57.0" prefWidth="442.0" style="-fx-background-color: #f3f3f3;">
          <children>
             <Label layoutX="14.0" layoutY="18.0" text="Buscar por nombre:" />
             <JFXTextField focusColor="#4d4d4d" layoutX="154.0" layoutY="6.0" prefHeight="31.0" prefWidth="212.0" unFocusColor="#009975" />
-            <Button layoutX="383.0" layoutY="11.0" mnemonicParsing="false">
+            <Button fx:id="btnSearchTypeV" layoutX="383.0" layoutY="11.0" mnemonicParsing="false">
                <graphic>
                   <ImageView fx:id="iSearchType" fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -95,11 +95,18 @@
          </children>
       </Pane>
       <Label layoutX="110.0" layoutY="473.0" text="Doble Clic para seleccionar una marca" />
-      <TableView layoutX="15.0" layoutY="261.0" prefHeight="200.0" prefWidth="442.0" style="-fx-border-color: #009975;">
+      <TableView fx:id="tblTypeV" layoutX="15.0" layoutY="261.0" onMouseClicked="#onSelectTypeV" prefHeight="200.0" prefWidth="442.0" style="-fx-border-color: #009975;">
          <columns>
-            <TableColumn prefWidth="104.0" text="Codigo" />
-            <TableColumn prefWidth="337.0" text="Tipo de Vehiculo" />
+            <TableColumn fx:id="tblcCodeTypeV" prefWidth="79.0" text="Codigo" />
+            <TableColumn fx:id="tblcNameTypeV" prefWidth="217.0" text="Tipo de Vehiculo" />
+            <TableColumn fx:id="tblcQuialityTypeV" prefWidth="145.0" text="Calidad" />
          </columns>
       </TableView>
+      <Label layoutX="242.0" layoutY="158.0" text="Calidad:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtQuialityTypeV" focusColor="#4d4d4d" layoutX="310.0" layoutY="143.0" prefHeight="31.0" prefWidth="135.0" unFocusColor="#009975" />
    </children>
 </Pane>
