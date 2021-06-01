@@ -49,16 +49,21 @@ public class FXLogin {
     }
 
     private boolean checkLogin() {
-        if (!txtUserLogin.getText().equals("") && !txtPassWordLogin.getText().equals("")) {
-            boolean login = rc.loginEmployee(txtUserLogin.getText(), txtPassWordLogin.getText());
-            if (login) {
-                return true;
+        try {
+            if (!txtUserLogin.getText().equals("") && !txtPassWordLogin.getText().equals("")) {
+                boolean login = rc.loginEmployee(txtUserLogin.getText(), txtPassWordLogin.getText());
+                if (login) {
+                    return true;
+                } else {
+                    fxGUI.showAlert(false, "Usuario o Contraseña Incorrecta!", stackPane);
+                    return false;
+                }
             } else {
-                fxGUI.showAlert(false, "Usuario o Contraseña Incorrecta!", stackPane);
+                fxGUI.showAlert(false, "Debes llenar todos los campos!", stackPane);
                 return false;
             }
-        } else {
-            fxGUI.showAlert(false, "Debes llenar todos los campos!", stackPane);
+        } catch (NullPointerException e) {
+            fxGUI.showAlert(false, "Base de datos vacia", stackPane);
             return false;
         }
     }

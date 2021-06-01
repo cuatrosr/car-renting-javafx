@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import exception.*;
 
 public class RentingCar implements Serializable {
 
@@ -128,18 +129,16 @@ public class RentingCar implements Serializable {
         }
     }
 
-    public boolean removeCity(int code) {
+    public void removeCity(int code) throws Reference {
         for (int i = 0; i < listCities.size(); i++) {
             if (listCities.get(i).getCodeCi() == code) {
                 if (listCities.get(i).getRefCi() == 0) {
                     listCities.remove(i);
-                    return true;
                 } else {
-                    return false;
+                    throw new Reference(listCities.get(i).getRefCi());
                 }
             }
         }
-        return false;
     }
 
     public boolean addTypeV(int quality, int refTv, int codeA, String nameTB) {
@@ -184,15 +183,15 @@ public class RentingCar implements Serializable {
         }
     }
     
-    public boolean removTypeV(int code){
+    public void removTypeV(int code) throws Reference{
         for (int i = 0; i < listTypeV.size(); i++) {
             if(listTypeV.get(i).getCodeA() == code){
                 if(listTypeV.get(i).getRefTv() == 0){
                     listTypeV.remove(i);
-                    return true;
+                } else {
+                    throw new Reference(listTypeV.get(i).getCodeA());
                 }
             }
         }
-        return false;
     }
 }

@@ -1,10 +1,13 @@
 package ui;
 
 import com.jfoenix.controls.*;
+import exception.Reference;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.*;
@@ -112,7 +115,7 @@ public class FXCity implements Initializable {
     @FXML
     public void onSaveCity(ActionEvent event) throws IOException {
         if (!txtNameCity.getText().equals("")) {
-            if (rc.addCity(rc.getCode(), txtNameCity.getText(), 0)) {
+            if (rc.addCity(rc.getCode(), txtNameCity.getText(), 1)) {
                 fxGUI.showAlert(true, "La Ciudad se ha creado con exito", stackPane);
                 statButtonsWhenNew(false);
                 fxGUI.saveData();
@@ -176,13 +179,14 @@ public class FXCity implements Initializable {
 
     @FXML
     public void onRemoveCity(ActionEvent event) throws IOException {
-        if (rc.removeCity(fxGUI.getSelectObjectCode())) {
+        try {
+            rc.removeCity(fxGUI.getSelectObjectCode());
             fxGUI.showAlert(true, "Ciudad eliminada con exito", stackPane);
             onTableListCities();
             txtCodeCity.setText("");
             txtNameCity.setText("");
             fxGUI.saveData();
-        } else {
+        } catch (Reference ex) {
             fxGUI.showAlert(false, "Esta ciudad esta referenciada en otro objeto, no se elimino", stackPane);
             txtCodeCity.setText("");
             txtNameCity.setText("");
