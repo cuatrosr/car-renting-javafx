@@ -46,9 +46,13 @@ public class RentingCar implements Serializable {
     public List<TypeV> getListTypeV() {
         return listTypeV;
     }
-    
-    public List<Brand> getListBrand(){
+
+    public List<Brand> getListBrand() {
         return listBrands;
+    }
+
+    public List<Client> getListClients() {
+        return listClients;
     }
 
     public void addEmployee(String username, String password, int nSold, double vComision, int codeP, int refP, String name, String lastName, long id) {
@@ -195,7 +199,7 @@ public class RentingCar implements Serializable {
                 if (listTypeV.get(i).getRefTv() == 0) {
                     listTypeV.remove(i);
                 } else {
-                    throw new Reference(listTypeV.get(i).getCodeA());
+                    throw new Reference(listTypeV.get(i).getRefTv());
                 }
             }
         }
@@ -226,13 +230,13 @@ public class RentingCar implements Serializable {
     public boolean uptadeBrand(int code, String name, String country) {
         int count = 0;
         for (int i = 0; i < listBrands.size(); i++) {
-            if(listBrands.get(i).getNameTB().equalsIgnoreCase(name) && listBrands.get(i).getCountry().equalsIgnoreCase(country)){
+            if (listBrands.get(i).getNameTB().equalsIgnoreCase(name) && listBrands.get(i).getCountry().equalsIgnoreCase(country)) {
                 count++;
             }
         }
-        if(count == 0){
+        if (count == 0) {
             for (int i = 0; i < listBrands.size(); i++) {
-                if(listBrands.get(i).getCodeA() == code){
+                if (listBrands.get(i).getCodeA() == code) {
                     listBrands.get(i).setNameTB(name);
                     listBrands.get(i).setCountry(country);
                 }
@@ -242,14 +246,132 @@ public class RentingCar implements Serializable {
             return false;
         }
     }
-    
+
     public void removeBrand(int code) throws Reference {
         for (int i = 0; i < listBrands.size(); i++) {
-            if(listBrands.get(i).getCodeA() == code){
-                if(listBrands.get(i).getRefB() == 0){
+            if (listBrands.get(i).getCodeA() == code) {
+                if (listBrands.get(i).getRefB() == 0) {
                     listBrands.remove(i);
                 } else {
-                    throw new Reference(listBrands.get(i).getCodeA());
+                    throw new Reference(listBrands.get(i).getRefB());
+                }
+            }
+        }
+    }
+
+    public boolean addClient(String addressC, long phoneC, String emailC, City cityC, int codeP, int refP, String name, String lastName, long id) throws Email {
+        boolean out = false;
+        int count = 0;
+        if (listClients.isEmpty() && !out) {
+            if (emailC.contains("@")) {
+                Client newClient = new Client(addressC, phoneC, emailC, cityC, code++, refP, name, lastName, id);
+                listClients.add(newClient);
+                plusRefCity(cityC);
+                out = true;
+            } else {
+                out = false;
+                throw new Email(emailC);
+            }
+        } else {
+            for (int i = 0; i < listClients.size(); i++) {
+                if (listClients.get(i).getId() == id) {
+                    count++;
+                }
+            }
+            if (count == 0) {
+                if (emailC.contains("@")) {
+                    Client newClient = new Client(addressC, phoneC, emailC, cityC, code++, refP, name, lastName, id);
+                    int n = 0;
+                    while (n < listClients.size() && newClient.compareTo(listClients.get(n)) > 0) {
+                        n++;
+                    }
+                    listClients.add(n, newClient);
+                    plusRefCity(cityC);
+                    out = true;
+                } else {
+                    out = false;
+                    throw new Email(emailC);
+                }
+            } else {
+                out = false;
+            }
+        }
+        return out;
+    }
+
+    public City findCitySelected(String nameCity) {
+        for (int i = 0; i < listCities.size(); i++) {
+            if (listCities.get(i).getNameCi().equals(nameCity)) {
+                return listCities.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void plusRefCity(City cityPlus) {
+        for (int i = 0; i < listCities.size(); i++) {
+            if (listCities.get(i).getCodeCi() == cityPlus.getCodeCi()) {
+                listCities.get(i).setRefCi(listCities.get(i).getRefCi() + 1);
+            }
+        }
+    }
+
+    public boolean uptadeClient(String addressC, long phoneC, String emailC, City cityC, int code, String name, String lastName, long id) throws Email {
+        boolean out = false;
+        boolean sameID = false;
+        int count = 0;
+        for (int i = 0; i < listClients.size(); i++) {
+            if (listClients.get(i).getId() == id) {
+                count++;
+            }
+            if(listClients.get(i).getCodeP() == code){
+                if(listClients.get(i).getId() == id){
+                    sameID = true;
+                }
+            }
+        }
+        if (count == 0 || sameID) {
+            for (int i = 0; i < listClients.size(); i++) {
+                if (listClients.get(i).getCodeP() == code) {
+                    if (emailC.contains("@")) {
+                        restRefCity(findCitySelected(listClients.get(i).getNameCity()));
+                        int refP = listClients.get(i).getRefP();
+                        listClients.remove(i);
+                        Client newClient = new Client(addressC, phoneC, emailC, cityC, code, refP, name, lastName, id);
+                        int n = 0;
+                        while (n < listClients.size() && newClient.compareTo(listClients.get(n)) > 0) {
+                            n++;
+                        }
+                        listClients.add(n, newClient);
+                        plusRefCity(cityC);
+                        out = true;
+                    } else {
+                        out = false;
+                        throw new Email(emailC);
+                    }
+                }
+            }
+        } else {
+            out = false;
+        }
+        return out;
+    }
+
+    public void restRefCity(City city) {
+        for (int j = 0; j < listCities.size(); j++) {
+            if (listCities.get(j) == city) {
+                listCities.get(j).setRefCi(listCities.get(j).getRefCi() - 1);
+            }
+        }
+    }
+    
+    public void removeClient(int code) throws Reference{
+        for (int i = 0; i < listClients.size(); i++) {
+            if(listClients.get(i).getCodeP() == code){
+                if(listClients.get(i).getRefP() == 0){
+                    listClients.remove(i);
+                } else {
+                    throw new Reference(listClients.get(i).getRefP());
                 }
             }
         }

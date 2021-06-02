@@ -43,6 +43,7 @@ public class FXController implements Serializable {
     private FXRent xRent;
     private FXDevol xDevol;
     private int selectObjectCode;
+    private boolean selectedInOtherWindow;
 
     public FXController(RentingCar rc) throws IOException {
         this.rc = rc;
@@ -99,6 +100,7 @@ public class FXController implements Serializable {
     public void habilityPane(Pane bpMain, Stage closed) {
         closed.setOnCloseRequest((WindowEvent event) -> {
             disablePane(bpMain, false);
+            xClient.showCitiesDisp();
         });
     }
 
@@ -112,6 +114,14 @@ public class FXController implements Serializable {
 
     public void setSelectObjectCode(int code) {
         this.selectObjectCode = code;
+    }
+    
+    public boolean getSelectedInOtherWindow(){
+        return selectedInOtherWindow;
+    }
+    
+    public void setSelectedInOtherWindow(boolean out){
+        this.selectedInOtherWindow = out;
     }
 
     public void showLogin() throws IOException {
@@ -141,6 +151,8 @@ public class FXController implements Serializable {
         Parent root = fxmlLoader.load();
         Stage clientStage = newStage(root);
         xClient.setImagesButton();
+        xClient.btnInitialize();
+        xClient.showCitiesDisp();
         habilityPane(xMenu.getPane(), clientStage);
     }
 
@@ -213,6 +225,7 @@ public class FXController implements Serializable {
         Parent root = fxmlLoader.load();
         Stage listClientStage = newStage(root);
         xClient.setImagesList();
+        xClient.onTableListClient();
         if (out) {
             habilityPane(xClient.getPane(), listClientStage);
         } else {

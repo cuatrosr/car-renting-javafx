@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Client extends Person implements Serializable {
+public class Client extends Person implements Serializable, Comparable<Client> {
 
     private static final long serialVersionUID = 1;
     private String addressC;
@@ -48,5 +48,19 @@ public class Client extends Person implements Serializable {
 
     public void setCityC(City cityC) {
         this.cityC = cityC;
+    }
+
+    public String getNameCity() {
+        return cityC.getNameCi();
+    }
+
+    public String getNameLN() {
+        String nameLN = getName() + " " + getLastName();
+        return nameLN;
+    }
+
+    @Override
+    public int compareTo(Client o) {
+        return this.getNameLN().compareTo(o.getNameLN());
     }
 }
