@@ -54,13 +54,8 @@ public class Client extends Person implements Serializable, Comparable<Client> {
         return cityC.getNameCi();
     }
 
-    public String getNameLN() {
-        String nameLN = getName() + " " + getLastName();
-        return nameLN;
-    }
-
     @Override
     public int compareTo(Client o) {
-        return this.getNameLN().compareTo(o.getNameLN());
+        return this.getNameLN().compareToIgnoreCase(o.getNameLN());
     }
 }

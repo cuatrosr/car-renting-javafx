@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Employee extends Person implements Serializable {
+public class Employee extends Person implements Serializable, Comparable<Employee> {
 
     private static final long serialVersionUID = 1;
     private Employee next;
@@ -10,6 +10,10 @@ public class Employee extends Person implements Serializable {
     private String password;
     private int nSold;
     private double vComision;
+    
+    private Employee left;
+    private Employee right;
+    private Employee parent;
 
     public Employee(String username, String password, int nSold, double vComision, int codeP, int refP, String name, String lastName, long id) {
         super(codeP, refP, name, lastName, id);
@@ -18,6 +22,9 @@ public class Employee extends Person implements Serializable {
         this.nSold = nSold;
         this.vComision = vComision;
         next = null;
+        left = null;
+        right = null;
+        parent = null;
     }
 
     public Employee getNext() {
@@ -58,5 +65,34 @@ public class Employee extends Person implements Serializable {
 
     public void setvComision(int nSold) {
         this.vComision = nSold * 10000;
+    }
+
+    public Employee getLeft() {
+        return left;
+    }
+
+    public void setLeft(Employee left) {
+        this.left = left;
+    }
+
+    public Employee getRight() {
+        return right;
+    }
+
+    public void setRight(Employee right) {
+        this.right = right;
+    }
+
+    public Employee getParent() {
+        return parent;
+    }
+
+    public void setParent(Employee parent) {
+        this.parent = parent;
+    }
+    
+    @Override
+    public int compareTo(Employee o) {
+        return this.getName().compareToIgnoreCase(o.getName());
     }
 }

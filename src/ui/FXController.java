@@ -239,6 +239,7 @@ public class FXController implements Serializable {
         Parent root = fxmlLoader.load();
         Stage listEmployeeStage = newStage(root);
         xEmployee.setImageEmployee();
+        xEmployee.onTableEmployeeName();
         habilityPane(xMenu.getPane(), listEmployeeStage);
     }
 

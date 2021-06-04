@@ -9,52 +9,58 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="853.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+
+<StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="43.0" prefWidth="853.0" style="-fx-background-color: #009975;">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="853.0" style="-fx-background-color: #ffffff;">
          <children>
-            <Label layoutX="307.0" layoutY="7.0" text="LISTADO DE EMPLEADOS" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
+            <Pane prefHeight="43.0" prefWidth="853.0" style="-fx-background-color: #009975;">
+               <children>
+                  <Label layoutX="307.0" layoutY="7.0" text="LISTADO DE EMPLEADOS" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="49.0" prefHeight="57.0" prefWidth="833.0" style="-fx-background-color: #f4efef;">
+               <children>
+                  <Label layoutX="14.0" layoutY="18.0" text="Buscar por ID o Nombre" />
+                  <JFXTextField focusColor="#4d4d4d" layoutX="189.0" layoutY="13.0" prefHeight="31.0" prefWidth="436.0" unFocusColor="#009975" />
+                  <JFXButton layoutX="699.0" layoutY="13.0" style="-fx-background-color: #009975;" text="Mostrar todo" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <Button layoutX="645.0" layoutY="13.0" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fx:id="iSearchEmployee" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/Images/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane layoutX="3.0" layoutY="394.0" prefHeight="43.0" prefWidth="839.0" style="-fx-background-color: #f3f3f3;">
+               <children>
+                  <Label fx:id="lblTotalEmployee" layoutX="14.0" layoutY="11.0" text="Total de clientes : " />
+               </children>
+            </Pane>
+            <TableView fx:id="tblEmployee" layoutX="10.0" layoutY="123.0" prefHeight="271.0" prefWidth="833.0" style="-fx-border-color: #009975;">
+               <columns>
+                  <TableColumn fx:id="tblcCodeEmploye" prefWidth="85.0" text="Codigo" />
+                  <TableColumn fx:id="tblcIDEmployee" prefWidth="187.0" text="Cedula" />
+                  <TableColumn fx:id="tblcNameEmployee" prefWidth="187.0" text="Nombre" />
+                  <TableColumn fx:id="tblcLastNameEmployee" prefWidth="187.0" text="Apellido" />
+                  <TableColumn fx:id="tblcUserEmployee" prefWidth="187.0" text="Username" />
+               </columns>
+            </TableView>
          </children>
       </Pane>
-      <Pane layoutX="10.0" layoutY="49.0" prefHeight="57.0" prefWidth="833.0" style="-fx-background-color: #f4efef;">
-         <children>
-            <Label layoutX="14.0" layoutY="18.0" text="Buscar por ID o Nombre" />
-            <JFXTextField focusColor="#4d4d4d" layoutX="189.0" layoutY="13.0" prefHeight="31.0" prefWidth="436.0" unFocusColor="#009975" />
-            <JFXButton layoutX="699.0" layoutY="13.0" style="-fx-background-color: #009975;" text="Mostrar todo" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </JFXButton>
-            <Button layoutX="645.0" layoutY="13.0" mnemonicParsing="false">
-               <graphic>
-                  <ImageView fx:id="iSearchEmployee" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../resources/Images/search.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </Pane>
-      <Pane layoutX="3.0" layoutY="394.0" prefHeight="43.0" prefWidth="839.0" style="-fx-background-color: #f3f3f3;">
-         <children>
-            <Label layoutX="14.0" layoutY="11.0" text="Total de clientes : " />
-         </children>
-      </Pane>
-      <TableView layoutX="10.0" layoutY="123.0" prefHeight="271.0" prefWidth="833.0" style="-fx-border-color: #009975;">
-         <columns>
-            <TableColumn prefWidth="85.0" text="Codigo" />
-            <TableColumn prefWidth="187.0" text="Cedula" />
-            <TableColumn prefWidth="187.0" text="Nombre" />
-            <TableColumn prefWidth="187.0" text="Apellido" />
-            <TableColumn prefWidth="187.0" text="Username" />
-         </columns>
-      </TableView>
    </children>
-</Pane>
+</StackPane>

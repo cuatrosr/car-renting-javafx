@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import exception.*;
+import java.io.IOException;
 
 public class RentingCar implements Serializable {
 
@@ -11,6 +12,10 @@ public class RentingCar implements Serializable {
     public int code;
     public Employee firstE;
     public Employee empActive;
+    public Employee rootName;
+    public List<Employee> showRootName;
+    public Employee rootComision;
+    public List<Employee> showRootComision;
     public Vehicle firstV;
     public List<City> listCities;
     public List<Client> listClients;
@@ -21,10 +26,13 @@ public class RentingCar implements Serializable {
         code = 1;
         firstV = null;
         firstE = null;
+        rootName = null;
         listCities = new ArrayList<>();
         listClients = new ArrayList<>();
         listTypeV = new ArrayList<>();
         listBrands = new ArrayList<>();
+        showRootName = new ArrayList<>();
+        showRootComision = new ArrayList<>();
     }
 
     public int getCode() {
@@ -37,6 +45,18 @@ public class RentingCar implements Serializable {
 
     public Employee getFirstE() {
         return firstE;
+    }
+
+    public Employee getRootName() {
+        return rootName;
+    }
+
+    public List<Employee> getShowRootName() {
+        return showRootName;
+    }
+
+    public List<Employee> getShowRootComision() {
+        return showRootComision;
     }
 
     public List<City> getListCities() {
@@ -63,6 +83,7 @@ public class RentingCar implements Serializable {
     public void addEmp(Employee emp) {
         if (firstE == null) {
             firstE = emp;
+            addBinaryEmployee(emp);
         } else {
             addEmp(emp, firstE);
         }
@@ -71,8 +92,45 @@ public class RentingCar implements Serializable {
     private void addEmp(Employee emp, Employee current) {
         if (current.getNext() == null) {
             current.setNext(emp);
+            addBinaryEmployee(emp);
         } else {
             addEmp(emp, current.getNext());
+        }
+    }
+
+    public void addBinaryEmployee(Employee f){
+        Employee nextTest = new Employee(f.getUsername(), f.getPassword(), f.getnSold(), f.getvComision(),
+                f.getCodeP(), f.getRefP(), f.getName(), f.getLastName(), f.getId());
+        if (rootName == null) {
+            rootName = nextTest;
+        } else {
+            addBinaryEmployee(rootName, nextTest);
+        }
+    }
+
+    private void addBinaryEmployee(Employee current, Employee next) {
+        if (current.compareTo(next) < 0) {
+            if (current.getRight() == null) {
+                current.setRight(next);
+                next.setParent(current);
+            } else {
+                addBinaryEmployee(current.getRight(), next);
+            }
+        } else {
+            if (current.getLeft() == null) {
+                current.setLeft(next);
+                next.setParent(current);
+            } else {
+                addBinaryEmployee(current.getLeft(), next);
+            }
+        }
+    }
+
+    public void showBinaryTreeNameEmployee(Employee root) {
+        if (root != null) {
+            showBinaryTreeNameEmployee(root.getLeft());
+            showRootName.add(root);
+            showBinaryTreeNameEmployee(root.getRight());
         }
     }
 
@@ -324,8 +382,8 @@ public class RentingCar implements Serializable {
             if (listClients.get(i).getId() == id) {
                 count++;
             }
-            if(listClients.get(i).getCodeP() == code){
-                if(listClients.get(i).getId() == id){
+            if (listClients.get(i).getCodeP() == code) {
+                if (listClients.get(i).getId() == id) {
                     sameID = true;
                 }
             }
@@ -364,11 +422,11 @@ public class RentingCar implements Serializable {
             }
         }
     }
-    
-    public void removeClient(int code) throws Reference{
+
+    public void removeClient(int code) throws Reference {
         for (int i = 0; i < listClients.size(); i++) {
-            if(listClients.get(i).getCodeP() == code){
-                if(listClients.get(i).getRefP() == 0){
+            if (listClients.get(i).getCodeP() == code) {
+                if (listClients.get(i).getRefP() == 0) {
                     listClients.remove(i);
                 } else {
                     throw new Reference(listClients.get(i).getRefP());

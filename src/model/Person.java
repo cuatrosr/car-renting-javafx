@@ -58,4 +58,9 @@ public class Person implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String getNameLN() {
+        String nameLN = getName() + " " + getLastName();
+        return nameLN;
+    }
 }

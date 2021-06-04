@@ -60,7 +60,7 @@ public class FXRegister {
         }
     }
 
-    public boolean addRegister() {
+    public boolean addRegister() throws IOException {
         try {
             if (!txtRegisterName.getText().equals("") && !txtRegisterLastName.getText().equals("") && !txtRegisterID.getText().equals("")
                     && !txtRegisterUserName.getText().equals("") && !txtRegisterPassword.getText().equals("") && !txtRegisterKey.getText().equals("")) {

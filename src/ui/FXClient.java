@@ -179,6 +179,21 @@ public class FXClient {
         btnListClients.setDisable(stat);
     }
 
+    public void finishedAction() {
+        fxGUI.setSelectObjectCode(0);
+        fxGUI.setSelectedInOtherWindow(false);
+        txtCodeClient.clear();
+        txtIDClient.clear();
+        txtNameClient.clear();
+        txtLastNameClient.clear();
+        txtPhoneClient.clear();
+        txtAddressClient.clear();
+        txtEmailClient.clear();
+        cbCityClient.setValue(null);
+        onTableListClient();
+        btnInitialize();
+    }
+
     @FXML
     public void onGCity(ActionEvent event) throws IOException {
         fxGUI.disablePane(pClient, true);
@@ -210,7 +225,6 @@ public class FXClient {
                     fxGUI.showAlert(true, "Se ha creado el cliente correctamente", stackPane);
                     fxGUI.saveData();
                     btnInitialize();
-                    onTableListClient();
                     txtCodeClient.clear();
                     txtIDClient.clear();
                     txtNameClient.clear();
@@ -258,18 +272,7 @@ public class FXClient {
         } else {
             fxGUI.showAlert(false, "Por favor llena todos los campos, no se actualizo", stackPane);
         }
-        fxGUI.setSelectObjectCode(0);
-        fxGUI.setSelectedInOtherWindow(false);
-        txtCodeClient.clear();
-        txtIDClient.clear();
-        txtNameClient.clear();
-        txtLastNameClient.clear();
-        txtPhoneClient.clear();
-        txtAddressClient.clear();
-        txtEmailClient.clear();
-        cbCityClient.setValue(null);
-        onTableListClient();
-        btnInitialize();
+        finishedAction();
     }
 
     @FXML
@@ -281,20 +284,9 @@ public class FXClient {
         } catch (Reference e) {
             fxGUI.showAlert(false, "Este cliente esta referenciado en otro objeto\nNo se elimino", stackPane);
         }
-        fxGUI.setSelectObjectCode(0);
-        fxGUI.setSelectedInOtherWindow(false);
-        txtCodeClient.clear();
-        txtIDClient.clear();
-        txtNameClient.clear();
-        txtLastNameClient.clear();
-        txtPhoneClient.clear();
-        txtAddressClient.clear();
-        txtEmailClient.clear();
-        cbCityClient.setValue(null);
-        onTableListClient();
-        btnInitialize();
+        finishedAction();
     }
-    
+
     @FXML
     public void onSelecteClient(MouseEvent event) {
         Client clientSelected;
