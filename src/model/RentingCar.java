@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import exception.*;
 import java.io.IOException;
+import javafx.scene.image.Image;
 
 public class RentingCar implements Serializable {
 
@@ -16,7 +17,7 @@ public class RentingCar implements Serializable {
     public List<Employee> showRootName;
     public Employee rootComision;
     public List<Employee> showRootComision;
-    public Vehicle firstV;
+    public Car firstC;
     public List<City> listCities;
     public List<Client> listClients;
     public List<TypeV> listTypeV;
@@ -24,7 +25,7 @@ public class RentingCar implements Serializable {
 
     public RentingCar() {
         code = 1;
-        firstV = null;
+        firstC = null;
         firstE = null;
         rootName = null;
         listCities = new ArrayList<>();
@@ -98,7 +99,7 @@ public class RentingCar implements Serializable {
         }
     }
 
-    public void addBinaryEmployee(Employee f){
+    public void addBinaryEmployee(Employee f) {
         Employee nextTest = new Employee(f.getUsername(), f.getPassword(), f.getnSold(), f.getvComision(),
                 f.getCodeP(), f.getRefP(), f.getName(), f.getLastName(), f.getId());
         if (rootName == null) {
@@ -431,6 +432,53 @@ public class RentingCar implements Serializable {
                 } else {
                     throw new Reference(listClients.get(i).getRefP());
                 }
+            }
+        }
+    }
+
+    public boolean addCar(String model, String color, Brand brand, TypeV typeV, double priceXDay, int codeV, String plate, boolean dispV, Image photo) {
+        if (!searchPlate(plate)) {
+            Car newCar = new Car(model, color, brand, typeV, priceXDay, codeV, plate, dispV, photo);
+            if (firstC == null) {
+                firstC = newCar;
+                firstC.setNext(newCar);
+                firstC.setPrev(newCar);
+                return true;
+            } else {
+                return addCar(firstC, newCar);
+            }
+        } else {
+            return false;
+        }
+    }
+
+    private boolean addCar(Car current, Car newCar) {
+        if (current.getNext() == firstC) {
+            current.setNext(newCar);
+            current.getNext().setNext(firstC);
+            current.getNext().setPrev(current);
+            return true;
+        } else {
+            return addCar(current.getNext(), newCar);
+        }
+    }
+
+    public boolean searchPlate(String plate) {
+        if (firstC == null) {
+            return false;
+        } else {
+            return searchPlate(plate, firstC);
+        }
+    }
+
+    private boolean searchPlate(String plate, Car current) {
+        if (current.getPlate().equals(plate)) {
+            return true;
+        } else {
+            if (current.getNext() == firstC) {
+                return false;
+            } else {
+                return searchPlate(plate, current.getNext());
             }
         }
     }

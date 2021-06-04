@@ -1,5 +1,6 @@
 package ui;
 
+import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,6 +42,12 @@ public class FXVehicle {
 
     @FXML
     private ImageView iSearchInListVehicle;
+
+    @FXML
+    private JFXComboBox<String> cbTypeV;
+
+    @FXML
+    private JFXComboBox<String> cbBrandV;
 
     private RentingCar rc;
     private FXController fxGUI;

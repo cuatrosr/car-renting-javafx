@@ -132,8 +132,8 @@
                </children>
             </GridPane>
             <JFXTextField focusColor="#4d4d4d" layoutX="94.0" layoutY="7.0" prefHeight="31.0" prefWidth="107.0" unFocusColor="#009975" />
-            <JFXComboBox focusColor="#4d4d4d" layoutX="94.0" layoutY="38.0" prefHeight="31.0" prefWidth="282.0" unFocusColor="#009975" />
-            <JFXComboBox focusColor="#4d4d4d" layoutX="96.0" layoutY="69.0" prefHeight="31.0" prefWidth="282.0" unFocusColor="#009975" />
+            <JFXComboBox fx:id="cbTypeV" focusColor="#4d4d4d" layoutX="94.0" layoutY="38.0" prefHeight="31.0" prefWidth="282.0" unFocusColor="#009975" />
+            <JFXComboBox fx:id="cbBrandV" focusColor="#4d4d4d" layoutX="96.0" layoutY="69.0" prefHeight="31.0" prefWidth="282.0" unFocusColor="#009975" />
             <JFXTextField focusColor="#4d4d4d" layoutX="94.0" layoutY="100.0" prefHeight="31.0" prefWidth="107.0" unFocusColor="#009975" />
             <JFXTextField focusColor="#4d4d4d" layoutX="94.0" layoutY="130.0" prefHeight="31.0" prefWidth="107.0" unFocusColor="#009975" />
             <JFXTextField focusColor="#4d4d4d" layoutX="94.0" layoutY="161.0" prefHeight="31.0" prefWidth="107.0" unFocusColor="#009975" />
