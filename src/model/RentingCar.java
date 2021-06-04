@@ -436,9 +436,11 @@ public class RentingCar implements Serializable {
         }
     }
 
-    public boolean addCar(String model, String color, Brand brand, TypeV typeV, double priceXDay, int codeV, String plate, boolean dispV, Image photo) {
+    public boolean addCar(String model, String color, Brand brand, TypeV typeV, double priceXDay, int codeV, String plate, boolean dispV, Image photo, int year) {
         if (!searchPlate(plate)) {
-            Car newCar = new Car(model, color, brand, typeV, priceXDay, codeV, plate, dispV, photo);
+            Car newCar = new Car(model, color, brand, typeV, priceXDay, code++, plate, dispV, photo, year);
+            plusRefBrand(brand);
+            plusRefTypeV(typeV);
             if (firstC == null) {
                 firstC = newCar;
                 firstC.setNext(newCar);
@@ -479,6 +481,40 @@ public class RentingCar implements Serializable {
                 return false;
             } else {
                 return searchPlate(plate, current.getNext());
+            }
+        }
+    }
+
+    public TypeV findTypeVSelected(String nameTypeV) {
+        for (int i = 0; i < listTypeV.size(); i++) {
+            if (listTypeV.get(i).getNameTB().equals(nameTypeV)) {
+                return listTypeV.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void plusRefTypeV(TypeV typeVPlus) {
+        for (int i = 0; i < listTypeV.size(); i++) {
+            if (listTypeV.get(i).getCodeA() == typeVPlus.getCodeA()) {
+                listTypeV.get(i).setRefTv(listTypeV.get(i).getRefTv() + 1);
+            }
+        }
+    }
+
+    public Brand findBrandSelected(String nameBrand) {
+        for (int i = 0; i < listBrands.size(); i++) {
+            if (listBrands.get(i).getNameTB().equals(nameBrand)) {
+                return listBrands.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void plusRefBrand(Brand brandPlus) {
+        for (int i = 0; i < listBrands.size(); i++) {
+            if (listBrands.get(i).getCodeA() == brandPlus.getCodeA()) {
+                listBrands.get(i).setRefB(listBrands.get(i).getRefB() + 1);
             }
         }
     }

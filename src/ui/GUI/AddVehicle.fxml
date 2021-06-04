@@ -29,7 +29,7 @@
       </Pane>
       <Pane layoutY="49.0" prefHeight="57.0" prefWidth="779.0" style="-fx-background-color: #f4efef;">
          <children>
-            <Button fx:id="btnNewV" layoutX="14.0" layoutY="5.0" mnemonicParsing="false">
+            <Button fx:id="btnNewV" layoutX="14.0" layoutY="5.0" mnemonicParsing="false" onAction="#onNewV">
                <graphic>
                   <ImageView fx:id="iAddVehicle" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -38,7 +38,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnSaveV" layoutX="84.0" layoutY="5.0" mnemonicParsing="false">
+            <Button fx:id="btnSaveV" layoutX="84.0" layoutY="5.0" mnemonicParsing="false" onAction="#onSaveV">
                <graphic>
                   <ImageView fx:id="iSaveVehicle" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -47,7 +47,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnEdit" layoutX="159.0" layoutY="5.0" mnemonicParsing="false">
+            <Button fx:id="btnEditV" layoutX="159.0" layoutY="5.0" mnemonicParsing="false">
                <graphic>
                   <ImageView fx:id="iEditVehicle" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -153,11 +153,11 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <JFXRadioButton fx:id="rbDispV" layoutX="304.0" layoutY="105.0" text="Si">
+            <JFXRadioButton fx:id="rbDispVY" layoutX="304.0" layoutY="105.0" text="Si">
                <toggleGroup>
                   <ToggleGroup fx:id="rbDisp" />
                </toggleGroup></JFXRadioButton>
-            <JFXRadioButton fx:id="rbNDisV" layoutX="360.0" layoutY="105.0" text="No" toggleGroup="$rbDisp" />
+            <JFXRadioButton fx:id="rbDispVN" layoutX="360.0" layoutY="105.0" text="No" toggleGroup="$rbDisp" />
             <JFXTextField fx:id="txtPriceV" focusColor="#4d4d4d" layoutX="271.0" layoutY="130.0" prefHeight="31.0" prefWidth="107.0" unFocusColor="#009975" />
             <JFXTextField fx:id="txtModelV" focusColor="#4d4d4d" layoutX="271.0" layoutY="161.0" prefHeight="31.0" prefWidth="107.0" unFocusColor="#009975" />
             <Button fx:id="btnListV" layoutX="385.0" layoutY="7.0" mnemonicParsing="false" onAction="#onListVehicle">

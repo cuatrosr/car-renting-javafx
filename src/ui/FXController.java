@@ -101,6 +101,8 @@ public class FXController implements Serializable {
         closed.setOnCloseRequest((WindowEvent event) -> {
             disablePane(bpMain, false);
             xClient.showCitiesDisp();
+            xVehicle.showBrandDisp();
+            xVehicle.showTypeDisp();
         });
     }
 
@@ -115,12 +117,12 @@ public class FXController implements Serializable {
     public void setSelectObjectCode(int code) {
         this.selectObjectCode = code;
     }
-    
-    public boolean getSelectedInOtherWindow(){
+
+    public boolean getSelectedInOtherWindow() {
         return selectedInOtherWindow;
     }
-    
-    public void setSelectedInOtherWindow(boolean out){
+
+    public void setSelectedInOtherWindow(boolean out) {
         this.selectedInOtherWindow = out;
     }
 
@@ -161,6 +163,9 @@ public class FXController implements Serializable {
         fxmlLoader.setController(xVehicle);
         Parent root = fxmlLoader.load();
         Stage vehicleStage = newStage(root);
+        xVehicle.showBrandDisp();
+        xVehicle.showTypeDisp();
+        xVehicle.btnInitialize();
         xVehicle.setImagesButton();
         habilityPane(xMenu.getPane(), vehicleStage);
     }

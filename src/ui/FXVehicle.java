@@ -1,6 +1,9 @@
 package ui;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +11,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -52,6 +57,60 @@ public class FXVehicle {
 
     @FXML
     private JFXComboBox<String> cbBrandV;
+
+    @FXML
+    private Button btnNewV;
+
+    @FXML
+    private Button btnSaveV;
+
+    @FXML
+    private Button btnEditV;
+
+    @FXML
+    private Button btnRemoveV;
+
+    @FXML
+    private Button btnPrevV;
+
+    @FXML
+    private Button btnNextV;
+
+    @FXML
+    private JFXTextField txtCodeV;
+
+    @FXML
+    private JFXTextField txtPlateV;
+
+    @FXML
+    private JFXTextField txtYearV;
+
+    @FXML
+    private JFXTextField txtColorV;
+
+    @FXML
+    private JFXRadioButton rbDispVY;
+
+    @FXML
+    private ToggleGroup rbDisp;
+
+    @FXML
+    private JFXRadioButton rbDispVN;
+
+    @FXML
+    private JFXTextField txtPriceV;
+
+    @FXML
+    private JFXTextField txtModelV;
+
+    @FXML
+    private Button btnListV;
+
+    @FXML
+    private JFXButton btnImageV;
+
+    @FXML
+    private ImageView iPhotoV;
 
     private RentingCar rc;
     private FXController fxGUI;
@@ -132,6 +191,66 @@ public class FXVehicle {
             obs = FXCollections.observableArrayList(typeName);
             cbTypeV.setItems(obs);
         } catch (NullPointerException e) {
+        }
+    }
+
+    @FXML
+    public void onSelectImageV(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onNewV(ActionEvent event) {
+        statButtonsWhenNew(true);
+        txtCodeV.setText(rc.getCode() + "");
+    }
+
+    public void statButtonsWhenNew(boolean stat) {
+        btnNewV.setDisable(stat);
+        btnSaveV.setDisable(!stat);
+        btnEditV.setDisable(stat);
+        btnRemoveV.setDisable(stat);
+        btnPrevV.setDisable(stat);
+        btnNextV.setDisable(stat);
+        btnListV.setDisable(stat);
+        btnImageV.setDisable(!stat);
+    }
+
+    public void btnInitialize() {
+        btnNewV.setDisable(false);
+        btnSaveV.setDisable(true);
+        btnEditV.setDisable(true);
+        btnRemoveV.setDisable(true);
+        btnPrevV.setDisable(false);
+        btnNextV.setDisable(false);
+        btnImageV.setDisable(true);
+        btnListV.setDisable(false);
+    }
+
+    @FXML
+    public void onSaveV(ActionEvent event) {
+        if (!txtCodeV.getText().equals("") && cbBrandV.getValue() != null && cbTypeV.getValue() != null && !txtPlateV.getText().equals("") 
+                && !txtYearV.getText().equals("") && !txtColorV.getText().equals("") && !txtPriceV.getText().equals("") && !txtModelV.getText().equals("") && rbDisp.getSelectedToggle() != null) {
+            try {
+                boolean added = rc.addCar(txtModelV.getText(), txtColorV.getText(), rc.findBrandSelected(cbBrandV.getValue()), rc.findTypeVSelected(cbTypeV.getValue()), Double.parseDouble(txtPriceV.getText()), rc.getCode(), txtPlateV.getText(), getSelectedDisp(), null, Integer.parseInt(txtYearV.getText()));
+                if (added) {
+                    System.out.println("Se agrego");
+                } else {
+                    System.out.println("No se agrego");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Num");
+            }
+        } else {
+            System.out.println("rellene");
+        }
+    }
+    
+    public boolean getSelectedDisp() {
+        if (rbDispVY.isSelected()) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

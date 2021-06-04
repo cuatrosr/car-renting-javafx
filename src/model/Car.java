@@ -8,21 +8,31 @@ public class Car extends Vehicle implements Serializable {
     private static final long serialVersionUID = 1;
     private String model;
     private String color;
+    private int year;
     private Brand brand;
     private TypeV typeV;
     private double priceXDay;
     private Car prev;
     private Car next;
 
-    public Car(String model, String color, Brand brand, TypeV typeV, double priceXDay, int codeV, String plate, boolean dispV, Image photo) {
+    public Car(String model, String color, Brand brand, TypeV typeV, double priceXDay, int codeV, String plate, boolean dispV, Image photo, int year) {
         super(codeV, plate, dispV, photo);
         this.model = model;
         this.color = color;
         this.brand = brand;
         this.typeV = typeV;
         this.priceXDay = priceXDay;
+        this.year = year;
     }
-
+    
+    public int getYear() {
+        return year;
+    }
+    
+    public void setYear(int year) {
+        this.year = year;
+    }
+    
     public Car getPrev() {
         return prev;
     }
