@@ -84,23 +84,4 @@ public class FXEmployee {
         tblEmployee.refresh();
         lblTotalEmployee.setText(lblTotalEmployee.getText()+" "+rc.getShowRootName().size());
     }
-    /*
-    
-        List<Client> clients = rc.getListClients();
-        ObservableList<Client> newTableClient;
-        newTableClient = FXCollections.observableArrayList(clients);
-
-        tblClient.setItems(newTableClient);
-        tblcCodeClient.setCellValueFactory(new PropertyValueFactory<>("codeP"));
-        tblcIDClient.setCellValueFactory(new PropertyValueFactory<>("id"));
-        tblcNameClient.setCellValueFactory(new PropertyValueFactory<>("name"));
-        tblcLastNameClient.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        tblcPhoneClient.setCellValueFactory(new PropertyValueFactory<>("phoneC"));
-        tblcAddressClient.setCellValueFactory(new PropertyValueFactory<>("addressC"));
-        tblcCity.setCellValueFactory(new PropertyValueFactory<>("nameCity"));
-        tblcEmailClient.setCellValueFactory(new PropertyValueFactory<>("emailC"));
-
-        tblClient.refresh();
-     */
-
 }
