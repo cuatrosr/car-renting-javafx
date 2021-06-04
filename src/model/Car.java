@@ -14,6 +14,10 @@ public class Car extends Vehicle implements Serializable {
     private double priceXDay;
     private Car prev;
     private Car next;
+    
+    private Car parent;
+    private Car left;
+    private Car right;
 
     public Car(String model, String color, Brand brand, TypeV typeV, double priceXDay, int codeV, String plate, boolean dispV, Image photo, int year) {
         super(codeV, plate, dispV, photo);
@@ -23,6 +27,30 @@ public class Car extends Vehicle implements Serializable {
         this.typeV = typeV;
         this.priceXDay = priceXDay;
         this.year = year;
+    }
+    
+    public Car getParent() {
+        return parent;
+    }
+
+    public void setParent(Car parent) {
+        this.parent = parent;
+    }
+
+    public Car getLeft() {
+        return left;
+    }
+
+    public void setLeft(Car left) {
+        this.left = left;
+    }
+
+    public Car getRight() {
+        return right;
+    }
+
+    public void setRight(Car right) {
+        this.right = right;
     }
     
     public int getYear() {
@@ -87,5 +115,13 @@ public class Car extends Vehicle implements Serializable {
 
     public void setPriceXDay(double priceXDay) {
         this.priceXDay = priceXDay;
+    }
+    
+    public String getNameType(){
+        return typeV.getNameTB();
+    }
+    
+    public String getNameBrand() {
+        return brand.getNameTB();
     }
 }

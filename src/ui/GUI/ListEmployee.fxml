@@ -48,7 +48,7 @@
             </Pane>
             <Pane layoutX="3.0" layoutY="394.0" prefHeight="43.0" prefWidth="839.0" style="-fx-background-color: #f3f3f3;">
                <children>
-                  <Label fx:id="lblTotalEmployee" layoutX="14.0" layoutY="11.0" text="Total de clientes : " />
+                  <Label fx:id="lblTotalEmployee" layoutX="14.0" layoutY="11.0" prefHeight="21.0" prefWidth="161.0" text="Total de empleados:" />
                </children>
             </Pane>
             <TableView fx:id="tblEmployee" layoutX="10.0" layoutY="123.0" prefHeight="271.0" prefWidth="833.0" style="-fx-border-color: #009975;">

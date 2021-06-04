@@ -12,10 +12,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import model.*;
 
 public class FXVehicle {
@@ -23,6 +28,12 @@ public class FXVehicle {
     private static final long serialVersionUID = 1;
     @FXML
     private Pane vPane;
+
+    @FXML
+    private StackPane stackPane;
+
+    @FXML
+    private StackPane stackPane1;
 
     //********* Set Images *********\\
     @FXML
@@ -52,12 +63,14 @@ public class FXVehicle {
     @FXML
     private ImageView iSearchInListVehicle;
 
+    //*********** Combo box ************\\
     @FXML
     private JFXComboBox<String> cbTypeV;
 
     @FXML
     private JFXComboBox<String> cbBrandV;
 
+    //********** Buttons Vehicle ************\\
     @FXML
     private Button btnNewV;
 
@@ -76,6 +89,13 @@ public class FXVehicle {
     @FXML
     private Button btnNextV;
 
+    @FXML
+    private Button btnListV;
+
+    @FXML
+    private JFXButton btnImageV;
+
+    //********* Text Field ***********\\
     @FXML
     private JFXTextField txtCodeV;
 
@@ -104,13 +124,41 @@ public class FXVehicle {
     private JFXTextField txtModelV;
 
     @FXML
-    private Button btnListV;
-
-    @FXML
-    private JFXButton btnImageV;
-
-    @FXML
     private ImageView iPhotoV;
+
+    //********** Table Vehicle *********\\
+    @FXML
+    private TableView<Car> tblVehicle;
+
+    @FXML
+    private TableColumn<Car, Integer> tblcCodeV;
+
+    @FXML
+    private TableColumn<Car, String> tblcPlateV;
+
+    @FXML
+    private TableColumn<Car, String> tblcTypeV;
+
+    @FXML
+    private TableColumn<Car, String> tblcModelV;
+
+    @FXML
+    private TableColumn<Car, String> tblcBrandV;
+
+    @FXML
+    private TableColumn<Car, String> tblcColorV;
+
+    @FXML
+    private TableColumn<Car, Double> tblcPriceV;
+
+    @FXML
+    private TableColumn<Car, Integer> tblcYearV;
+
+    @FXML
+    private TableColumn<Car, Boolean> tblcDispV;
+
+    private int positionCar;
+    private int amountCar;
 
     private RentingCar rc;
     private FXController fxGUI;
@@ -118,6 +166,7 @@ public class FXVehicle {
     public FXVehicle(RentingCar rc, FXController fxGUI) {
         this.rc = rc;
         this.fxGUI = fxGUI;
+        positionCar = 0;
     }
 
     public void setImagesButton() {
@@ -170,7 +219,7 @@ public class FXVehicle {
         try {
             List<String> brandName = new ArrayList<>();
             for (int i = 0; i < rc.getListBrand().size(); i++) {
-                brandName.add(rc.getListBrand().get(i).getNameTB());
+                brandName.add(rc.getListBrand().get(i).getNameTB() + " " + rc.getListBrand().get(i).getCountry());
             }
 
             ObservableList<String> obs;
@@ -184,7 +233,7 @@ public class FXVehicle {
         try {
             List<String> typeName = new ArrayList<>();
             for (int i = 0; i < rc.getListTypeV().size(); i++) {
-                typeName.add(rc.getListTypeV().get(i).getNameTB());
+                typeName.add(rc.getListTypeV().get(i).getNameTB() + " " + rc.getListTypeV().get(i).getQuality());
             }
 
             ObservableList<String> obs;
@@ -201,6 +250,7 @@ public class FXVehicle {
 
     @FXML
     void onNewV(ActionEvent event) {
+        clearTextField();
         statButtonsWhenNew(true);
         txtCodeV.setText(rc.getCode() + "");
     }
@@ -228,29 +278,126 @@ public class FXVehicle {
     }
 
     @FXML
-    public void onSaveV(ActionEvent event) {
-        if (!txtCodeV.getText().equals("") && cbBrandV.getValue() != null && cbTypeV.getValue() != null && !txtPlateV.getText().equals("") 
+    public void onSaveV(ActionEvent event) throws IOException {
+        if (!txtCodeV.getText().equals("") && cbBrandV.getValue() != null && cbTypeV.getValue() != null && !txtPlateV.getText().equals("")
                 && !txtYearV.getText().equals("") && !txtColorV.getText().equals("") && !txtPriceV.getText().equals("") && !txtModelV.getText().equals("") && rbDisp.getSelectedToggle() != null) {
             try {
-                boolean added = rc.addCar(txtModelV.getText(), txtColorV.getText(), rc.findBrandSelected(cbBrandV.getValue()), rc.findTypeVSelected(cbTypeV.getValue()), Double.parseDouble(txtPriceV.getText()), rc.getCode(), txtPlateV.getText(), getSelectedDisp(), null, Integer.parseInt(txtYearV.getText()));
+                boolean added = rc.addCar(txtModelV.getText(), txtColorV.getText(), rc.findBrandSelected(cbBrandV.getValue()),
+                        rc.findTypeVSelected(cbTypeV.getValue()), Double.parseDouble(txtPriceV.getText()), rc.getCode(),
+                        txtPlateV.getText(), getSelectedDisp(), null, Integer.parseInt(txtYearV.getText()));
                 if (added) {
-                    System.out.println("Se agrego");
+                    fxGUI.showAlert(true, "Se ha agregado el vehículo correctamente", stackPane);
+                    fxGUI.saveData();
+                    btnInitialize();
+                    clearTextField();
+                    amountCar++;
                 } else {
-                    System.out.println("No se agrego");
+                    fxGUI.showAlert(false, "No se agrego, ya existe otro vehículo con la misma placa", stackPane);
+                    txtPlateV.clear();
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Num");
+                fxGUI.showAlert(true, "No se agrego, no puedes ingresar letras en el precio o en el año", stackPane);
+                txtPriceV.clear();
+                txtYearV.clear();
             }
         } else {
-            System.out.println("rellene");
+            fxGUI.showAlert(false, "Por favor llene todos los campos, no se agrego", stackPane);
         }
     }
-    
+
     public boolean getSelectedDisp() {
-        if (rbDispVY.isSelected()) {
-            return true;
+        return rbDispVY.isSelected();
+    }
+
+    public void clearTextField() {
+        txtCodeV.clear();
+        cbBrandV.setValue(null);
+        cbTypeV.setValue(null);
+        txtModelV.clear();
+        txtPlateV.clear();
+        txtYearV.clear();
+        txtColorV.clear();
+        txtPriceV.clear();
+        rbDispVN.setSelected(false);
+        rbDispVY.setSelected(false);
+    }
+
+    public void onTableVehicle() {
+        rc.showBinaryTreeVehicle(rc.getRootNameC());
+
+        List<Car> cars = rc.getShowRootCar();
+        ObservableList<Car> newTableCar;
+        newTableCar = FXCollections.observableArrayList(cars);
+
+        tblVehicle.setItems(newTableCar);
+        tblcCodeV.setCellValueFactory(new PropertyValueFactory<>("codeV"));
+        tblcPlateV.setCellValueFactory(new PropertyValueFactory<>("plate"));
+        tblcTypeV.setCellValueFactory(new PropertyValueFactory<>("nameType"));
+        tblcModelV.setCellValueFactory(new PropertyValueFactory<>("model"));
+        tblcBrandV.setCellValueFactory(new PropertyValueFactory<>("nameBrand"));
+        tblcColorV.setCellValueFactory(new PropertyValueFactory<>("color"));
+        tblcPriceV.setCellValueFactory(new PropertyValueFactory<>("priceXDay"));
+        tblcYearV.setCellValueFactory(new PropertyValueFactory<>("year"));
+        tblcDispV.setCellValueFactory(new PropertyValueFactory<>("dispV"));
+
+        tblVehicle.refresh();
+    }
+
+    @FXML
+    public void onSelecteVehicle(MouseEvent event) {
+        Car selectedCar;
+        if (event.getClickCount() == 2) {
+            selectedCar = tblVehicle.getSelectionModel().getSelectedItem();
+            if (selectedCar != null) {
+                fxGUI.showAlert(true, "Se ha seleccionado el vehículo", stackPane1);
+                changeTextFieldsSelecteds(selectedCar);
+                fxGUI.setSelectObjectCode(selectedCar.getCodeV());
+                fxGUI.setSelectedInOtherWindow(true);
+                btnNewV.setDisable(true);
+                btnSaveV.setDisable(true);
+                btnRemoveV.setDisable(false);
+                btnEditV.setDisable(false);
+                btnNewV.setDisable(true);
+                btnPrevV.setDisable(true);
+            }
+        }
+    }
+
+    @FXML
+    void onNextV(ActionEvent event) {
+        try {
+            changeTextFieldsSelecteds(rc.findVehicletoShowNext(positionCar));
+            positionCar++;
+        } catch (NullPointerException e) {
+            fxGUI.showAlert(false, "No hay vehiculos para mostrar", stackPane);
+        }
+    }
+
+    @FXML
+    void onPrevV(ActionEvent event) {
+        try {
+            changeTextFieldsSelecteds(rc.findVehicletoShowPrev(Math.abs(amountCar)));
+            amountCar--;
+        } catch (NullPointerException e) {
+            fxGUI.showAlert(false, "No hay vehiculos para mostrar", stackPane);
+        }
+    }
+
+    public void changeTextFieldsSelecteds(Car carSelected) {
+        txtCodeV.setText(carSelected.getCodeV() + "");
+        cbBrandV.setValue(carSelected.getBrand().getNameP());
+        cbTypeV.setValue(carSelected.getTypeV().getNameQ());
+        txtPlateV.setText(carSelected.getPlate());
+        txtModelV.setText(carSelected.getModel());
+        txtColorV.setText(carSelected.getColor());
+        txtYearV.setText(carSelected.getYear() + "");
+        txtPriceV.setText(carSelected.getPriceXDay() + "");
+        if (carSelected.isDispV()) {
+            rbDispVY.setSelected(true);
+            rbDispVN.setSelected(false);
         } else {
-            return false;
+            rbDispVN.setSelected(true);
+            rbDispVY.setSelected(false);
         }
     }
 }

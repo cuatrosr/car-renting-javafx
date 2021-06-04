@@ -68,7 +68,7 @@ public class FXEmployee {
     }
 
     public void onTableEmployeeName() {
-        rc.showBinaryTreeNameEmployee(rc.getRootName());
+        rc.showBinaryTreeNameEmployee(rc.getRootNameE());
         
         List<Employee> employees = rc.getShowRootName();
         ObservableList<Employee> newTableEmployee;

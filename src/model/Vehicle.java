@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import javafx.scene.image.Image;
 
-public class Vehicle implements Serializable {
+public class Vehicle implements Serializable, Comparable<Vehicle> {
 
     private static final long serialVersionUID = 1;
     private Vehicle next;
@@ -54,5 +54,10 @@ public class Vehicle implements Serializable {
 
     public void setPhoto(Image photo) {
         this.photo = photo;
+    }
+
+    @Override
+    public int compareTo(Vehicle o) {
+        return this.getPlate().compareToIgnoreCase(o.getPlate());
     }
 }

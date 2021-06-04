@@ -263,6 +263,8 @@ public class FXController implements Serializable {
         Parent root = fxmlLoader.load();
         Stage listVehicleStage = newStage(root);
         xVehicle.setImagesList();
+        rc.setShowRootCar();
+        xVehicle.onTableVehicle();
         if (out) {
             habilityPane(xVehicle.getPane(), listVehicleStage);
         } else {

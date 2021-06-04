@@ -30,4 +30,8 @@ public class TypeV extends Accessory implements Serializable {
     public void setRefTv(int refTv) {
         this.refTv = refTv;
     }
+    
+    public String getNameQ(){
+        return this.getNameTB() + " " + quality;
+    }
 }

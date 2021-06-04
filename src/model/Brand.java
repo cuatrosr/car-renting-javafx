@@ -30,4 +30,8 @@ public class Brand extends Accessory implements Serializable {
     public void setRefB(int refB) {
         this.refB = refB;
     }
+    
+    public String getNameP(){
+        return this.getNameTB() + " " + country;
+    }
 }

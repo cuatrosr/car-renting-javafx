@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import exception.*;
-import java.io.IOException;
 import javafx.scene.image.Image;
 
 public class RentingCar implements Serializable {
@@ -13,11 +12,13 @@ public class RentingCar implements Serializable {
     public int code;
     public Employee firstE;
     public Employee empActive;
-    public Employee rootName;
+    public Employee rootNameE;
     public List<Employee> showRootName;
     public Employee rootComision;
     public List<Employee> showRootComision;
     public Car firstC;
+    public Car rootNameC;
+    public List<Car> showRootCar;
     public List<City> listCities;
     public List<Client> listClients;
     public List<TypeV> listTypeV;
@@ -27,13 +28,15 @@ public class RentingCar implements Serializable {
         code = 1;
         firstC = null;
         firstE = null;
-        rootName = null;
+        rootNameE = null;
+        rootNameC = null;
         listCities = new ArrayList<>();
         listClients = new ArrayList<>();
         listTypeV = new ArrayList<>();
         listBrands = new ArrayList<>();
         showRootName = new ArrayList<>();
         showRootComision = new ArrayList<>();
+        showRootCar = new ArrayList<>();
     }
 
     public int getCode() {
@@ -48,8 +51,16 @@ public class RentingCar implements Serializable {
         return firstE;
     }
 
-    public Employee getRootName() {
-        return rootName;
+    public Car getFirstC() {
+        return firstC;
+    }
+
+    public Employee getRootNameE() {
+        return rootNameE;
+    }
+
+    public Car getRootNameC() {
+        return rootNameC;
     }
 
     public List<Employee> getShowRootName() {
@@ -58,6 +69,14 @@ public class RentingCar implements Serializable {
 
     public List<Employee> getShowRootComision() {
         return showRootComision;
+    }
+
+    public List<Car> getShowRootCar() {
+        return showRootCar;
+    }
+
+    public void setShowRootCar() {
+        this.showRootCar.clear();
     }
 
     public List<City> getListCities() {
@@ -99,13 +118,11 @@ public class RentingCar implements Serializable {
         }
     }
 
-    public void addBinaryEmployee(Employee f) {
-        Employee nextTest = new Employee(f.getUsername(), f.getPassword(), f.getnSold(), f.getvComision(),
-                f.getCodeP(), f.getRefP(), f.getName(), f.getLastName(), f.getId());
-        if (rootName == null) {
-            rootName = nextTest;
+    public void addBinaryEmployee(Employee nextTest) {
+        if (rootNameE == null) {
+            rootNameE = nextTest;
         } else {
-            addBinaryEmployee(rootName, nextTest);
+            addBinaryEmployee(rootNameE, nextTest);
         }
     }
 
@@ -441,6 +458,7 @@ public class RentingCar implements Serializable {
             Car newCar = new Car(model, color, brand, typeV, priceXDay, code++, plate, dispV, photo, year);
             plusRefBrand(brand);
             plusRefTypeV(typeV);
+            addBinaryVehicle(newCar);
             if (firstC == null) {
                 firstC = newCar;
                 firstC.setNext(newCar);
@@ -457,8 +475,9 @@ public class RentingCar implements Serializable {
     private boolean addCar(Car current, Car newCar) {
         if (current.getNext() == firstC) {
             current.setNext(newCar);
-            current.getNext().setNext(firstC);
-            current.getNext().setPrev(current);
+            newCar.setNext(firstC);
+            newCar.setPrev(current);
+            firstC.setPrev(newCar);
             return true;
         } else {
             return addCar(current.getNext(), newCar);
@@ -486,8 +505,9 @@ public class RentingCar implements Serializable {
     }
 
     public TypeV findTypeVSelected(String nameTypeV) {
+        String[] nameSplit = nameTypeV.split(" ");
         for (int i = 0; i < listTypeV.size(); i++) {
-            if (listTypeV.get(i).getNameTB().equals(nameTypeV)) {
+            if (listTypeV.get(i).getNameTB().equals(nameSplit[0]) && listTypeV.get(i).getQuality() == Integer.parseInt(nameSplit[1])) {
                 return listTypeV.get(i);
             }
         }
@@ -503,8 +523,9 @@ public class RentingCar implements Serializable {
     }
 
     public Brand findBrandSelected(String nameBrand) {
+        String[] nameSplit = nameBrand.split(" ");
         for (int i = 0; i < listBrands.size(); i++) {
-            if (listBrands.get(i).getNameTB().equals(nameBrand)) {
+            if (listBrands.get(i).getNameTB().equals(nameSplit[0]) && listBrands.get(i).getCountry().equals(nameSplit[1])) {
                 return listBrands.get(i);
             }
         }
@@ -515,6 +536,76 @@ public class RentingCar implements Serializable {
         for (int i = 0; i < listBrands.size(); i++) {
             if (listBrands.get(i).getCodeA() == brandPlus.getCodeA()) {
                 listBrands.get(i).setRefB(listBrands.get(i).getRefB() + 1);
+            }
+        }
+    }
+
+    public void addBinaryVehicle(Car f) {
+        if (rootNameC == null) {
+            rootNameC = f;
+        } else {
+            addBinaryVehicle(rootNameC, f);
+        }
+    }
+
+    private void addBinaryVehicle(Car current, Car next) {
+        if (current.compareTo(next) < 0) {
+            if (current.getRight() == null) {
+                current.setRight(next);
+                next.setParent(current);
+            } else {
+                addBinaryVehicle(current.getRight(), next);
+            }
+        } else {
+            if (current.getLeft() == null) {
+                current.setLeft(next);
+                next.setParent(current);
+            } else {
+                addBinaryVehicle(current.getLeft(), next);
+            }
+        }
+    }
+
+    public void showBinaryTreeVehicle(Car root) {
+        if (root != null) {
+            showBinaryTreeVehicle(root.getLeft());
+            showRootCar.add(root);
+            showBinaryTreeVehicle(root.getRight());
+        }
+    }
+
+    public Car findVehicletoShowNext(int position) {
+        if (firstC == null) {
+            return null;
+        } else {
+            Car temp = firstC;
+            int count = 0;
+            while (count < position) {
+                temp = temp.getNext();
+                count++;
+            }
+            if (count != position) {
+                return null;
+            } else {
+                return temp;
+            }
+        }
+    }
+
+    public Car findVehicletoShowPrev(int position) {
+        if (firstC == null) {
+            return null;
+        } else {
+            Car temp = firstC;
+            int count = 0;
+            while (count < position) {
+                temp = temp.getPrev();
+                count++;
+            }
+            if (count != position) {
+                return null;
+            } else {
+                return temp;
             }
         }
     }
