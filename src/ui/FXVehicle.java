@@ -2,6 +2,10 @@ package ui;
 
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -101,5 +105,33 @@ public class FXVehicle {
     public void onListVehicle(ActionEvent event) throws IOException {
         fxGUI.disablePane(vPane, true);
         fxGUI.showListVehicle(true);
+    }
+
+    public void showBrandDisp() {
+        try {
+            List<String> brandName = new ArrayList<>();
+            for (int i = 0; i < rc.getListBrand().size(); i++) {
+                brandName.add(rc.getListBrand().get(i).getNameTB());
+            }
+
+            ObservableList<String> obs;
+            obs = FXCollections.observableArrayList(brandName);
+            cbBrandV.setItems(obs);
+        } catch (NullPointerException e) {
+        }
+    }
+
+    public void showTypeDisp() {
+        try {
+            List<String> typeName = new ArrayList<>();
+            for (int i = 0; i < rc.getListTypeV().size(); i++) {
+                typeName.add(rc.getListTypeV().get(i).getNameTB());
+            }
+
+            ObservableList<String> obs;
+            obs = FXCollections.observableArrayList(typeName);
+            cbTypeV.setItems(obs);
+        } catch (NullPointerException e) {
+        }
     }
 }
