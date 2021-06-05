@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import javafx.scene.image.Image;
 
 public class Car extends Vehicle implements Serializable {
 
@@ -20,7 +19,7 @@ public class Car extends Vehicle implements Serializable {
     private Car left;
     private Car right;
 
-    public Car(String model, String color, Brand brand, TypeV typeV, double priceXDay, int codeV, String plate, boolean dispV, Image photo, int year, int refV) {
+    public Car(String model, String color, Brand brand, TypeV typeV, double priceXDay, int codeV, String plate, boolean dispV, String photo, int year, int refV) {
         super(codeV, plate, dispV, photo);
         this.model = model;
         this.color = color;

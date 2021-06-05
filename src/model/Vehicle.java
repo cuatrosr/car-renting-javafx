@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import javafx.scene.image.Image;
 
 public class Vehicle implements Serializable, Comparable<Vehicle> {
 
@@ -10,9 +9,9 @@ public class Vehicle implements Serializable, Comparable<Vehicle> {
     private int codeV;
     private String plate;
     private boolean dispV;
-    private Image photo;
+    private String photo;
 
-    public Vehicle(int codeV, String plate, boolean dispV, Image photo) {
+    public Vehicle(int codeV, String plate, boolean dispV, String photo) {
         this.codeV = codeV;
         this.plate = plate;
         this.dispV = dispV;
@@ -48,11 +47,11 @@ public class Vehicle implements Serializable, Comparable<Vehicle> {
         this.dispV = dispV;
     }
 
-    public Image getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Image photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 

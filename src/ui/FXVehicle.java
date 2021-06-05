@@ -5,11 +5,10 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import exception.Reference;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +23,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import model.*;
 
 public class FXVehicle {
@@ -162,6 +164,7 @@ public class FXVehicle {
 
     private int positionCar;
     private int amountCar;
+    private String imagePath;
 
     private RentingCar rc;
     private FXController fxGUI;
@@ -248,7 +251,29 @@ public class FXVehicle {
 
     @FXML
     public void onSelectImageV(ActionEvent event) {
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Selecciona una imagen");
+            fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
 
+            Stage stage = (Stage) vPane.getScene().getWindow();
+            File iconImageR = fileChooser.showOpenDialog(stage);
+
+            if (iconImageR != null) {
+                imagePath = iconImageR.getAbsolutePath();
+                iPhotoV.setImage(stringToImage(imagePath));
+            } else {
+                fxGUI.showAlert(false, "Por favor seleeciona una imagen", stackPane);
+            }
+        } catch (NullPointerException e) {
+            fxGUI.showAlert(false, "Imagen no encontrada, por favor selecciona una imagen", stackPane);
+        }
+    }
+
+    public Image stringToImage(String image) {
+        File f = new File(image);
+        Image imP = new Image(f.toURI().toString());
+        return imP;
     }
 
     @FXML
@@ -256,6 +281,7 @@ public class FXVehicle {
         clearTextField();
         statButtonsWhenNew(true);
         txtCodeV.setText(rc.getCode() + "");
+        iPhotoV.setImage(null);
     }
 
     public void statButtonsWhenNew(boolean stat) {
@@ -287,7 +313,7 @@ public class FXVehicle {
             try {
                 boolean added = rc.addCar(txtModelV.getText(), txtColorV.getText(), rc.findBrandSelected(cbBrandV.getValue()),
                         rc.findTypeVSelected(cbTypeV.getValue()), Double.parseDouble(txtPriceV.getText()), rc.getCode(),
-                        txtPlateV.getText(), getSelectedDisp(), null, Integer.parseInt(txtYearV.getText()));
+                        txtPlateV.getText(), getSelectedDisp(), imagePath, Integer.parseInt(txtYearV.getText()));
                 if (added) {
                     fxGUI.showAlert(true, "Se ha agregado el vehículo correctamente", stackPane);
                     fxGUI.saveData();
@@ -306,6 +332,8 @@ public class FXVehicle {
         } else {
             fxGUI.showAlert(false, "Por favor llene todos los campos, no se agrego", stackPane);
         }
+        imagePath = "";
+        iPhotoV.setImage(null);
     }
 
     public boolean getSelectedDisp() {
@@ -356,12 +384,14 @@ public class FXVehicle {
                 changeTextFieldsSelecteds(selectedCar);
                 fxGUI.setSelectObjectCode(selectedCar.getCodeV());
                 fxGUI.setSelectedInOtherWindow(true);
+                imagePath = selectedCar.getPhoto();
                 btnNewV.setDisable(true);
                 btnSaveV.setDisable(true);
                 btnRemoveV.setDisable(false);
                 btnEditV.setDisable(false);
                 btnNewV.setDisable(true);
                 btnPrevV.setDisable(true);
+                btnImageV.setDisable(false);
             }
         }
     }
@@ -395,6 +425,7 @@ public class FXVehicle {
         txtColorV.setText(carSelected.getColor());
         txtYearV.setText(carSelected.getYear() + "");
         txtPriceV.setText(carSelected.getPriceXDay() + "");
+        iPhotoV.setImage(stringToImage(carSelected.getPhoto()));
         if (carSelected.isDispV()) {
             rbDispVY.setSelected(true);
             rbDispVN.setSelected(false);
@@ -418,6 +449,8 @@ public class FXVehicle {
         fxGUI.setSelectObjectCode(0);
         fxGUI.setSelectedInOtherWindow(false);
         btnInitialize();
+        imagePath = "";
+        iPhotoV.setImage(null);
     }
 
     @FXML
@@ -427,7 +460,7 @@ public class FXVehicle {
             try {
                 if (rc.uptadeCar(fxGUI.getSelectObjectCode(), txtModelV.getText(), txtColorV.getText(), rc.findBrandSelected(cbBrandV.getValue()),
                         rc.findTypeVSelected(cbTypeV.getValue()), Double.parseDouble(txtPriceV.getText()), txtPlateV.getText(),
-                        getSelectedDisp(), null, Integer.parseInt(txtYearV.getText()))) {
+                        getSelectedDisp(), imagePath, Integer.parseInt(txtYearV.getText()))) {
                     fxGUI.showAlert(true, "Se actualizo el vehículo correctamente", stackPane);
                     fxGUI.saveData();
                 } else {
@@ -443,5 +476,7 @@ public class FXVehicle {
         fxGUI.setSelectObjectCode(0);
         fxGUI.setSelectedInOtherWindow(false);
         btnInitialize();
+        iPhotoV.setImage(null);
+        imagePath = "";
     }
 }

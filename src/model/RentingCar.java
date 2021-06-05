@@ -453,7 +453,7 @@ public class RentingCar implements Serializable {
         }
     }
 
-    public boolean addCar(String model, String color, Brand brand, TypeV typeV, double priceXDay, int codeV, String plate, boolean dispV, Image photo, int year) {
+    public boolean addCar(String model, String color, Brand brand, TypeV typeV, double priceXDay, int codeV, String plate, boolean dispV, String photo, int year) {
         if (!searchPlate(plate)) {
             Car newCar = new Car(model, color, brand, typeV, priceXDay, code++, plate, dispV, photo, year, 0);
             plusRefBrand(brand);
@@ -626,7 +626,7 @@ public class RentingCar implements Serializable {
         }
     }
 
-    public boolean uptadeCar(int code, String model, String color, Brand brand, TypeV typeV, double priceXDay, String plate, boolean dispV, Image photo, int year) {
+    public boolean uptadeCar(int code, String model, String color, Brand brand, TypeV typeV, double priceXDay, String plate, boolean dispV, String photo, int year) {
         boolean out1 = false;
         boolean out2 = false;
         if (!searchPlate(plate)) {
@@ -649,7 +649,7 @@ public class RentingCar implements Serializable {
             temp.setPriceXDay(priceXDay);
             temp.setPlate(plate);
             temp.setDispV(dispV);
-            temp.setPhoto(null);
+            temp.setPhoto(photo);
             temp.setYear(year);
             plusRefBrand(brand);
             plusRefTypeV(typeV);
