@@ -43,7 +43,9 @@ public class FXController implements Serializable {
     private FXRent xRent;
     private FXDevol xDevol;
     private int selectObjectCode;
-    private boolean selectedInOtherWindow;
+    private int selectClientRent;
+    private int selectCarRent;
+    private boolean otherWindowSelected;
 
     public FXController(RentingCar rc) throws IOException {
         this.rc = rc;
@@ -103,6 +105,16 @@ public class FXController implements Serializable {
             xClient.showCitiesDisp();
             xVehicle.showBrandDisp();
             xVehicle.showTypeDisp();
+            try {
+                xRent.setTextClient(rc.searchClientSelected(selectClientRent));
+                otherWindowSelected = false;
+            } catch (NullPointerException e) {
+            }
+            try {
+                xRent.setTextCar(rc.findCar(selectCarRent));
+                otherWindowSelected = false;
+            } catch (NullPointerException e) {
+            }
         });
     }
 
@@ -118,12 +130,28 @@ public class FXController implements Serializable {
         this.selectObjectCode = code;
     }
 
-    public boolean getSelectedInOtherWindow() {
-        return selectedInOtherWindow;
+    public int getSelectClientRent() {
+        return selectClientRent;
     }
 
-    public void setSelectedInOtherWindow(boolean out) {
-        this.selectedInOtherWindow = out;
+    public void setSelectClientRent(int selectClientRent) {
+        this.selectClientRent = selectClientRent;
+    }
+
+    public int getSelectCarRent() {
+        return selectCarRent;
+    }
+
+    public void setSelectCarRent(int selectCarRent) {
+        this.selectCarRent = selectCarRent;
+    }
+
+    public boolean isOtherWindowSelected() {
+        return otherWindowSelected;
+    }
+
+    public void setOtherWindowSelected(boolean otherWindowSelected) {
+        this.otherWindowSelected = otherWindowSelected;
     }
 
     public void showLogin() throws IOException {
@@ -213,6 +241,7 @@ public class FXController implements Serializable {
         Parent root = fxmlLoader.load();
         Stage rentStage = newStage(root);
         xRent.setImagesButton();
+        xRent.btnInitialize();
         habilityPane(xMenu.getPane(), rentStage);
     }
 
@@ -221,6 +250,7 @@ public class FXController implements Serializable {
         fxmlLoader.setController(xDevol);
         Parent root = fxmlLoader.load();
         Stage devolStage = newStage(root);
+        xDevol.setImagesButton();
         habilityPane(xMenu.getPane(), devolStage);
     }
 
@@ -250,10 +280,10 @@ public class FXController implements Serializable {
 
     public void showListRent() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ListRent.fxml"));
-        fxmlLoader.setController(xRent);
+        fxmlLoader.setController(xDevol);
         Parent root = fxmlLoader.load();
         Stage listRentStage = newStage(root);
-        xRent.setImagesList();
+        xDevol.setImagesList();
         habilityPane(xDevol.getPane(), listRentStage);
     }
 

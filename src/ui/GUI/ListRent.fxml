@@ -58,18 +58,18 @@
             <Label layoutX="14.0" layoutY="11.0" text="Haz doble clic en un cliente para seleccionarlo" />
          </children>
       </Pane>
-      <TableView layoutX="10.0" layoutY="123.0" prefHeight="302.0" prefWidth="986.0" style="-fx-border-color: #009975;">
+      <TableView fx:id="tblRent" layoutX="10.0" layoutY="123.0" onMouseClicked="#onSelectRent" prefHeight="302.0" prefWidth="986.0" style="-fx-border-color: #009975;">
          <columns>
-            <TableColumn prefWidth="98.0" text="Ticket" />
-            <TableColumn prefWidth="98.0" text="Cedula" />
-            <TableColumn prefWidth="98.0" text="Cliente" />
-            <TableColumn prefWidth="98.0" text="Telefono" />
-            <TableColumn prefWidth="98.0" text="ID Vehiculo" />
-            <TableColumn prefWidth="98.0" text="Placa" />
-            <TableColumn prefWidth="98.0" text="Modelo" />
-            <TableColumn prefWidth="98.0" text="Tipo" />
-            <TableColumn prefWidth="98.0" text="Días" />
-            <TableColumn prefWidth="98.0" text="Precio" />
+            <TableColumn fx:id="tblcTicketR" prefWidth="98.0" text="Ticket" />
+            <TableColumn fx:id="tblcIDCR" prefWidth="98.0" text="Cedula" />
+            <TableColumn fx:id="tblcNameCR" prefWidth="98.0" text="Cliente" />
+            <TableColumn fx:id="tblcPhoneCR" prefWidth="98.0" text="Telefono" />
+            <TableColumn fx:id="tblcCodeVR" prefWidth="98.0" text="ID Vehiculo" />
+            <TableColumn fx:id="tblcPlateVR" prefWidth="98.0" text="Placa" />
+            <TableColumn fx:id="tblcModelVR" prefWidth="98.0" text="Modelo" />
+            <TableColumn fx:id="tblcTypeVR" prefWidth="98.0" text="Tipo" />
+            <TableColumn fx:id="tblcDaysR" prefWidth="98.0" text="Días" />
+            <TableColumn fx:id="tblcTotalR" prefWidth="98.0" text="Precio" />
          </columns>
       </TableView>
    </children>

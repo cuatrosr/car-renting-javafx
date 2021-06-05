@@ -1,17 +1,17 @@
 package ui;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import model.*;
 
-public class FXDevol implements Initializable {
+public class FXDevol {
 
     private static final long serialVersionUID = 1;
     @FXML
@@ -24,6 +24,47 @@ public class FXDevol implements Initializable {
     @FXML
     private ImageView iPayDevol;
 
+    @FXML
+    private ImageView iSearchTicketRent;
+
+    @FXML
+    private ImageView iSearchIDRent;
+    
+    //******** Table Rent Total *********\\
+    
+    @FXML
+    private TableView<Rent> tblRent;
+
+    @FXML
+    private TableColumn<Rent, String> tblcTicketR;
+
+    @FXML
+    private TableColumn<Rent, String> tblcIDCR;
+
+    @FXML
+    private TableColumn<Rent, String> tblcNameCR;
+
+    @FXML
+    private TableColumn<Rent, Long> tblcPhoneCR;
+
+    @FXML
+    private TableColumn<Rent, Integer> tblcCodeVR;
+
+    @FXML
+    private TableColumn<Rent, String> tblcPlateVR;
+
+    @FXML
+    private TableColumn<Rent, String> tblcModelVR;
+
+    @FXML
+    private TableColumn<Rent, String> tblcTypeVR;
+
+    @FXML
+    private TableColumn<Rent, Integer> tblcDaysR;
+
+    @FXML
+    private TableColumn<Rent, Double> tblcTotalR;
+
     private RentingCar rc;
     private FXController fxGUI;
 
@@ -32,16 +73,17 @@ public class FXDevol implements Initializable {
         this.fxGUI = fxGUI;
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        setImagesButton();
-    }
-
     public void setImagesButton() {
         Image iSelectRentDevolPNG = new Image("Images/car-key.png");
         Image iPayDevolPNG = new Image("Images/pay-check.png");
         iSelectRentDevol.setImage(iSelectRentDevolPNG);
         iPayDevol.setImage(iPayDevolPNG);
+    }
+
+    public void setImagesList() {
+        Image iSearchRentPNG = new Image("Images/search.png");
+        iSearchIDRent.setImage(iSearchRentPNG);
+        iSearchTicketRent.setImage(iSearchRentPNG);
     }
 
     public Pane getPane() {
@@ -58,6 +100,15 @@ public class FXDevol implements Initializable {
     public void onSavePay(ActionEvent event) throws IOException {
         fxGUI.disablePane(dPane, true);
         fxGUI.showSavePay();
+    }
+
+    public void onTableListRent() {
+
+    }
+
+    @FXML
+    void onSelectRent(MouseEvent event) {
+
     }
 
 }

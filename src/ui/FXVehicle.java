@@ -381,17 +381,21 @@ public class FXVehicle {
             selectedCar = tblVehicle.getSelectionModel().getSelectedItem();
             if (selectedCar != null) {
                 fxGUI.showAlert(true, "Se ha seleccionado el vehículo", stackPane1);
-                changeTextFieldsSelecteds(selectedCar);
-                fxGUI.setSelectObjectCode(selectedCar.getCodeV());
-                fxGUI.setSelectedInOtherWindow(true);
-                imagePath = selectedCar.getPhoto();
-                btnNewV.setDisable(true);
-                btnSaveV.setDisable(true);
-                btnRemoveV.setDisable(false);
-                btnEditV.setDisable(false);
-                btnNewV.setDisable(true);
-                btnPrevV.setDisable(true);
-                btnImageV.setDisable(false);
+                if (!fxGUI.isOtherWindowSelected()) {
+                    fxGUI.setSelectCarRent(selectedCar.getCodeV());
+                    fxGUI.setSelectObjectCode(selectedCar.getCodeV());
+                    changeTextFieldsSelecteds(selectedCar);
+                    imagePath = selectedCar.getPhoto();
+                    btnNewV.setDisable(true);
+                    btnSaveV.setDisable(true);
+                    btnRemoveV.setDisable(false);
+                    btnEditV.setDisable(false);
+                    btnNewV.setDisable(true);
+                    btnPrevV.setDisable(true);
+                    btnImageV.setDisable(false);
+                } else {
+                    fxGUI.setSelectCarRent(selectedCar.getCodeV());
+                }
             }
         }
     }
@@ -447,7 +451,6 @@ public class FXVehicle {
         }
         clearTextField();
         fxGUI.setSelectObjectCode(0);
-        fxGUI.setSelectedInOtherWindow(false);
         btnInitialize();
         imagePath = "";
         iPhotoV.setImage(null);
@@ -474,7 +477,6 @@ public class FXVehicle {
         }
         clearTextField();
         fxGUI.setSelectObjectCode(0);
-        fxGUI.setSelectedInOtherWindow(false);
         btnInitialize();
         iPhotoV.setImage(null);
         imagePath = "";

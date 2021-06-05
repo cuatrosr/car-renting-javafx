@@ -181,7 +181,6 @@ public class FXClient {
 
     public void finishedAction() {
         fxGUI.setSelectObjectCode(0);
-        fxGUI.setSelectedInOtherWindow(false);
         txtCodeClient.clear();
         txtIDClient.clear();
         txtNameClient.clear();
@@ -294,23 +293,30 @@ public class FXClient {
             clientSelected = tblClient.getSelectionModel().getSelectedItem();
             if (clientSelected != null) {
                 fxGUI.showAlert(true, "Se ha seleccionado correctamente el cliente", stackPane1);
-                fxGUI.setSelectObjectCode(clientSelected.getCodeP());
-                fxGUI.setSelectedInOtherWindow(true);
-                txtCodeClient.setText(clientSelected.getCodeP() + "");
-                txtNameClient.setText(clientSelected.getName());
-                txtLastNameClient.setText(clientSelected.getLastName());
-                txtIDClient.setText(clientSelected.getId() + "");
-                txtPhoneClient.setText(clientSelected.getPhoneC() + "");
-                txtAddressClient.setText(clientSelected.getAddressC());
-                txtEmailClient.setText(clientSelected.getEmailC());
-                cbCityClient.setValue(clientSelected.getNameCity());
-                btnNewClient.setDisable(true);
-                btnSaveClient.setDisable(true);
-                btnEditClient.setDisable(false);
-                btnRemovClient.setDisable(false);
-                btnCityClient.setDisable(true);
+                if (!fxGUI.isOtherWindowSelected()) {
+                    test(clientSelected);
+                } else {
+                    fxGUI.setSelectClientRent(clientSelected.getCodeP());
+                }
             }
         }
+    }
+
+    public void test(Client clientSelected) {
+        fxGUI.setSelectObjectCode(clientSelected.getCodeP());
+        txtCodeClient.setText(clientSelected.getCodeP() + "");
+        txtNameClient.setText(clientSelected.getName());
+        txtLastNameClient.setText(clientSelected.getLastName());
+        txtIDClient.setText(clientSelected.getId() + "");
+        txtPhoneClient.setText(clientSelected.getPhoneC() + "");
+        txtAddressClient.setText(clientSelected.getAddressC());
+        txtEmailClient.setText(clientSelected.getEmailC());
+        cbCityClient.setValue(clientSelected.getNameCity());
+        btnNewClient.setDisable(true);
+        btnSaveClient.setDisable(true);
+        btnEditClient.setDisable(false);
+        btnRemovClient.setDisable(false);
+        btnCityClient.setDisable(true);
     }
 
     public void onTableListClient() {

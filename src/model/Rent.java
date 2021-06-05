@@ -6,6 +6,7 @@ import java.time.LocalDate;
 public class Rent implements Serializable {
 
     private static final long serialVersionUID = 1;
+    private final String PREFTICKET = "RC0";
     private int codeR;
     private int ticket;
     private Client clientR;

@@ -4,12 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import exception.*;
-import javafx.scene.image.Image;
+import java.time.LocalDate;
 
 public class RentingCar implements Serializable {
 
     private static final long serialVersionUID = 1;
     public int code;
+    public int codeTicket;
     public Employee firstE;
     public Employee empActive;
     public Employee rootNameE;
@@ -23,9 +24,11 @@ public class RentingCar implements Serializable {
     public List<Client> listClients;
     public List<TypeV> listTypeV;
     public List<Brand> listBrands;
+    public List<Rent> listRents;
 
     public RentingCar() {
         code = 1;
+        codeTicket = 1;
         firstC = null;
         firstE = null;
         rootNameE = null;
@@ -37,10 +40,15 @@ public class RentingCar implements Serializable {
         showRootName = new ArrayList<>();
         showRootComision = new ArrayList<>();
         showRootCar = new ArrayList<>();
+        listRents = new ArrayList<>();
     }
 
     public int getCode() {
         return code;
+    }
+
+    public int getCodeTicket() {
+        return codeTicket;
     }
 
     public Employee getEmpActive() {
@@ -93,6 +101,10 @@ public class RentingCar implements Serializable {
 
     public List<Client> getListClients() {
         return listClients;
+    }
+    
+    public List<Rent> getListRent(){
+        return listRents;
     }
 
     public void addEmployee(String username, String password, int nSold, double vComision, int codeP, int refP, String name, String lastName, long id) {
@@ -791,4 +803,39 @@ public class RentingCar implements Serializable {
         }
     }
 
+    public boolean addRent(int codeR, int ticket, Client clientR, Car carR, LocalDate Finitial, LocalDate Ffinal, int days, Status status, int delay, int mult, int priceTotal) {
+        if (days > 0) {
+            Rent newRent = new Rent(code++, codeTicket++, clientR, carR, Finitial, Ffinal, days, status, delay, mult, priceTotal);
+            listRents.add(newRent);
+            plusComisionEmployee();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Client searchClientSelected(int code) {
+        for (int i = 0; i < listClients.size(); i++) {
+            if (listClients.get(i).getCodeP() == code) {
+                return listClients.get(i);
+            }
+        }
+        return null;
+    }
+    
+    public void plusComisionEmployee(){
+        if(empActive.getCodeP() == firstE.getCodeP()){
+            firstE.setnSold(firstE.getnSold()+1);
+        } else {
+            plusComisionEmployee(firstE.getNext());
+        }
+    }
+    
+    private void plusComisionEmployee(Employee current){
+        if(current.getCodeP() == empActive.getCodeP()){
+            current.setnSold(current.getnSold()+1);
+        } else {
+            plusComisionEmployee(current.getNext());
+        }
+    }
 }
