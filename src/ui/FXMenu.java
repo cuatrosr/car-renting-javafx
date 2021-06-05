@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import model.*;
 
@@ -33,6 +34,9 @@ public class FXMenu implements Initializable {
     @FXML
     private ImageView iReport;
 
+    @FXML
+    private ImageView iLogo;
+
     private RentingCar rc;
     private FXController fxGUI;
 
@@ -53,11 +57,13 @@ public class FXMenu implements Initializable {
         Image iRentPNG = new Image("Images/car-key.png");
         Image iDevolPNG = new Image("Images/return.png");
         Image iReportPNG = new Image("Images/report.png");
+        Image iLogoPNG = new Image("Images/Logo.png");
         iVehicle.setImage(iVehiclePNG);
         iClient.setImage(iClientPNG);
         iRent.setImage(iRentPNG);
         iDevol.setImage(iDevolPNG);
         iReport.setImage(iReportPNG);
+        iLogo.setImage(iLogoPNG);
     }
 
     public Pane getPane() {
@@ -146,5 +152,18 @@ public class FXMenu implements Initializable {
     public void onTopEmployee(ActionEvent event) throws IOException {
         fxGUI.disablePane(pMainMenu, true);
         fxGUI.showTopEmployee();
+    }
+
+    @FXML
+    public void onKeyPressed(KeyEvent event) {
+        if (event.getCode() == event.getCode().UP && iLogo.getLayoutY() >= 30) {
+            iLogo.setLayoutY(iLogo.getLayoutY() - 1);
+        } else if (event.getCode() == event.getCode().DOWN && iLogo.getLayoutY() <= 319) {
+            iLogo.setLayoutY(iLogo.getLayoutY() + 1);
+        } else if (event.getCode() == event.getCode().LEFT && iLogo.getLayoutX() >= 365) {
+            iLogo.setLayoutX(iLogo.getLayoutX() - 1);
+        } else if (event.getCode() == event.getCode().RIGHT && iLogo.getLayoutX() <= 881) {
+            iLogo.setLayoutX(iLogo.getLayoutX() + 1);
+        }
     }
 }

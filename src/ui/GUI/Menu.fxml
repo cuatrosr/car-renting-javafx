@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pMainMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="1304.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="pMainMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="825.0" prefWidth="1304.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar layoutY="-2.0" prefHeight="32.0" prefWidth="1304.0" style="-fx-background-color: #009975;">
         <menus>
@@ -125,6 +125,9 @@
             <Label layoutX="78.0" layoutY="581.0" text="Gabriel Suarez | David Montaño" textFill="WHITE" />
          </children>
       </Pane>
-      <ImageView fitHeight="423.0" fitWidth="508.0" layoutX="589.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="iLogo" fitHeight="423.0" fitWidth="508.0" layoutX="589.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../resources/Images/Logo.png" />
+         </image></ImageView>
    </children>
 </Pane>
