@@ -455,7 +455,7 @@ public class RentingCar implements Serializable {
 
     public boolean addCar(String model, String color, Brand brand, TypeV typeV, double priceXDay, int codeV, String plate, boolean dispV, Image photo, int year) {
         if (!searchPlate(plate)) {
-            Car newCar = new Car(model, color, brand, typeV, priceXDay, code++, plate, dispV, photo, year);
+            Car newCar = new Car(model, color, brand, typeV, priceXDay, code++, plate, dispV, photo, year, 0);
             plusRefBrand(brand);
             plusRefTypeV(typeV);
             addBinaryVehicle(newCar);
@@ -522,6 +522,14 @@ public class RentingCar implements Serializable {
         }
     }
 
+    public void restRefType(TypeV typeVRest) {
+        for (int i = 0; i < listTypeV.size(); i++) {
+            if (listTypeV.get(i).getCodeA() == typeVRest.getCodeA()) {
+                listTypeV.get(i).setRefTv(listTypeV.get(i).getRefTv() - 1);
+            }
+        }
+    }
+
     public Brand findBrandSelected(String nameBrand) {
         String[] nameSplit = nameBrand.split(" ");
         for (int i = 0; i < listBrands.size(); i++) {
@@ -536,6 +544,14 @@ public class RentingCar implements Serializable {
         for (int i = 0; i < listBrands.size(); i++) {
             if (listBrands.get(i).getCodeA() == brandPlus.getCodeA()) {
                 listBrands.get(i).setRefB(listBrands.get(i).getRefB() + 1);
+            }
+        }
+    }
+
+    public void restRefBrand(Brand brandRest) {
+        for (int i = 0; i < listBrands.size(); i++) {
+            if (listBrands.get(i).getCodeA() == brandRest.getCodeA()) {
+                listBrands.get(i).setRefB(listBrands.get(i).getRefB() - 1);
             }
         }
     }
@@ -609,4 +625,170 @@ public class RentingCar implements Serializable {
             }
         }
     }
+
+    public boolean uptadeCar(int code, String model, String color, Brand brand, TypeV typeV, double priceXDay, String plate, boolean dispV, Image photo, int year) {
+        boolean out1 = false;
+        boolean out2 = false;
+        if (!searchPlate(plate)) {
+            out1 = true;
+        }
+        if (verifySameCar(code).equals(plate)) {
+            out2 = true;
+        }
+        if (out1 || out2) {
+            Car temp = firstC;
+            while (code != temp.getCodeV()) {
+                temp = temp.getNext();
+            }
+            restRefBrand(temp.getBrand());
+            restRefType(temp.getTypeV());
+            temp.setModel(model);
+            temp.setColor(color);
+            temp.setBrand(brand);
+            temp.setTypeV(typeV);
+            temp.setPriceXDay(priceXDay);
+            temp.setPlate(plate);
+            temp.setDispV(dispV);
+            temp.setPhoto(null);
+            temp.setYear(year);
+            plusRefBrand(brand);
+            plusRefTypeV(typeV);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String verifySameCar(int code) {
+        if (firstC == null) {
+            return "";
+        } else {
+            return verifySameCar(code, firstC);
+        }
+    }
+
+    private String verifySameCar(int code, Car current) {
+        if (current.getCodeV() == code) {
+            return current.getPlate();
+        } else {
+            if (current.getNext() == firstC) {
+                return "";
+            } else {
+                return verifySameCar(code, current.getNext());
+            }
+        }
+    }
+
+    public void removeCar(int code) throws Reference {
+        Car carRemove = findCar(code);
+        int ref = findCar(code).getRefV();
+        if (ref == 0) {
+            if (firstC.getNext() == firstC && firstC.getPrev() == firstC) {
+                firstC = null;
+            } else if (carRemove == firstC) {
+                Car tempNext = carRemove.getNext();
+                Car tempPrev = carRemove.getPrev();
+                firstC = tempNext;
+                firstC.setNext(tempNext);
+                firstC.setPrev(tempPrev);
+            } else {
+                Car tempNext = carRemove.getNext();
+                Car tempPrev = carRemove.getPrev();
+                carRemove.getPrev().setNext(tempNext);
+                carRemove.getNext().setPrev(tempPrev);
+            }
+        } else {
+            throw new Reference(ref);
+        }
+    }
+
+    public void removeCarBinaryTree(int code) throws Reference {
+        Car rCar = findCar(code);
+        if (rCar.getRefV() == 0) {
+            removeCarBinaryTree(rCar);
+        } else {
+            throw new Reference(rCar.getRefV());
+        }
+    }
+
+    public void removeCarBinaryTree(Car rmvCar) {
+        if (rmvCar != null) {
+            if (rmvCar.getLeft() == null && rmvCar.getRight() == null) {
+                if (rmvCar == rootNameC) {
+                    rootNameC = null;
+                } else if (rmvCar.getParent().getLeft() == rmvCar) {
+                    rmvCar.getParent().setLeft(null);
+                } else {
+                    rmvCar.getParent().setRight(null);
+                }
+                rmvCar.setParent(null);
+            } else if (rmvCar.getLeft() == null || rmvCar.getRight() == null) {
+                Car onlySon;
+                if (rmvCar.getLeft() != null) {
+                    onlySon = rmvCar.getLeft();
+                } else {
+                    onlySon = rmvCar.getRight();
+                }
+                onlySon.setParent(rmvCar.getParent());
+                if (rmvCar == rootNameC) {
+                    rootNameC = onlySon;
+                } else if (rmvCar.getParent().getLeft() == rmvCar) {
+                    rmvCar.getParent().setLeft(onlySon);
+                } else {
+                    rmvCar.getParent().setRight(onlySon);
+                }
+            } else {
+                Car successor = min(rmvCar.getRight());
+                rmvCar.setModel(successor.getModel());
+                rmvCar.setColor(successor.getColor());
+                rmvCar.setBrand(successor.getBrand());
+                rmvCar.setTypeV(successor.getTypeV());
+                rmvCar.setPriceXDay(successor.getPriceXDay());
+                rmvCar.setCodeV(successor.getCodeV());
+                rmvCar.setPlate(successor.getPlate());
+                rmvCar.setDispV(successor.isDispV());
+                rmvCar.setPhoto(successor.getPhoto());
+                rmvCar.setYear(successor.getYear());
+                rmvCar.setRefV(successor.getRefV());
+                removeCarBinaryTree(successor);
+
+            }
+        }
+    }
+
+    private Car min(Car current) {
+        if (current.getLeft() == null) {
+            return current;
+        } else {
+            return min(current.getLeft());
+        }
+    }
+
+    private Car minIterative(Car current) {
+        while (current.getLeft() != null) {
+            current = current.getLeft();
+        }
+        return current;
+    }
+
+    public Car findCar(int code) {
+        if (firstC.getCodeV() == code) {
+            return firstC;
+        } else {
+            return findCar(code, firstC.getNext());
+        }
+    }
+
+    private Car findCar(int code, Car next) {
+        if (next.getCodeV() == code) {
+            return next;
+        } else {
+            if (next.getNext() == firstC) {
+                return null;
+            } else {
+                return findCar(code, next.getNext());
+            }
+        }
+    }
+
 }

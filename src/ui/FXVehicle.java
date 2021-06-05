@@ -4,9 +4,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
+import exception.Reference;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -399,5 +402,46 @@ public class FXVehicle {
             rbDispVN.setSelected(true);
             rbDispVY.setSelected(false);
         }
+    }
+
+    @FXML
+    public void onRemoveEdit(ActionEvent event) throws IOException {
+        try {
+            rc.removeCarBinaryTree(fxGUI.getSelectObjectCode());
+            rc.removeCar(fxGUI.getSelectObjectCode());
+            fxGUI.showAlert(true, "Se elimino, este vehículo ya no esta registrado", stackPane);
+            fxGUI.saveData();
+        } catch (Reference ex) {
+            fxGUI.showAlert(false, "No se elimino, este vehículo ya esta referenciado", stackPane);
+        }
+        clearTextField();
+        fxGUI.setSelectObjectCode(0);
+        fxGUI.setSelectedInOtherWindow(false);
+        btnInitialize();
+    }
+
+    @FXML
+    public void onEditV(ActionEvent event) throws IOException {
+        if (!txtCodeV.getText().equals("") && cbBrandV.getValue() != null && cbTypeV.getValue() != null && !txtPlateV.getText().equals("")
+                && !txtYearV.getText().equals("") && !txtColorV.getText().equals("") && !txtPriceV.getText().equals("") && !txtModelV.getText().equals("") && rbDisp.getSelectedToggle() != null) {
+            try {
+                if (rc.uptadeCar(fxGUI.getSelectObjectCode(), txtModelV.getText(), txtColorV.getText(), rc.findBrandSelected(cbBrandV.getValue()),
+                        rc.findTypeVSelected(cbTypeV.getValue()), Double.parseDouble(txtPriceV.getText()), txtPlateV.getText(),
+                        getSelectedDisp(), null, Integer.parseInt(txtYearV.getText()))) {
+                    fxGUI.showAlert(true, "Se actualizo el vehículo correctamente", stackPane);
+                    fxGUI.saveData();
+                } else {
+                    fxGUI.showAlert(false, "Otro vehículo se encuentra con la misma placa, no se actualizo", stackPane);
+                }
+            } catch (NumberFormatException e) {
+                fxGUI.showAlert(false, "No puedes ingresar letras en el precio o año, no se actualizo", stackPane);
+            }
+        } else {
+            fxGUI.showAlert(false, "Para actualizar llena todos los campos, no se actualizo", stackPane);
+        }
+        clearTextField();
+        fxGUI.setSelectObjectCode(0);
+        fxGUI.setSelectedInOtherWindow(false);
+        btnInitialize();
     }
 }
