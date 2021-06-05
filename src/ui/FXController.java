@@ -284,6 +284,7 @@ public class FXController implements Serializable {
         Parent root = fxmlLoader.load();
         Stage listRentStage = newStage(root);
         xDevol.setImagesList();
+        xDevol.onTableListRent();
         habilityPane(xDevol.getPane(), listRentStage);
     }
 

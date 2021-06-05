@@ -1,10 +1,14 @@
 package ui;
 
 import java.io.IOException;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -29,9 +33,8 @@ public class FXDevol {
 
     @FXML
     private ImageView iSearchIDRent;
-    
+
     //******** Table Rent Total *********\\
-    
     @FXML
     private TableView<Rent> tblRent;
 
@@ -39,7 +42,7 @@ public class FXDevol {
     private TableColumn<Rent, String> tblcTicketR;
 
     @FXML
-    private TableColumn<Rent, String> tblcIDCR;
+    private TableColumn<Rent, Long> tblcIDCR;
 
     @FXML
     private TableColumn<Rent, String> tblcNameCR;
@@ -103,9 +106,24 @@ public class FXDevol {
     }
 
     public void onTableListRent() {
+        List<Rent> rents = rc.getListRent();
+        ObservableList<Rent> newTableRent;
+        newTableRent = FXCollections.observableArrayList(rents);
+
+        tblRent.setItems(newTableRent);
+        tblcTicketR.setCellValueFactory(new PropertyValueFactory<>("nameTicket"));
+        tblcIDCR.setCellValueFactory(new PropertyValueFactory<>("idClient"));
+        tblcNameCR.setCellValueFactory(new PropertyValueFactory<>("nameClient"));
+        tblcPhoneCR.setCellValueFactory(new PropertyValueFactory<>("phoneClient"));
+        tblcCodeVR.setCellValueFactory(new PropertyValueFactory<>("idCar"));
+        tblcPlateVR.setCellValueFactory(new PropertyValueFactory<>("plateCar"));
+        tblcModelVR.setCellValueFactory(new PropertyValueFactory<>("nameModel"));
+        tblcTypeVR.setCellValueFactory(new PropertyValueFactory<>("nameType"));
+        tblcDaysR.setCellValueFactory(new PropertyValueFactory<>("days"));
+        tblcTotalR.setCellValueFactory(new PropertyValueFactory<>("priceTotal"));
 
     }
-
+    
     @FXML
     void onSelectRent(MouseEvent event) {
 

@@ -20,7 +20,7 @@ import model.*;
 public class FXRent {
 
     private static final long serialVersionUID = 1;
-    private final String PREFTICKET = "TRC0";
+    private final String PREFTICKET = "TRC";
 
     @FXML
     private Pane rPane;

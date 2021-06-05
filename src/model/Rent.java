@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class Rent implements Serializable {
 
     private static final long serialVersionUID = 1;
-    private final String PREFTICKET = "RC0";
+    private final String PREFTICKET = "TRC";
     private int codeR;
     private int ticket;
     private Client clientR;
@@ -44,6 +44,12 @@ public class Rent implements Serializable {
     public int getTicket() {
         return ticket;
     }
+    
+    public String getNameTicket(){
+        String nameTicket;
+        nameTicket = PREFTICKET+ticket;
+        return nameTicket;
+    }
 
     public void setTicket(int ticket) {
         this.ticket = ticket;
@@ -56,6 +62,18 @@ public class Rent implements Serializable {
     public void setClientR(Client clientR) {
         this.clientR = clientR;
     }
+    
+    public Long getIdClient(){
+        return clientR.getId();
+    }
+    
+    public String getNameClient(){
+        return clientR.getName();
+    }
+    
+    public Long getPhoneClient(){
+        return clientR.getPhoneC();
+    }
 
     public Car getCarR() {
         return carR;
@@ -63,6 +81,22 @@ public class Rent implements Serializable {
 
     public void setCarR(Car carR) {
         this.carR = carR;
+    }
+    
+    public int getIdCar(){
+        return carR.getCodeV();
+    }
+    
+    public String getPlateCar() {
+        return carR.getPlate();
+    }
+    
+    public String getNameType(){
+        return carR.getNameType();
+    }
+    
+    public String getNameModel(){
+        return carR.getModel();
     }
 
     public LocalDate getFinitial() {
