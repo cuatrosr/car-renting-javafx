@@ -108,11 +108,13 @@ public class FXController implements Serializable {
             try {
                 xRent.setTextClient(rc.searchClientSelected(selectClientRent));
                 otherWindowSelected = false;
+                selectClientRent = 0;
             } catch (NullPointerException e) {
             }
             try {
                 xRent.setTextCar(rc.findCar(selectCarRent));
                 otherWindowSelected = false;
+                selectCarRent = 0;
             } catch (NullPointerException e) {
             }
         });
@@ -284,6 +286,7 @@ public class FXController implements Serializable {
         Parent root = fxmlLoader.load();
         Stage listRentStage = newStage(root);
         xDevol.setImagesList();
+        xDevol.onTableListRent();
         habilityPane(xDevol.getPane(), listRentStage);
     }
 

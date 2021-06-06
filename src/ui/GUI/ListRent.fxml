@@ -9,68 +9,74 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="1012.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+
+<StackPane fx:id="stackPane1" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="43.0" prefWidth="1012.0" style="-fx-background-color: #009975;">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="1012.0" style="-fx-background-color: #ffffff;">
          <children>
-            <Label layoutX="388.0" layoutY="7.0" text="LISTADO DE ALQUILERES" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
+            <Pane prefHeight="43.0" prefWidth="1012.0" style="-fx-background-color: #009975;">
+               <children>
+                  <Label layoutX="388.0" layoutY="7.0" text="LISTADO DE ALQUILERES" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="49.0" prefHeight="57.0" prefWidth="986.0" style="-fx-background-color: #f4efef;">
+               <children>
+                  <Label layoutX="14.0" layoutY="18.0" text="Buscar por ticket:" />
+                  <JFXTextField focusColor="#4d4d4d" layoutX="135.0" layoutY="13.0" prefHeight="31.0" prefWidth="68.0" unFocusColor="#009975" />
+                  <JFXButton layoutX="858.0" layoutY="13.0" style="-fx-background-color: #009975;" text="Mostrar todo" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <Button layoutX="210.0" layoutY="13.0" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fx:id="iSearchTicketRent" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/Images/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="267.0" layoutY="18.0" text="Buscar por cedula:" />
+                  <JFXTextField focusColor="#4d4d4d" layoutX="393.0" layoutY="13.0" prefHeight="31.0" prefWidth="385.0" unFocusColor="#009975" />
+                  <Button layoutX="795.0" layoutY="13.0" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fx:id="iSearchIDRent" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/Images/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane layoutX="14.0" layoutY="444.0" prefHeight="43.0" prefWidth="986.0" style="-fx-background-color: #f3f3f3;">
+               <children>
+                  <Label layoutX="14.0" layoutY="11.0" text="Haz doble clic en un cliente para seleccionarlo" />
+               </children>
+            </Pane>
+            <TableView fx:id="tblRent" layoutX="10.0" layoutY="123.0" onMouseClicked="#onSelectRent" prefHeight="302.0" prefWidth="986.0" style="-fx-border-color: #009975;">
+               <columns>
+                  <TableColumn fx:id="tblcTicketR" prefWidth="98.0" text="Ticket" />
+                  <TableColumn fx:id="tblcIDCR" prefWidth="98.0" text="Cedula" />
+                  <TableColumn fx:id="tblcNameCR" prefWidth="98.0" text="Cliente" />
+                  <TableColumn fx:id="tblcPhoneCR" prefWidth="98.0" text="Telefono" />
+                  <TableColumn fx:id="tblcCodeVR" prefWidth="98.0" text="ID Vehiculo" />
+                  <TableColumn fx:id="tblcPlateVR" prefWidth="98.0" text="Placa" />
+                  <TableColumn fx:id="tblcModelVR" prefWidth="98.0" text="Modelo" />
+                  <TableColumn fx:id="tblcTypeVR" prefWidth="98.0" text="Tipo" />
+                  <TableColumn fx:id="tblcDaysR" prefWidth="98.0" text="Días" />
+                  <TableColumn fx:id="tblcTotalR" prefWidth="98.0" text="Precio" />
+               </columns>
+            </TableView>
          </children>
       </Pane>
-      <Pane layoutX="10.0" layoutY="49.0" prefHeight="57.0" prefWidth="986.0" style="-fx-background-color: #f4efef;">
-         <children>
-            <Label layoutX="14.0" layoutY="18.0" text="Buscar por ticket:" />
-            <JFXTextField focusColor="#4d4d4d" layoutX="135.0" layoutY="13.0" prefHeight="31.0" prefWidth="68.0" unFocusColor="#009975" />
-            <JFXButton layoutX="858.0" layoutY="13.0" style="-fx-background-color: #009975;" text="Mostrar todo" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </JFXButton>
-            <Button layoutX="210.0" layoutY="13.0" mnemonicParsing="false">
-               <graphic>
-                  <ImageView fx:id="iSearchTicketRent" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../resources/Images/search.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Label layoutX="267.0" layoutY="18.0" text="Buscar por cedula:" />
-            <JFXTextField focusColor="#4d4d4d" layoutX="393.0" layoutY="13.0" prefHeight="31.0" prefWidth="385.0" unFocusColor="#009975" />
-            <Button layoutX="795.0" layoutY="13.0" mnemonicParsing="false">
-               <graphic>
-                  <ImageView fx:id="iSearchIDRent" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../resources/Images/search.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </Pane>
-      <Pane layoutX="14.0" layoutY="444.0" prefHeight="43.0" prefWidth="986.0" style="-fx-background-color: #f3f3f3;">
-         <children>
-            <Label layoutX="14.0" layoutY="11.0" text="Haz doble clic en un cliente para seleccionarlo" />
-         </children>
-      </Pane>
-      <TableView fx:id="tblRent" layoutX="10.0" layoutY="123.0" onMouseClicked="#onSelectRent" prefHeight="302.0" prefWidth="986.0" style="-fx-border-color: #009975;">
-         <columns>
-            <TableColumn fx:id="tblcTicketR" prefWidth="98.0" text="Ticket" />
-            <TableColumn fx:id="tblcIDCR" prefWidth="98.0" text="Cedula" />
-            <TableColumn fx:id="tblcNameCR" prefWidth="98.0" text="Cliente" />
-            <TableColumn fx:id="tblcPhoneCR" prefWidth="98.0" text="Telefono" />
-            <TableColumn fx:id="tblcCodeVR" prefWidth="98.0" text="ID Vehiculo" />
-            <TableColumn fx:id="tblcPlateVR" prefWidth="98.0" text="Placa" />
-            <TableColumn fx:id="tblcModelVR" prefWidth="98.0" text="Modelo" />
-            <TableColumn fx:id="tblcTypeVR" prefWidth="98.0" text="Tipo" />
-            <TableColumn fx:id="tblcDaysR" prefWidth="98.0" text="Días" />
-            <TableColumn fx:id="tblcTotalR" prefWidth="98.0" text="Precio" />
-         </columns>
-      </TableView>
    </children>
-</Pane>
+</StackPane>

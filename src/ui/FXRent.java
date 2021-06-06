@@ -20,7 +20,7 @@ import model.*;
 public class FXRent {
 
     private static final long serialVersionUID = 1;
-    private final String PREFTICKET = "TRC0";
+    private final String PREFTICKET = "TRC";
 
     @FXML
     private Pane rPane;
@@ -219,6 +219,7 @@ public class FXRent {
                 btnInitialize();
                 txtTicketR.setText(null);
                 onReverseRent(event);
+                txtCodeVR.clear();
             } else {
                 fxGUI.showAlert(false, "Por favor ingresa una fecha validad", stackPane);
                 onCleanDateRent(event);
