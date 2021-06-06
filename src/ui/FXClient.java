@@ -100,6 +100,9 @@ public class FXClient {
     @FXML
     private JFXComboBox<String> cbCityClient;
 
+    @FXML
+    private JFXTextField txtParamSearchC;
+
     //*********** Table Client ************\\
     @FXML
     private TableView<Client> tblClient;
@@ -349,5 +352,39 @@ public class FXClient {
             cbCityClient.setItems(obs);
         } catch (NullPointerException e) {
         }
+    }
+
+    public void searchTableClient(boolean out, String name) {
+        tblClient.getItems().clear();
+
+        List<Client> clients = rc.binaryClient(out, name);
+        ObservableList<Client> newTableClient;
+        newTableClient = FXCollections.observableArrayList(clients);
+
+        tblClient.setItems(newTableClient);
+        tblcCodeClient.setCellValueFactory(new PropertyValueFactory<>("codeP"));
+        tblcIDClient.setCellValueFactory(new PropertyValueFactory<>("id"));
+        tblcNameClient.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tblcLastNameClient.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        tblcPhoneClient.setCellValueFactory(new PropertyValueFactory<>("phoneC"));
+        tblcAddressClient.setCellValueFactory(new PropertyValueFactory<>("addressC"));
+        tblcCity.setCellValueFactory(new PropertyValueFactory<>("nameCity"));
+        tblcEmailClient.setCellValueFactory(new PropertyValueFactory<>("emailC"));
+    }
+
+    @FXML
+    void onSearchClient(ActionEvent event) {
+        try {
+            Long id = Long.parseLong(txtParamSearchC.getText());
+            searchTableClient(false, txtParamSearchC.getText());
+        } catch (NumberFormatException e) {
+            searchTableClient(true, txtParamSearchC.getText());
+        }
+    }
+
+    @FXML
+    void onShowAllClients(ActionEvent event) {
+        tblClient.getItems().clear();
+        onTableListClient();
     }
 }

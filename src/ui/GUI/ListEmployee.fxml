@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="853.0" style="-fx-background-color: #ffffff;">
@@ -29,13 +28,13 @@
             <Pane layoutX="10.0" layoutY="49.0" prefHeight="57.0" prefWidth="833.0" style="-fx-background-color: #f4efef;">
                <children>
                   <Label layoutX="14.0" layoutY="18.0" text="Buscar por ID o Nombre" />
-                  <JFXTextField focusColor="#4d4d4d" layoutX="189.0" layoutY="13.0" prefHeight="31.0" prefWidth="436.0" unFocusColor="#009975" />
-                  <JFXButton layoutX="699.0" layoutY="13.0" style="-fx-background-color: #009975;" text="Mostrar todo" textFill="WHITE">
+                  <JFXTextField fx:id="txtParamEmployee" focusColor="#4d4d4d" layoutX="189.0" layoutY="13.0" prefHeight="31.0" prefWidth="436.0" unFocusColor="#009975" />
+                  <JFXButton layoutX="699.0" layoutY="13.0" onAction="#onShowAllEmployee" style="-fx-background-color: #009975;" text="Mostrar todo" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </JFXButton>
-                  <Button layoutX="645.0" layoutY="13.0" mnemonicParsing="false">
+                  <Button layoutX="645.0" layoutY="13.0" mnemonicParsing="false" onAction="#onSearchEmployee">
                      <graphic>
                         <ImageView fx:id="iSearchEmployee" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>

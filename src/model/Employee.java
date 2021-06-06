@@ -51,15 +51,16 @@ public class Employee extends Person implements Serializable, Comparable<Employe
         this.password = password;
     }
 
-    public int getnSold() {
+    public int getNSold() {
         return nSold;
     }
 
     public void setnSold(int nSold) {
         this.nSold = nSold;
+        this.vComision = this.nSold*10000;
     }
 
-    public double getvComision() {
+    public double getVComision() {
         return vComision;
     }
 

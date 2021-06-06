@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import exception.*;
-import java.time.Duration;
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class RentingCar implements Serializable {
 
@@ -16,8 +17,6 @@ public class RentingCar implements Serializable {
     public Employee empActive;
     public Employee rootNameE;
     public List<Employee> showRootName;
-    public Employee rootComision;
-    public List<Employee> showRootComision;
     public Car firstC;
     public Car rootNameC;
     public List<Car> showRootCar;
@@ -39,7 +38,6 @@ public class RentingCar implements Serializable {
         listTypeV = new ArrayList<>();
         listBrands = new ArrayList<>();
         showRootName = new ArrayList<>();
-        showRootComision = new ArrayList<>();
         showRootCar = new ArrayList<>();
         listRents = new ArrayList<>();
     }
@@ -76,8 +74,8 @@ public class RentingCar implements Serializable {
         return showRootName;
     }
 
-    public List<Employee> getShowRootComision() {
-        return showRootComision;
+    public void setShowRootName() {
+        this.showRootName.clear();
     }
 
     public List<Car> getShowRootCar() {
@@ -180,7 +178,7 @@ public class RentingCar implements Serializable {
 
     private boolean loginEmployee(Employee current, String userName, String password) {
         if (current.getUsername().equals(userName) && current.getPassword().equals(password)) {
-            empActive = firstE;
+            empActive = current;
             return true;
         } else if (current.getNext() != null) {
             return loginEmployee(current.getNext(), userName, password);
@@ -809,7 +807,8 @@ public class RentingCar implements Serializable {
         if (days > 0) {
             Rent newRent = new Rent(code++, codeTicket++, clientR, carR, Finitial, Ffinal, days, status, delay, mult, priceTotal);
             listRents.add(newRent);
-            //plusComisionEmployee();
+            plusComisionEmployeeEnlazada();
+            //plusComisionEmployeeList();
             plusRefClients(clientR.getCodeP());
             plusRefCar(carR.getCodeV());
             return true;
@@ -827,9 +826,9 @@ public class RentingCar implements Serializable {
         return null;
     }
 
-    public void plusComisionEmployee() {
+    public void plusComisionEmployeeEnlazada() {
         if (empActive.getCodeP() == firstE.getCodeP()) {
-            firstE.setnSold(firstE.getnSold() + 1);
+            firstE.setnSold(firstE.getNSold() + 1);
         } else {
             plusComisionEmployee(firstE.getNext());
         }
@@ -837,9 +836,17 @@ public class RentingCar implements Serializable {
 
     private void plusComisionEmployee(Employee current) {
         if (current.getCodeP() == empActive.getCodeP()) {
-            current.setnSold(current.getnSold() + 1);
+            current.setnSold(current.getNSold() + 1);
         } else {
             plusComisionEmployee(current.getNext());
+        }
+    }
+
+    public void plusComisionEmployeeList() {
+        for (int i = 0; i < showRootName.size(); i++) {
+            if (showRootName.get(i).getCodeP() == empActive.getCodeP()) {
+                showRootName.get(i).setnSold(showRootName.get(i).getNSold() + 1);
+            }
         }
     }
 
@@ -913,6 +920,32 @@ public class RentingCar implements Serializable {
 
     public void payRent(int code) {
         findRentSelected(code).setStatus(Status.PAID);
+        restRefClient(findRentSelected(code).getClientR().getCodeP());
+        restRefCar(findRentSelected(code).getCarR().getCodeV());
+    }
+
+    public void restRefClient(int code) {
+        for (int i = 0; i < listClients.size(); i++) {
+            if (listClients.get(i).getCodeP() == code) {
+                listClients.get(i).setRefP(listClients.get(i).getRefP() - 1);
+            }
+        }
+    }
+
+    public void restRefCar(int code) {
+        if (firstC.getCodeV() == code) {
+            firstC.setRefV(firstC.getRefV() - 1);
+        } else {
+            restRefCar(firstC.getNext(), code);
+        }
+    }
+
+    private void restRefCar(Car current, int code) {
+        if (current.getCodeV() == code) {
+            current.setRefV(current.getRefV() - 1);
+        } else {
+            plusRefCar(current.getNext(), code);
+        }
     }
 
     public Card addCard(int cSegurity, double balance, String namePay, double ammountPay) throws Payed {
@@ -931,5 +964,128 @@ public class RentingCar implements Serializable {
         } else {
             throw new Payed(valueMoney, ammountPay);
         }
+    }
+
+    //********************** Algoritmos de ordenamiento *******************\\
+    public void sortIDClient() {
+        Comparator<Client> employeeComparator = new Comparator<Client>() {
+            @Override
+            public int compare(Client e1, Client e2) {
+                String e1String = e1.getId() + "";
+                return e1String.compareTo(e2.getId() + "");
+            }
+        };
+        Collections.sort(listClients, employeeComparator);
+    }
+
+    //******* Inserction *************\\
+    public List<Employee> sortIDEmployee() {
+        List<Employee> sortEmployee;
+        sortEmployee = showRootName;
+        for (int i = 1; i < sortEmployee.size(); i++) {
+            for (int j = i; j > 0 && sortEmployee.get(j - 1).getId() > sortEmployee.get(j).getId(); j--) {
+                Employee temp = sortEmployee.get(i);
+                sortEmployee.set(j, sortEmployee.get(j - 1));
+                sortEmployee.set(j - 1, temp);
+            }
+        }
+        return sortEmployee;
+    }
+
+    //Bubble Sort
+    public List<Employee> sortComisionEmployee() {
+        List<Employee> sortEmployee;
+        sortEmployee = showRootName;
+        for (int i = 1; i < sortEmployee.size(); i++) {
+            for (int j = 0; j < sortEmployee.size() - i; j++) {
+                if (sortEmployee.get(j).getNSold() < sortEmployee.get(j + 1).getNSold()) {
+                    Employee temp = sortEmployee.get(j);
+                    sortEmployee.set(j, sortEmployee.get(j + 1));
+                    sortEmployee.set(j + 1, temp);
+                }
+            }
+        }
+        return sortEmployee;
+    }
+
+    //******************** Busqueda Binaria *****************\\
+    public List<Client> binaryClient(boolean out, String name) {
+        List<Client> selectedClient = new ArrayList<>();
+        if (out) {
+            for (int i = 0; i < listClients.size(); i++) {
+                if (listClients.get(i).getName().equalsIgnoreCase(name)) {
+                    selectedClient.add(listClients.get(i));
+                }
+            }
+        } else {
+            sortIDClient();
+            long Id = Long.parseLong(name);
+            int pos = -1;
+            int i = 0;
+            int j = listClients.size() - 1;
+            while (i <= j && pos < 0) {
+                int m = (i + j) / 2;
+                if (listClients.get(m).getId() == Id) {
+                    selectedClient.add(listClients.get(m));
+                    pos = m;
+                } else if (listClients.get(m).getId() > Id) {
+                    j = m - 1;
+                } else {
+                    i = m + 1;
+                }
+            }
+        }
+        return selectedClient;
+    }
+
+    //***************** Binary Employee **********************\\
+    public List<Employee> binaryEmployee(boolean out, String name) {
+        List<Employee> selectedEmployee = new ArrayList<>();
+        if (out) {
+            for (int i = 0; i < showRootName.size(); i++) {
+                if (showRootName.get(i).getName().equalsIgnoreCase(name)) {
+                    selectedEmployee.add(showRootName.get(i));
+                }
+            }
+        } else {
+            List<Employee> arraySortID;
+            arraySortID = sortIDEmployee();
+            long Id = Long.parseLong(name);
+            int pos = -1;
+            int i = 0;
+            int j = arraySortID.size() - 1;
+            while (i <= j && pos < 0) {
+                int m = (i + j) / 2;
+                if (arraySortID.get(m).getId() == Id) {
+                    selectedEmployee.add(arraySortID.get(m));
+                    pos = m;
+                } else if (arraySortID.get(m).getId() > Id) {
+                    j = m - 1;
+                } else {
+                    i = m + 1;
+                }
+            }
+        }
+        return selectedEmployee;
+    }
+    //******************** Binary Employee *************\\
+
+    public List<Employee> searchTopEmployee(boolean out, String name) {
+        List<Employee> selectedTopEmployee = new ArrayList<>();
+        if (out) {
+            for (int i = 0; i < showRootName.size(); i++) {
+                if (showRootName.get(i).getName().equalsIgnoreCase(name)) {
+                    selectedTopEmployee.add(showRootName.get(i));
+                }
+            }
+        } else {
+            long id = Long.parseLong(name);
+            for (int i = 0; i < showRootName.size(); i++) {
+                if(showRootName.get(i).getId() == id){
+                    selectedTopEmployee.add(showRootName.get(i));
+                }
+            }
+        }
+        return selectedTopEmployee;
     }
 }

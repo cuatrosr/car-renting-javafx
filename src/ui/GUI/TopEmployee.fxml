@@ -25,13 +25,13 @@
       <Pane layoutX="14.0" layoutY="53.0" prefHeight="57.0" prefWidth="667.0" style="-fx-background-color: #f4efef;">
          <children>
             <Label layoutX="14.0" layoutY="18.0" prefHeight="21.0" prefWidth="176.0" text="Buscar por Nombre o ID:  " />
-            <JFXTextField focusColor="#4d4d4d" layoutX="194.0" layoutY="13.0" prefHeight="31.0" prefWidth="253.0" unFocusColor="#009975" />
-            <JFXButton layoutX="532.0" layoutY="13.0" style="-fx-background-color: #009975;" text="Mostrar todo" textFill="WHITE">
+            <JFXTextField fx:id="txtParamTopE" focusColor="#4d4d4d" layoutX="194.0" layoutY="13.0" prefHeight="31.0" prefWidth="253.0" unFocusColor="#009975" />
+            <JFXButton layoutX="532.0" layoutY="13.0" onAction="#onShowAllTopE" style="-fx-background-color: #009975;" text="Mostrar todo" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXButton>
-            <Button layoutX="471.0" layoutY="13.0" mnemonicParsing="false">
+            <Button layoutX="471.0" layoutY="13.0" mnemonicParsing="false" onAction="#onSearchTopE">
                <graphic>
                   <ImageView fx:id="iSearchTopEmployee" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -42,13 +42,13 @@
             </Button>
          </children>
       </Pane>
-      <TableView layoutX="14.0" layoutY="121.0" prefHeight="373.0" prefWidth="667.0">
+      <TableView fx:id="tblTopEmployee" layoutX="14.0" layoutY="121.0" prefHeight="373.0" prefWidth="667.0">
         <columns>
-          <TableColumn prefWidth="133.0" text="Cedula" />
-          <TableColumn prefWidth="133.0" text="Nombre" />
-            <TableColumn prefWidth="133.0" text="Apellido" />
-            <TableColumn prefWidth="133.0" text="# de Contratos" />
-            <TableColumn prefWidth="133.0" text="Comisión" />
+          <TableColumn fx:id="tblcIDTopE" prefWidth="133.0" text="Cedula" />
+          <TableColumn fx:id="tblcNameTopE" prefWidth="133.0" text="Nombre" />
+            <TableColumn fx:id="tblcLastNameTopE" prefWidth="133.0" text="Apellido" />
+            <TableColumn fx:id="tblcNSoldTopE" prefWidth="133.0" text="# de Contratos" />
+            <TableColumn fx:id="tblcComisionTopE" prefWidth="133.0" text="Comisión" />
         </columns>
       </TableView>
    </children>
