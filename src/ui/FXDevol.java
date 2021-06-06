@@ -2,6 +2,7 @@ package ui;
 
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
+import exception.Payed;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -180,6 +181,7 @@ public class FXDevol {
     private int codeToPay;
     private Rent rentToPay;
     private Card cardToPay;
+    private Money moneyToPay;
 
     private RentingCar rc;
     private FXController fxGUI;
@@ -218,6 +220,9 @@ public class FXDevol {
             if (rc.findRentSelected(codeToPay).getStatus() == Status.PAID) {
                 fxGUI.showAlert(false, "Esta renta ya se pago, selecciona otra", stackPane);
                 codeToPay = 0;
+                moneyToPay = null;
+                cardToPay = null;
+                rentToPay = null;
             } else {
                 fxGUI.disablePane(dPane, true);
                 fxGUI.showSavePay();
@@ -300,7 +305,7 @@ public class FXDevol {
 
     @FXML
     public void onPayDevol(ActionEvent event) throws IOException {
-        if (rc.findRentSelected(codeToPay).getStatus() != Status.PAID) {
+        if (rc.findRentSelected(codeToPay).getStatus() == Status.PAID) {
         } else {
             selectOption();
             fxGUI.saveData();
@@ -310,27 +315,46 @@ public class FXDevol {
 
     public void selectOption() {
         if (rbCardP.isSelected()) {
-            optionCar();
-            if (cardToPay.getBalance() > rentToPay.getPriceTotal()) {
+            try {
+                optionCard();
                 fxGUI.showAlert(true, "Se ha pagado con extio esta renta", stackPane2);
                 rc.payRent(codeToPay);
                 tblDevol.refresh();
-            } else {
-                fxGUI.showAlert(false, "No puedes pagar con esta tarjeta, saldo insuficiente", stackPane2);
+            } catch (Payed e) {
+                fxGUI.showAlert(false, "El pago no fue exitoso, dinero insuficiente", stackPane2);
             }
         } else if (rbMoneyP.isSelected()) {
-
+            try {
+                optionMoney();
+                fxGUI.showAlert(true, "Se ha pagado con extio esta renta", stackPane2);
+                rc.payRent(codeToPay);
+                tblDevol.refresh();
+            } catch (Payed e) {
+                fxGUI.showAlert(false, "El pago no fue exitoso, dinero insuficiente", stackPane2);
+            }
         } else {
             fxGUI.showAlert(false, "Por favor selecciona una opción a pagar", stackPane2);
         }
     }
 
-    public void optionCar() {
+    public void optionCard() throws Payed {
         if (!txtNameTCP.getText().equals("") && !txtCodeSegurityCP.getText().equals("") && !txtValueCP.getText().equals("")) {
             try {
-                cardToPay = rc.addCard(Integer.parseInt(txtCodeSegurityCP.getText()), Double.parseDouble(txtValueCP.getText()), txtNameTCP.getText());
+                cardToPay = rc.addCard(Integer.parseInt(txtCodeSegurityCP.getText()), Double.parseDouble(txtValueCP.getText()), txtNameTCP.getText(), Double.parseDouble(txtPriceTotalD.getText()));
             } catch (NumberFormatException e) {
-                fxGUI.showAlert(false, "No puedes ingresar letras en el apartdo de saldo o codigo", stackPane);
+                fxGUI.showAlert(false, "No puedes ingresar letras en el apartdo de saldo o codigo", stackPane2);
+            }
+        } else {
+            fxGUI.showAlert(false, "Por favor llena todos los campos", stackPane2);
+        }
+    }
+
+    public void optionMoney() throws Payed {
+        if (!txtNameMP.getText().equals("") && !txtValueMP.getText().equals("")) {
+            try {
+                moneyToPay = rc.addMoney(Double.parseDouble(txtValueMP.getText()), txtNameMP.getText(), Double.parseDouble(txtPriceTotalD.getText()));
+            } catch (NumberFormatException e) {
+                fxGUI.showAlert(false, "No puedes ingresar letras en el apartdo de saldo", stackPane2);
             }
         } else {
             fxGUI.showAlert(false, "Por favor llena todos los campos", stackPane2);

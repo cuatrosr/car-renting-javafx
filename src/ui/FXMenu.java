@@ -146,7 +146,6 @@ public class FXMenu implements Initializable {
     public void onListEmployee(ActionEvent event) throws IOException {
         fxGUI.disablePane(pMainMenu, true);
         fxGUI.showListEmployee();
-        System.out.println("test");
     }
 
     @FXML

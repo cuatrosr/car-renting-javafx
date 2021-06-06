@@ -41,7 +41,6 @@ public class FXRent {
     @FXML
     private ImageView iSelectVehicleRent;
 
-
     //********** Buttons Rent ************\\
     @FXML
     private Button btnNewR;
@@ -106,7 +105,7 @@ public class FXRent {
 
     @FXML
     private TextField txtTotalPrice;
-    
+
     private boolean today;
 
     private RentingCar rc;
@@ -191,29 +190,33 @@ public class FXRent {
 
     @FXML
     public void onAddDateRent(ActionEvent event) {
-        Duration diff = Duration.between(LocalDate.now().atStartOfDay(), dpDateFR.getValue().atStartOfDay());
-        Long days = diff.toDays();
-        if(days == 0){
-            today = true;
-            days = Long.parseLong(1+"");
+        try {
+            Duration diff = Duration.between(LocalDate.now().atStartOfDay(), dpDateFR.getValue().atStartOfDay());
+            Long days = diff.toDays();
+            if (days == 0) {
+                today = true;
+                days = Long.parseLong(1 + "");
+            }
+            txtAmountDiasR.setText(days + "");
+            int total = (int) (Double.parseDouble(txtPriceVR.getText()) * days);
+            txtTotalPrice.setText(total + "");
+        } catch (NullPointerException e) {
+            fxGUI.showAlert(false, "Debes seleccionar una fecha final", stackPane);
         }
-        txtAmountDiasR.setText(days + "");
-        int total = (int) (Double.parseDouble(txtPriceVR.getText()) * days);
-        txtTotalPrice.setText(total + "");
     }
 
     @FXML
     public void onAddRent(ActionEvent event) throws IOException {
-        if(!txtTicketR.getText().equals("") && !txtCodeCR.getText().equals("") && !txtCodeVR.getText().equals("") && !txtAmountDiasR.getText().equals("")){
+        if (!txtTicketR.getText().equals("") && !txtCodeCR.getText().equals("") && !txtCodeVR.getText().equals("") && !txtAmountDiasR.getText().equals("")) {
             Status stat;
-            if(today){
+            if (today) {
                 stat = Status.EXPIRES_TODAY;
             } else {
                 stat = Status.DEFERRED;
             }
-            if(rc.addRent(rc.getCode(), rc.getCodeTicket(), rc.searchClientSelected(Integer.parseInt(txtCodeCR.getText())), 
-                    rc.findCar(Integer.parseInt(txtCodeVR.getText())), LocalDate.now(), dpDateFR.getValue(), 
-                    Integer.parseInt(txtAmountDiasR.getText()), stat, 0, 0, Integer.parseInt(txtTotalPrice.getText()))){
+            if (rc.addRent(rc.getCode(), rc.getCodeTicket(), rc.searchClientSelected(Integer.parseInt(txtCodeCR.getText())),
+                    rc.findCar(Integer.parseInt(txtCodeVR.getText())), LocalDate.now(), dpDateFR.getValue(),
+                    Integer.parseInt(txtAmountDiasR.getText()), stat, 0, 0, Integer.parseInt(txtTotalPrice.getText()))) {
                 fxGUI.showAlert(true, "Se ha agregado el alquiler", stackPane);
                 fxGUI.saveData();
                 btnInitialize();

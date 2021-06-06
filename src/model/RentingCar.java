@@ -899,24 +899,37 @@ public class RentingCar implements Serializable {
         } else {
             rentSelected.setStatus(Status.EXPIRED);
             int deleayDay = (int) Math.abs(days);
-            double plusPrice = rentSelected.getPriceTotal()*0.25;
+            double plusPrice = rentSelected.getPriceTotal() * 0.25;
             double mult = 0;
             for (int i = 0; i < deleayDay; i++) {
                 mult = mult + plusPrice;
             }
-            
+
             rentSelected.setMult((int) mult);
             rentSelected.setDelay(deleayDay);
-            rentSelected.setPriceTotal(rentSelected.getPriceTotal()+rentSelected.getMult());
+            rentSelected.setPriceTotal(rentSelected.getPriceTotal() + rentSelected.getMult());
         }
     }
-    
-    public void payRent(int code){
+
+    public void payRent(int code) {
         findRentSelected(code).setStatus(Status.PAID);
     }
-    
-    public Card addCard(int cSegurity, double balance, String namePay){
-        Card newCard = new Card(cSegurity, balance, namePay);
-        return newCard;
+
+    public Card addCard(int cSegurity, double balance, String namePay, double ammountPay) throws Payed {
+        if (balance >= ammountPay) {
+            Card newCard = new Card(cSegurity, balance, namePay);
+            return newCard;
+        } else {
+            throw new Payed(balance, ammountPay);
+        }
+    }
+
+    public Money addMoney(double valueMoney, String namePay, double ammountPay) throws Payed {
+        if (valueMoney >= ammountPay) {
+            Money newMoney = new Money(valueMoney, namePay);
+            return newMoney;
+        } else {
+            throw new Payed(valueMoney, ammountPay);
+        }
     }
 }
