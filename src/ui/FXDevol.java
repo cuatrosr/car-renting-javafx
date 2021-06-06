@@ -177,6 +177,7 @@ public class FXDevol {
     @FXML
     private JFXTextField txtValueMP;
 
+    private int codeToPay;
     private Rent rentToPay;
     private Card cardToPay;
 
@@ -213,13 +214,17 @@ public class FXDevol {
 
     @FXML
     public void onSavePay(ActionEvent event) throws IOException {
-        if (!txtPriceTotalD.getText().equals("")) {
-            fxGUI.disablePane(dPane, true);
-            fxGUI.showSavePay();
+        if (rc.findRentSelected(codeToPay) != null) {
+            if (rc.findRentSelected(codeToPay).getStatus() == Status.PAID) {
+                fxGUI.showAlert(false, "Esta renta ya se pago, selecciona otra", stackPane);
+                codeToPay = 0;
+            } else {
+                fxGUI.disablePane(dPane, true);
+                fxGUI.showSavePay();
+            }
         } else {
             fxGUI.showAlert(false, "Por favor selecciona una renta para pagar", stackPane);
         }
-
     }
 
     public void onTableListRent() {
@@ -278,6 +283,7 @@ public class FXDevol {
             tblcStatD.setCellValueFactory(new PropertyValueFactory<>("status"));
             tblcTotal.setCellValueFactory(new PropertyValueFactory<>("priceTotal"));
 
+            codeToPay = rentSelect.get(0).getCodeR();
             setTextDevolPay(rentSelect.get(0));
             fxGUI.saveData();
         }
@@ -294,8 +300,7 @@ public class FXDevol {
 
     @FXML
     public void onPayDevol(ActionEvent event) throws IOException {
-        if (rc.findRentSelected(rentToPay.getCodeR()).getStatus() == Status.PAID) {
-            fxGUI.showAlert(false, "Esta renta ya se pago", stackPane2);
+        if (rc.findRentSelected(codeToPay).getStatus() != Status.PAID) {
         } else {
             selectOption();
             fxGUI.saveData();
@@ -307,9 +312,8 @@ public class FXDevol {
         if (rbCardP.isSelected()) {
             optionCar();
             if (cardToPay.getBalance() > rentToPay.getPriceTotal()) {
-                //rc.payRent(Integer);
                 fxGUI.showAlert(true, "Se ha pagado con extio esta renta", stackPane2);
-                //tblDevol.getItems().clear();
+                rc.payRent(codeToPay);
                 tblDevol.refresh();
             } else {
                 fxGUI.showAlert(false, "No puedes pagar con esta tarjeta, saldo insuficiente", stackPane2);
