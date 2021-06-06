@@ -1,8 +1,8 @@
 package ui;
 
+import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,10 +27,19 @@ public class FXDevol {
     private Pane dPane;
 
     @FXML
+    private Pane paneCardP;
+
+    @FXML
+    private Pane paneMoneyP;
+
+    @FXML
     private StackPane stackPane;
 
     @FXML
     private StackPane stackPane1;
+
+    @FXML
+    private StackPane stackPane2;
 
     //********* Set Images *********\\
     @FXML
@@ -141,6 +151,35 @@ public class FXDevol {
     @FXML
     private JFXTextField txtPriceTotalD;
 
+    //************ Radio Button Paid ************\\
+    @FXML
+    private JFXRadioButton rbCardP;
+
+    @FXML
+    private ToggleGroup formPaid;
+
+    @FXML
+    private JFXRadioButton rbMoneyP;
+
+    //*********** TextFeilds Paid ***********\\
+    @FXML
+    private JFXTextField txtNameTCP;
+
+    @FXML
+    private JFXTextField txtCodeSegurityCP;
+
+    @FXML
+    private JFXTextField txtValueCP;
+
+    @FXML
+    private JFXTextField txtNameMP;
+
+    @FXML
+    private JFXTextField txtValueMP;
+
+    private Rent rentToPay;
+    private Card cardToPay;
+
     private RentingCar rc;
     private FXController fxGUI;
 
@@ -174,12 +213,13 @@ public class FXDevol {
 
     @FXML
     public void onSavePay(ActionEvent event) throws IOException {
-        /*
-        fxGUI.disablePane(dPane, true);
-        fxGUI.showSavePay();
-        
-*/
-        System.out.println("FFF");
+        if (!txtPriceTotalD.getText().equals("")) {
+            fxGUI.disablePane(dPane, true);
+            fxGUI.showSavePay();
+        } else {
+            fxGUI.showAlert(false, "Por favor selecciona una renta para pagar", stackPane);
+        }
+
     }
 
     public void onTableListRent() {
@@ -202,7 +242,7 @@ public class FXDevol {
     }
 
     @FXML
-    public void onSelectRent(MouseEvent event) {
+    public void onSelectRent(MouseEvent event) throws IOException {
         Rent rentSelected;
         if (event.getClickCount() == 2) {
             rentSelected = tblRent.getSelectionModel().getSelectedItem();
@@ -217,10 +257,11 @@ public class FXDevol {
         }
     }
 
-    public void showSelectedRentInTable(int code) {
+    public void showSelectedRentInTable(int code) throws IOException {
         List<Rent> rentSelect = new ArrayList<>();
         rentSelect.add(rc.findRentSelected(code));
         if (rentSelect.size() == 1) {
+            rentToPay = rentSelect.get(0);
             ObservableList<Rent> newTableRentSelected;
             newTableRentSelected = FXCollections.observableArrayList(rentSelect);
 
@@ -238,6 +279,7 @@ public class FXDevol {
             tblcTotal.setCellValueFactory(new PropertyValueFactory<>("priceTotal"));
 
             setTextDevolPay(rentSelect.get(0));
+            fxGUI.saveData();
         }
     }
 
@@ -248,6 +290,59 @@ public class FXDevol {
         txtDealyD.setText(selected.getDelay() + "");
         txtMultD.setText(selected.getMult() + "");
         txtPriceTotalD.setText(selected.getPriceTotal() + "");
+    }
+
+    @FXML
+    public void onPayDevol(ActionEvent event) throws IOException {
+        if (rc.findRentSelected(rentToPay.getCodeR()).getStatus() == Status.PAID) {
+            fxGUI.showAlert(false, "Esta renta ya se pago", stackPane2);
+        } else {
+            selectOption();
+            fxGUI.saveData();
+        }
+
+    }
+
+    public void selectOption() {
+        if (rbCardP.isSelected()) {
+            optionCar();
+            if (cardToPay.getBalance() > rentToPay.getPriceTotal()) {
+                //rc.payRent(Integer);
+                fxGUI.showAlert(true, "Se ha pagado con extio esta renta", stackPane2);
+                //tblDevol.getItems().clear();
+                tblDevol.refresh();
+            } else {
+                fxGUI.showAlert(false, "No puedes pagar con esta tarjeta, saldo insuficiente", stackPane2);
+            }
+        } else if (rbMoneyP.isSelected()) {
+
+        } else {
+            fxGUI.showAlert(false, "Por favor selecciona una opción a pagar", stackPane2);
+        }
+    }
+
+    public void optionCar() {
+        if (!txtNameTCP.getText().equals("") && !txtCodeSegurityCP.getText().equals("") && !txtValueCP.getText().equals("")) {
+            try {
+                cardToPay = rc.addCard(Integer.parseInt(txtCodeSegurityCP.getText()), Double.parseDouble(txtValueCP.getText()), txtNameTCP.getText());
+            } catch (NumberFormatException e) {
+                fxGUI.showAlert(false, "No puedes ingresar letras en el apartdo de saldo o codigo", stackPane);
+            }
+        } else {
+            fxGUI.showAlert(false, "Por favor llena todos los campos", stackPane2);
+        }
+    }
+
+    @FXML
+    public void onSelectCard(MouseEvent event) {
+        paneCardP.setDisable(false);
+        paneMoneyP.setDisable(true);
+    }
+
+    @FXML
+    public void onSelectMoney(MouseEvent event) {
+        paneCardP.setDisable(true);
+        paneMoneyP.setDisable(false);
     }
 
 }
