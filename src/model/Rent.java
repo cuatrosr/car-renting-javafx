@@ -102,6 +102,10 @@ public class Rent implements Serializable {
     public LocalDate getFinitial() {
         return Finitial;
     }
+    
+    public String getStringFinitial(){
+        return Finitial.toString();
+    }
 
     public void setFinitial(LocalDate Finitial) {
         this.Finitial = Finitial;
@@ -109,6 +113,10 @@ public class Rent implements Serializable {
 
     public LocalDate getFfinal() {
         return Ffinal;
+    }
+    
+    public String getStringFfinal(){
+        return Ffinal.toString();
     }
 
     public void setFfinal(LocalDate Ffinal) {

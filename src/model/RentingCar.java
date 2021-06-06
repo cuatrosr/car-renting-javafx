@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import exception.*;
+import java.time.Duration;
 import java.time.LocalDate;
 
 public class RentingCar implements Serializable {
@@ -102,8 +103,8 @@ public class RentingCar implements Serializable {
     public List<Client> getListClients() {
         return listClients;
     }
-    
-    public List<Rent> getListRent(){
+
+    public List<Rent> getListRent() {
         return listRents;
     }
 
@@ -115,6 +116,7 @@ public class RentingCar implements Serializable {
     public void addEmp(Employee emp) {
         if (firstE == null) {
             firstE = emp;
+            empActive = firstE;
             addBinaryEmployee(emp);
         } else {
             addEmp(emp, firstE);
@@ -124,6 +126,7 @@ public class RentingCar implements Serializable {
     private void addEmp(Employee emp, Employee current) {
         if (current.getNext() == null) {
             current.setNext(emp);
+            empActive = emp;
             addBinaryEmployee(emp);
         } else {
             addEmp(emp, current.getNext());
@@ -763,7 +766,6 @@ public class RentingCar implements Serializable {
                 rmvCar.setYear(successor.getYear());
                 rmvCar.setRefV(successor.getRefV());
                 removeCarBinaryTree(successor);
-
             }
         }
     }
@@ -807,7 +809,9 @@ public class RentingCar implements Serializable {
         if (days > 0) {
             Rent newRent = new Rent(code++, codeTicket++, clientR, carR, Finitial, Ffinal, days, status, delay, mult, priceTotal);
             listRents.add(newRent);
-            plusComisionEmployee();
+            //plusComisionEmployee();
+            plusRefClients(clientR.getCodeP());
+            plusRefCar(carR.getCodeV());
             return true;
         } else {
             return false;
@@ -822,20 +826,88 @@ public class RentingCar implements Serializable {
         }
         return null;
     }
-    
-    public void plusComisionEmployee(){
-        if(empActive.getCodeP() == firstE.getCodeP()){
-            firstE.setnSold(firstE.getnSold()+1);
+
+    public void plusComisionEmployee() {
+        if (empActive.getCodeP() == firstE.getCodeP()) {
+            firstE.setnSold(firstE.getnSold() + 1);
         } else {
             plusComisionEmployee(firstE.getNext());
         }
     }
-    
-    private void plusComisionEmployee(Employee current){
-        if(current.getCodeP() == empActive.getCodeP()){
-            current.setnSold(current.getnSold()+1);
+
+    private void plusComisionEmployee(Employee current) {
+        if (current.getCodeP() == empActive.getCodeP()) {
+            current.setnSold(current.getnSold() + 1);
         } else {
             plusComisionEmployee(current.getNext());
+        }
+    }
+
+    public void plusRefClients(int code) {
+        for (int i = 0; i < listCities.size(); i++) {
+            if (listClients.get(i).getCodeP() == code) {
+                listClients.get(i).setRefP(listClients.get(i).getRefP() + 1);
+            }
+        }
+    }
+
+    public void plusRefCar(int code) {
+        if (firstC.getCodeV() == code) {
+            firstC.setRefV(firstC.getRefV() + 1);
+        } else {
+            plusRefCar(firstC.getNext(), code);
+        }
+    }
+
+    private void plusRefCar(Car current, int code) {
+        if (current.getCodeV() == code) {
+            current.setRefV(current.getRefV() + 1);
+        } else {
+            plusRefCar(current.getNext(), code);
+        }
+    }
+
+    public Rent findRentSelected(int code) {
+        for (int i = 0; i < listRents.size(); i++) {
+            if (listRents.get(i).getCodeR() == code) {
+                return listRents.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void uptadeStatRent(int code) {
+        for (int i = 0; i < listRents.size(); i++) {
+            if (listRents.get(i).getCodeR() == code) {
+                if (listRents.get(i).getStatus() != Status.PAID) {
+                    Long days = listRents.get(i).getFfinal().toEpochDay() - LocalDate.now().toEpochDay();
+                    setStatRent(listRents.get(i), days);
+                }
+            }
+        }
+    }
+
+    public void setStatRent(Rent rentSelected, long days) {
+        if (days > 0) {
+            rentSelected.setMult(0);
+            rentSelected.setDelay(0);
+            rentSelected.setStatus(Status.DEFERRED);
+        } else if (days == 0) {
+            rentSelected.setMult(0);
+            rentSelected.setDelay(0);
+            rentSelected.setStatus(Status.EXPIRES_TODAY);
+        } else {
+            rentSelected.setStatus(Status.EXPIRED);
+            int deleayDay = (int) Math.abs(days);
+            double plusPrice = rentSelected.getPriceTotal()*0.25;
+            double mult = 0;
+            for (int i = 0; i < deleayDay; i++) {
+                mult = mult + plusPrice;
+            }
+            
+            rentSelected.setMult((int) mult);
+            rentSelected.setDelay(deleayDay);
+            rentSelected.setPriceTotal(rentSelected.getPriceTotal()+rentSelected.getMult());
         }
     }
 }
