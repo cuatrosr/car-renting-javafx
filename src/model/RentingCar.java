@@ -910,4 +910,13 @@ public class RentingCar implements Serializable {
             rentSelected.setPriceTotal(rentSelected.getPriceTotal()+rentSelected.getMult());
         }
     }
+    
+    public void payRent(int code){
+        findRentSelected(code).setStatus(Status.PAID);
+    }
+    
+    public Card addCard(int cSegurity, double balance, String namePay){
+        Card newCard = new Card(cSegurity, balance, namePay);
+        return newCard;
+    }
 }
