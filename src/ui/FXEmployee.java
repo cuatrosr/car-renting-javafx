@@ -95,6 +95,8 @@ public class FXEmployee {
     }
 
     public void onTableEmployeeName() {
+        tblEmployee.getItems().clear();
+
         rc.showBinaryTreeNameEmployee(rc.getRootNameE());
 
         List<Employee> employees = rc.getShowRootName();
