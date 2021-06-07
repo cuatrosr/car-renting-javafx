@@ -25,6 +25,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#onGVehicle" text="Registro de Vehiculo ⮞" />
                   <MenuItem mnemonicParsing="false" onAction="#onGType" text="Registro de  Tipos ⮞" />
                   <MenuItem mnemonicParsing="false" onAction="#onGBrand" text="Registro de Marcas ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onShowSpeed" text="Testeo de velocidad ⮞" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Alquileres">

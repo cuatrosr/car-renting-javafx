@@ -1,6 +1,7 @@
 package ui;
 
 import model.*;
+import thread.*;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -44,7 +45,9 @@ public class FXLogin {
         if (login) {
             fxGUI.closeStage(fxGUI.getPMain());
             fxGUI.closeStage(mainPane);
-            fxGUI.showMenu();
+            //fxGUI.showMenu();
+            threadChangeWindow hil = new threadChangeWindow(this, fxGUI);
+            hil.run();
         }
     }
 

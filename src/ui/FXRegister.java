@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import thread.threadChangeWindow;
 
 public class FXRegister {
 
@@ -56,7 +57,9 @@ public class FXRegister {
             fxGUI.saveData();
             fxGUI.closeStage(fxGUI.getPMain());
             fxGUI.closeStage(bpMain);
-            fxGUI.showMenu();
+            //fxGUI.showMenu();
+            threadChangeWindow hil = new threadChangeWindow(this, fxGUI);
+            hil.run();
         }
     }
 

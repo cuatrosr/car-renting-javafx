@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="stackPane1" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="pSpeed" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="1089.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Pane prefHeight="43.0" prefWidth="1089.0" style="-fx-background-color: #009975;">
+               <children>
+                  <Label layoutX="435.0" layoutY="7.0" text="TESTEO DE VELOCIDAD" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="22.0" layoutY="50.0" prefHeight="53.0" prefWidth="1041.0" style="-fx-background-color: #f4efef;">
+               <children>
+                  <Label layoutX="172.0" layoutY="16.0" prefHeight="21.0" prefWidth="287.0" text="Ingresa la velocidad de tu vehiculo (km/h):" />
+                  <TextField layoutX="490.0" layoutY="11.0" />
+                  <JFXButton layoutX="741.0" layoutY="11.0" style="-fx-background-color: #009975;" text="Probar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </Pane>
+            <ImageView fitHeight="240.0" fitWidth="296.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../resources/Images/Wkisby.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</StackPane>

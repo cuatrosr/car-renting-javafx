@@ -166,4 +166,9 @@ public class FXMenu implements Initializable {
             iLogo.setLayoutX(iLogo.getLayoutX() + 1);
         }
     }
+    
+    @FXML
+    void onShowSpeed(ActionEvent event) {
+
+    }
 }
