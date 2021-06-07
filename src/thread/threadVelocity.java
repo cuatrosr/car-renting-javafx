@@ -1,6 +1,5 @@
 package thread;
 
-import java.io.IOException;
 import javafx.application.Platform;
 import ui.*;
 import model.*;
@@ -11,6 +10,7 @@ public class ThreadVelocity extends Thread {
     private RentingCar rc;
     private int velocity;
 
+    
     public ThreadVelocity(FXSpeed xSpeed, RentingCar rc, int velocity) {
         this.xSpeed = xSpeed;
         this.rc = rc;

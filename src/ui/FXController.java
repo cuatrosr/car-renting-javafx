@@ -119,6 +119,10 @@ public class FXController implements Serializable {
                 selectCarRent = 0;
             } catch (NullPointerException e) {
             }
+            try {
+                xSpeed.interrupThreads();
+            } catch (NullPointerException e) {
+            }
         });
     }
 
