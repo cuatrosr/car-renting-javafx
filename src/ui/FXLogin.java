@@ -46,7 +46,7 @@ public class FXLogin {
             fxGUI.closeStage(fxGUI.getPMain());
             fxGUI.closeStage(mainPane);
             //fxGUI.showMenu();
-            threadChangeWindow hil = new threadChangeWindow(this, fxGUI);
+            ThreadChangeWindow hil = new ThreadChangeWindow(this, fxGUI);
             hil.run();
         }
     }

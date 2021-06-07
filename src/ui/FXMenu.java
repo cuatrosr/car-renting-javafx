@@ -168,7 +168,8 @@ public class FXMenu implements Initializable {
     }
     
     @FXML
-    void onShowSpeed(ActionEvent event) {
-
+    public void onShowSpeed(ActionEvent event) throws IOException {
+        fxGUI.disablePane(pMainMenu, true);
+        fxGUI.showSpeed();
     }
 }

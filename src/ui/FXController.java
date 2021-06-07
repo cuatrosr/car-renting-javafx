@@ -42,6 +42,7 @@ public class FXController implements Serializable {
     private FXEmployee xEmployee;
     private FXRent xRent;
     private FXDevol xDevol;
+    private FXSpeed xSpeed;
     private int selectObjectCode;
     private int selectClientRent;
     private int selectCarRent;
@@ -62,6 +63,7 @@ public class FXController implements Serializable {
         xEmployee = new FXEmployee(this.rc, this);
         xRent = new FXRent(this.rc, this);
         xDevol = new FXDevol(this.rc, this);
+        xSpeed = new FXSpeed(this.rc, this);
     }
 
     public void loadData() throws FileNotFoundException {
@@ -393,5 +395,13 @@ public class FXController implements Serializable {
             content.setBody(new Text(msg));
             dialog.show();
         }
+    }
+
+    public void showSpeed() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/Speed.fxml"));
+        fxmlLoader.setController(xSpeed);
+        Parent root = fxmlLoader.load();
+        Stage testSpeed = newStage(root);
+        habilityPane(xMenu.getPane(), testSpeed);
     }
 }
