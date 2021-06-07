@@ -274,9 +274,13 @@ public class FXVehicle {
     }
 
     public Image stringToImage(String image) {
-        File f = new File(image);
-        Image imP = new Image(f.toURI().toString());
-        return imP;
+        try {
+            File f = new File(image);
+            Image imP = new Image(f.toURI().toString());
+            return imP;
+        } catch (NullPointerException e) {
+        }
+        return null;
     }
 
     @FXML
@@ -515,7 +519,7 @@ public class FXVehicle {
 
     @FXML
     public void onSearchPlateV(ActionEvent event) {
-        if(!txtSearchPlateV.getText().equals("")){
+        if (!txtSearchPlateV.getText().equals("")) {
             onTableSearchPlate(txtSearchPlateV.getText());
         } else {
             fxGUI.showAlert(false, "Por favor ingresa un criterio de busqueda", stackPane1);

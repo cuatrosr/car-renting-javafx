@@ -982,13 +982,15 @@ public class RentingCar implements Serializable {
 
     //******* Inserction *************\\
     public List<Employee> sortIDEmployee() {
-        List<Employee> sortEmployee;
-        sortEmployee = showRootName;
-        for (int i = 1; i < sortEmployee.size(); i++) {
-            for (int j = i; j > 0 && sortEmployee.get(j - 1).getId() > sortEmployee.get(j).getId(); j--) {
-                Employee temp = sortEmployee.get(i);
-                sortEmployee.set(j, sortEmployee.get(j - 1));
-                sortEmployee.set(j - 1, temp);
+        List<Employee> sortEmployee = new ArrayList<>();
+        for (int i = 0; i < showRootName.size(); i++) {
+            sortEmployee.add(showRootName.get(i));
+        }
+        for(int i = 1; i<sortEmployee.size(); i++){
+            for(int j = i; j>0 && sortEmployee.get(j-1).getId() > sortEmployee.get(j).getId(); j--){
+                Employee temp = sortEmployee.get(j);
+                sortEmployee.set(j, sortEmployee.get(j-1));
+                sortEmployee.set((j-1), temp);
             }
         }
         return sortEmployee;
@@ -996,18 +998,20 @@ public class RentingCar implements Serializable {
 
     //Bubble Sort
     public List<Employee> sortComisionEmployee() {
-        List<Employee> sortEmployee;
-        sortEmployee = showRootName;
-        for (int i = 1; i < sortEmployee.size(); i++) {
-            for (int j = 0; j < sortEmployee.size() - i; j++) {
-                if (sortEmployee.get(j).getNSold() < sortEmployee.get(j + 1).getNSold()) {
-                    Employee temp = sortEmployee.get(j);
-                    sortEmployee.set(j, sortEmployee.get(j + 1));
-                    sortEmployee.set(j + 1, temp);
+        List<Employee> sortEmployeeComision = new ArrayList<>();
+        for (int i = 0; i < showRootName.size(); i++) {
+            sortEmployeeComision.add(showRootName.get(i));
+        }
+        for (int i = 1; i < sortEmployeeComision.size(); i++) {
+            for (int j = 0; j < sortEmployeeComision.size() - i; j++) {
+                if (sortEmployeeComision.get(j).getNSold() < sortEmployeeComision.get(j + 1).getNSold()) {
+                    Employee temp = sortEmployeeComision.get(j);
+                    sortEmployeeComision.set(j, sortEmployeeComision.get(j + 1));
+                    sortEmployeeComision.set(j + 1, temp);
                 }
             }
         }
-        return sortEmployee;
+        return sortEmployeeComision;
     }
 
     //Selection sort
@@ -1282,14 +1286,14 @@ public class RentingCar implements Serializable {
             msg = "Reportes de todas las rentas";
         } else {
             for (int i = 0; i < listRents.size(); i++) {
-                if((init.isBefore(listRents.get(i).getFinitial()) || init.equals(listRents.get(i).getFinitial())) 
-                        && (end.isAfter(listRents.get(i).getFfinal()) || end.equals(listRents.get(i).getFfinal()))){
+                if ((init.isBefore(listRents.get(i).getFinitial()) || init.equals(listRents.get(i).getFinitial()))
+                        && (end.isAfter(listRents.get(i).getFfinal()) || end.equals(listRents.get(i).getFfinal()))) {
                     rentsExport.add(listRents.get(i));
                     System.out.println("Sapa hpta");
                 }
             }
-            msg = "Reportes de rentas filtradas por fechas\nFecha inicial: "+init.toString()
-                    +"\nFecha final: "+end.toString();
+            msg = "Reportes de rentas filtradas por fechas\nFecha inicial: " + init.toString()
+                    + "\nFecha final: " + end.toString();
         }
         writeRent(rentsExport, filename, msg);
     }
@@ -1304,13 +1308,13 @@ public class RentingCar implements Serializable {
             pw.println("-------------------------------------------------");
             pw.println("Renta en factura No. " + count);
             count++;
-            pw.println("Codigo: " + rents.get(i).getCodeR() + "\nTicket: TRC" + rents.get(i).getTicket() + "\nFecha inicial: "+rents.get(i).getFinitial().toString()
-                    + "\nFecha final: " + rents.get(i).getFfinal()+"\nCedula del cliente: " + rents.get(i).getIdClient()
-                    + "\nNombre del cliente: " + rents.get(i).getNameClient() + "\nTelefono del cliente: " + rents.get(i).getPhoneClient() 
-                    + "\nID vehiculo: " + rents.get(i).getIdCar() + "\nPlaca del vehículo: " + rents.get(i).getPlateCar() 
+            pw.println("Codigo: " + rents.get(i).getCodeR() + "\nTicket: TRC" + rents.get(i).getTicket() + "\nFecha inicial: " + rents.get(i).getFinitial().toString()
+                    + "\nFecha final: " + rents.get(i).getFfinal() + "\nCedula del cliente: " + rents.get(i).getIdClient()
+                    + "\nNombre del cliente: " + rents.get(i).getNameClient() + "\nTelefono del cliente: " + rents.get(i).getPhoneClient()
+                    + "\nID vehiculo: " + rents.get(i).getIdCar() + "\nPlaca del vehículo: " + rents.get(i).getPlateCar()
                     + "\nTipo de Carro: " + rents.get(i).getCarR().getNameType() + "\nMarca: " + rents.get(i).getCarR().getNameBrand()
                     + "\nPrecio por día: " + rents.get(i).getCarR().getPriceXDay() + "\nDias de prestamo: " + rents.get(i).getDays()
-                    + "\nSubTotal: " + rents.get(i).getDays()*rents.get(i).getCarR().getPriceXDay()+"\nDías de atrazo: "+rents.get(i).getDelay() + "\nEstado: " + rents.get(i).getStatus()
+                    + "\nSubTotal: " + rents.get(i).getDays() * rents.get(i).getCarR().getPriceXDay() + "\nDías de atrazo: " + rents.get(i).getDelay() + "\nEstado: " + rents.get(i).getStatus()
                     + "\nMulta: " + rents.get(i).getMult() + "\nTotal a pagar: " + rents.get(i).getPriceTotal());
         }
         pw.println("-------------------------------------------------");
