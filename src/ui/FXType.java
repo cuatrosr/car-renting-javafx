@@ -4,12 +4,8 @@ import com.jfoenix.controls.JFXTextField;
 import exception.Reference;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -57,6 +53,9 @@ public class FXType implements Initializable {
 
     @FXML
     private JFXTextField txtQuialityTypeV;
+
+    @FXML
+    private JFXTextField txtSearchTypeV;
 
     //********* Buttons TypeV *********\\
     @FXML
@@ -236,5 +235,29 @@ public class FXType implements Initializable {
         tblcQuialityTypeV.setCellValueFactory(new PropertyValueFactory<>("quality"));
 
         tblTypeV.refresh();
+    }
+
+    public void onTableSearchTypeV(String name) {
+        tblTypeV.getItems().clear();
+        
+        List<TypeV> types = rc.searchTypeName(name);
+        ObservableList<TypeV> newTableTypeV;
+        newTableTypeV = FXCollections.observableArrayList(types);
+
+        tblTypeV.setItems(newTableTypeV);
+        tblcCodeTypeV.setCellValueFactory(new PropertyValueFactory<>("codeA"));
+        tblcNameTypeV.setCellValueFactory(new PropertyValueFactory<>("nameTB"));
+        tblcQuialityTypeV.setCellValueFactory(new PropertyValueFactory<>("quality"));
+
+        tblTypeV.refresh();
+    }
+
+    @FXML
+    void onSearchTypeV(ActionEvent event) {
+        if(!txtSearchTypeV.getText().equals("")){
+            onTableSearchTypeV(txtSearchTypeV.getText());
+        } else {
+            fxGUI.showAlert(false, "Por favor ingresa un criterio de busqueda", stackPane);
+        }
     }
 }

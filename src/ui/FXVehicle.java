@@ -131,6 +131,9 @@ public class FXVehicle {
     @FXML
     private ImageView iPhotoV;
 
+    @FXML
+    private JFXTextField txtSearchPlateV;
+
     //********** Table Vehicle *********\\
     @FXML
     private TableView<Car> tblVehicle;
@@ -480,5 +483,42 @@ public class FXVehicle {
         btnInitialize();
         iPhotoV.setImage(null);
         imagePath = "";
+    }
+
+    public void onTableSearchPlate(String plate) {
+        tblVehicle.getItems().clear();
+
+        List<Car> cars = rc.searchPlateVehicle(plate);
+        ObservableList<Car> newTableCar;
+        newTableCar = FXCollections.observableArrayList(cars);
+
+        tblVehicle.setItems(newTableCar);
+        tblcCodeV.setCellValueFactory(new PropertyValueFactory<>("codeV"));
+        tblcPlateV.setCellValueFactory(new PropertyValueFactory<>("plate"));
+        tblcTypeV.setCellValueFactory(new PropertyValueFactory<>("nameType"));
+        tblcModelV.setCellValueFactory(new PropertyValueFactory<>("model"));
+        tblcBrandV.setCellValueFactory(new PropertyValueFactory<>("nameBrand"));
+        tblcColorV.setCellValueFactory(new PropertyValueFactory<>("color"));
+        tblcPriceV.setCellValueFactory(new PropertyValueFactory<>("priceXDay"));
+        tblcYearV.setCellValueFactory(new PropertyValueFactory<>("year"));
+        tblcDispV.setCellValueFactory(new PropertyValueFactory<>("dispV"));
+
+        tblVehicle.refresh();
+    }
+
+    @FXML
+    public void onShowAllV(ActionEvent event) {
+        tblVehicle.getItems().clear();
+        rc.setShowRootCar();
+        onTableVehicle();
+    }
+
+    @FXML
+    public void onSearchPlateV(ActionEvent event) {
+        if(!txtSearchPlateV.getText().equals("")){
+            onTableSearchPlate(txtSearchPlateV.getText());
+        } else {
+            fxGUI.showAlert(false, "Por favor ingresa un criterio de busqueda", stackPane1);
+        }
     }
 }

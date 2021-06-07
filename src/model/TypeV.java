@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class TypeV extends Accessory implements Serializable {
+public class TypeV extends Accessory implements Serializable, Comparable<TypeV> {
 
     private static final long serialVersionUID = 1;
     
@@ -33,5 +33,10 @@ public class TypeV extends Accessory implements Serializable {
     
     public String getNameQ(){
         return this.getNameTB() + " " + quality;
+    }
+
+    @Override
+    public int compareTo(TypeV o) {
+        return this.getNameTB().compareToIgnoreCase(o.getNameTB());
     }
 }

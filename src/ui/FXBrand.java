@@ -75,6 +75,9 @@ public class FXBrand implements Initializable {
     @FXML
     private JFXTextField txtCountryBrand;
 
+    @FXML
+    private JFXTextField txtSearchBrand;
+
     //******* Table Brand ********\\
     @FXML
     private TableView<Brand> tblBrand;
@@ -197,9 +200,28 @@ public class FXBrand implements Initializable {
         btnInitialize();
     }
 
+    public void onTableSearchBrand(String name) {
+        tblBrand.getItems().clear();
+
+        List<Brand> brands = rc.searchBrandName(name);
+        ObservableList<Brand> newTableBrand;
+        newTableBrand = FXCollections.observableArrayList(brands);
+
+        tblBrand.setItems(newTableBrand);
+        tblcCodeBrand.setCellValueFactory(new PropertyValueFactory<>("codeA"));
+        tblcNameBrand.setCellValueFactory(new PropertyValueFactory<>("nameTB"));
+        tblcCountryBrand.setCellValueFactory(new PropertyValueFactory<>("country"));
+
+        tblBrand.refresh();
+    }
+
     @FXML
     public void onSearchBrand(ActionEvent event) {
-
+        if(!txtSearchBrand.getText().equals("")){
+                onTableSearchBrand(txtSearchBrand.getText());
+        } else {
+            fxGUI.showAlert(false, "Por favor ingresa un criterio de busquedad", stackPane);
+        }
     }
 
     @FXML

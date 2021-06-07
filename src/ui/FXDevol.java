@@ -62,6 +62,12 @@ public class FXDevol {
     @FXML
     private JFXTextField txtNameClientD;
 
+    @FXML
+    private JFXTextField txtSearchIDCR;
+
+    @FXML
+    private JFXTextField txtSearchTicketR;
+
     //******** Table Rent Total *********\\
     @FXML
     private TableView<Rent> tblRent;
@@ -233,7 +239,7 @@ public class FXDevol {
     }
 
     public void onTableListRent() {
-        List<Rent> rents = rc.getListRent();
+        List<Rent> rents = rc.sortRentTicket();
         ObservableList<Rent> newTableRent;
         newTableRent = FXCollections.observableArrayList(rents);
 
@@ -373,4 +379,78 @@ public class FXDevol {
         paneMoneyP.setDisable(false);
     }
 
+    public void onTableSearchIDCR(long id) {
+        tblRent.getItems().clear();
+
+        List<Rent> rents = rc.searchIDCR(id, rc.sortRentIDClient());
+        ObservableList<Rent> newTableRent;
+        newTableRent = FXCollections.observableArrayList(rents);
+
+        tblRent.setItems(newTableRent);
+        tblcTicketR.setCellValueFactory(new PropertyValueFactory<>("nameTicket"));
+        tblcIDCR.setCellValueFactory(new PropertyValueFactory<>("idClient"));
+        tblcNameCR.setCellValueFactory(new PropertyValueFactory<>("nameClient"));
+        tblcPhoneCR.setCellValueFactory(new PropertyValueFactory<>("phoneClient"));
+        tblcCodeVR.setCellValueFactory(new PropertyValueFactory<>("idCar"));
+        tblcPlateVR.setCellValueFactory(new PropertyValueFactory<>("plateCar"));
+        tblcModelVR.setCellValueFactory(new PropertyValueFactory<>("nameModel"));
+        tblcTypeVR.setCellValueFactory(new PropertyValueFactory<>("nameType"));
+        tblcDaysR.setCellValueFactory(new PropertyValueFactory<>("days"));
+        tblcTotalR.setCellValueFactory(new PropertyValueFactory<>("priceTotal"));
+    }
+
+    @FXML
+    public void onSearchIDCR(ActionEvent event) {
+        if (!txtSearchIDCR.getText().equals("")) {
+            try {
+                onTableSearchIDCR(Long.parseLong(txtSearchIDCR.getText()));
+            } catch (NumberFormatException e) {
+                fxGUI.showAlert(false, "No puedes ingresar letrar en este criterio de busquedad", stackPane1);
+            }
+        } else {
+            fxGUI.showAlert(false, "Por favor ingresa un criterio de busquedad", stackPane1);
+        }
+    }
+
+    @FXML
+    public void onShowAllRent(ActionEvent event) {
+        tblRent.getItems().clear();
+        onTableListRent();
+    }
+
+    public void onTableSearchTicket(int ticket) {
+        tblRent.getItems().clear();
+
+        List<Rent> rents = rc.binaryRent(ticket, rc.sortRentTicket());
+        ObservableList<Rent> newTableRent;
+        newTableRent = FXCollections.observableArrayList(rents);
+
+        tblRent.setItems(newTableRent);
+        tblcTicketR.setCellValueFactory(new PropertyValueFactory<>("nameTicket"));
+        tblcIDCR.setCellValueFactory(new PropertyValueFactory<>("idClient"));
+        tblcNameCR.setCellValueFactory(new PropertyValueFactory<>("nameClient"));
+        tblcPhoneCR.setCellValueFactory(new PropertyValueFactory<>("phoneClient"));
+        tblcCodeVR.setCellValueFactory(new PropertyValueFactory<>("idCar"));
+        tblcPlateVR.setCellValueFactory(new PropertyValueFactory<>("plateCar"));
+        tblcModelVR.setCellValueFactory(new PropertyValueFactory<>("nameModel"));
+        tblcTypeVR.setCellValueFactory(new PropertyValueFactory<>("nameType"));
+        tblcDaysR.setCellValueFactory(new PropertyValueFactory<>("days"));
+        tblcTotalR.setCellValueFactory(new PropertyValueFactory<>("priceTotal"));
+    }
+
+    @FXML
+    public void onSearchTicketR(ActionEvent event) {
+        if(!txtSearchTicketR.getText().equals("")){
+            try {
+                onTableSearchTicket(Integer.parseInt(txtSearchTicketR.getText()));
+            } catch (NumberFormatException e) {
+                fxGUI.showAlert(false, "No puedes ingresas letras en este espacio\nSí estas ingresando todo el ticket completo,\n"
+                        + "prueba sin el Prefijo, es decir, sin el TRC", stackPane1);
+            }
+        } else {
+            fxGUI.showAlert(false, "Por favor ingresa un criterio de busqueda", stackPane1);
+        }
+    }
+    
+    
 }

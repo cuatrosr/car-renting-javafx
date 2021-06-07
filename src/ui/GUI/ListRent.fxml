@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="stackPane1" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="1012.0" style="-fx-background-color: #ffffff;">
@@ -29,13 +28,13 @@
             <Pane layoutX="10.0" layoutY="49.0" prefHeight="57.0" prefWidth="986.0" style="-fx-background-color: #f4efef;">
                <children>
                   <Label layoutX="14.0" layoutY="18.0" text="Buscar por ticket:" />
-                  <JFXTextField focusColor="#4d4d4d" layoutX="135.0" layoutY="13.0" prefHeight="31.0" prefWidth="68.0" unFocusColor="#009975" />
-                  <JFXButton layoutX="858.0" layoutY="13.0" style="-fx-background-color: #009975;" text="Mostrar todo" textFill="WHITE">
+                  <JFXTextField fx:id="txtSearchTicketR" focusColor="#4d4d4d" layoutX="135.0" layoutY="13.0" prefHeight="31.0" prefWidth="68.0" unFocusColor="#009975" />
+                  <JFXButton layoutX="858.0" layoutY="13.0" onAction="#onShowAllRent" style="-fx-background-color: #009975;" text="Mostrar todo" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </JFXButton>
-                  <Button layoutX="210.0" layoutY="13.0" mnemonicParsing="false">
+                  <Button layoutX="210.0" layoutY="13.0" mnemonicParsing="false" onAction="#onSearchTicketR">
                      <graphic>
                         <ImageView fx:id="iSearchTicketRent" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -45,8 +44,8 @@
                      </graphic>
                   </Button>
                   <Label layoutX="267.0" layoutY="18.0" text="Buscar por cedula:" />
-                  <JFXTextField focusColor="#4d4d4d" layoutX="393.0" layoutY="13.0" prefHeight="31.0" prefWidth="385.0" unFocusColor="#009975" />
-                  <Button layoutX="795.0" layoutY="13.0" mnemonicParsing="false">
+                  <JFXTextField fx:id="txtSearchIDCR" focusColor="#4d4d4d" layoutX="393.0" layoutY="13.0" prefHeight="31.0" prefWidth="385.0" unFocusColor="#009975" />
+                  <Button layoutX="795.0" layoutY="13.0" mnemonicParsing="false" onAction="#onSearchIDCR">
                      <graphic>
                         <ImageView fx:id="iSearchIDRent" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>

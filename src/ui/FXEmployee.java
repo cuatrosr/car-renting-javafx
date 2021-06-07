@@ -163,7 +163,7 @@ public class FXEmployee {
     public void onTableTopEmployeeSearch(boolean out, String name) {
         tblTopEmployee.getItems().clear();
 
-        List<Employee> employees = rc.searchTopEmployee(out, name);
+        List<Employee> employees = rc.binaryEmployee(out, name);
         ObservableList<Employee> newTableEmployee;
         newTableEmployee = FXCollections.observableArrayList(employees);
 

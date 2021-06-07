@@ -1,11 +1,21 @@
 package ui;
 
+import com.jfoenix.controls.JFXComboBox;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import model.*;
 
 public class FXReport {
@@ -14,6 +24,12 @@ public class FXReport {
 
     @FXML
     private Pane reportPane;
+
+    @FXML
+    private Pane pExportClient;
+
+    @FXML
+    private StackPane stackPane;
 
     //********* Set Images *********\\
     @FXML
@@ -42,6 +58,13 @@ public class FXReport {
 
     @FXML
     private ImageView iPrintFilterVehiclesReport;
+
+    //***************** Filter ******************\\
+    @FXML
+    private JFXComboBox<String> cbFilterCityClient;
+
+    @FXML
+    private JFXComboBox<String> cbFilterTypeCar;
 
     private RentingCar rc;
     private FXController fxGUI;
@@ -100,5 +123,72 @@ public class FXReport {
     void onSelecetVehicleReport(ActionEvent event) throws IOException {
         fxGUI.disablePane(reportPane, true);
         fxGUI.showReportVehicles(false);
+    }
+
+    public void setCbCities() {
+        try {
+            List<String> citiesName = new ArrayList<>();
+            for (int i = 0; i < rc.getListCities().size(); i++) {
+                citiesName.add(rc.getListCities().get(i).getNameCi());
+            }
+            ObservableList<String> obs;
+            obs = FXCollections.observableArrayList(citiesName);
+            cbFilterCityClient.setItems(obs);
+        } catch (NullPointerException e) {
+        }
+    }
+
+    public void setCbTypeV() {
+        try {
+            List<String> typeName = new ArrayList<>();
+            for (int i = 0; i < rc.getListTypeV().size(); i++) {
+                typeName.add(rc.getListTypeV().get(i).getNameTB() + " " + rc.getListTypeV().get(i).getQuality());
+            }
+
+            ObservableList<String> obs;
+            obs = FXCollections.observableArrayList(typeName);
+            cbFilterTypeCar.setItems(obs);
+        } catch (NullPointerException e) {
+        }
+    }
+
+    public void exportClientSelection(boolean out, City cityFilter) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Exportar clientes");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        File f = fileChooser.showSaveDialog(pExportClient.getScene().getWindow());
+        if (f != null) {
+            try {
+                rc.exportClient(out, cityFilter, f.getAbsolutePath());
+                fxGUI.showAlert(true, "Se ha generado correctamente", stackPane);
+            } catch (FileNotFoundException e) {
+                fxGUI.showAlert(false, "No fue generado exitosamente. \\nVerifica que el archivo donde guardaras este vacio", stackPane);
+            }
+        }
+    }
+
+    @FXML
+    public void onExportAllClients(ActionEvent event) {
+        exportClientSelection(true, null);
+    }
+
+    @FXML
+    public void onFilterCityClient(ActionEvent event) {
+        if(cbFilterCityClient.getValue() != null){
+                exportClientSelection(false, rc.findCitySelected(cbFilterCityClient.getValue()));
+    
+        } else {
+            fxGUI.showAlert(false, "Por favor selecciona una ciudad", stackPane);
+        }
+    }
+
+    @FXML
+    public void onExportAllCar(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void onFilterTypeCar(ActionEvent event) {
+
     }
 }

@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Brand extends Accessory implements Serializable {
+public class Brand extends Accessory implements Serializable, Comparable<Brand> {
 
     private static final long serialVersionUID = 1;
     
@@ -33,5 +33,10 @@ public class Brand extends Accessory implements Serializable {
     
     public String getNameP(){
         return this.getNameTB() + " " + country;
+    }
+
+    @Override
+    public int compareTo(Brand o) {
+        return this.getNameTB().compareToIgnoreCase(o.getNameTB());
     }
 }

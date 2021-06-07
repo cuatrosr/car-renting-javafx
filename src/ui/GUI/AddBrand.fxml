@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="bPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="472.0" style="-fx-background-color: #ffffff;">
@@ -81,7 +80,7 @@
             <Pane layoutX="15.0" layoutY="187.0" prefHeight="57.0" prefWidth="442.0" style="-fx-background-color: #f3f3f3;">
                <children>
                   <Label layoutX="14.0" layoutY="18.0" text="Buscar por nombre:" />
-                  <JFXTextField focusColor="#4d4d4d" layoutX="154.0" layoutY="6.0" prefHeight="31.0" prefWidth="212.0" unFocusColor="#009975" />
+                  <JFXTextField fx:id="txtSearchBrand" focusColor="#4d4d4d" layoutX="154.0" layoutY="6.0" prefHeight="31.0" prefWidth="212.0" unFocusColor="#009975" />
                   <Button fx:id="btnSearchBrand" layoutX="383.0" layoutY="11.0" mnemonicParsing="false" onAction="#onSearchBrand">
                      <graphic>
                         <ImageView fx:id="iSearchBrand" fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">

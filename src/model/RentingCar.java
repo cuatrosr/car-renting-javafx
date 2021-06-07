@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import exception.*;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
@@ -1008,6 +1010,45 @@ public class RentingCar implements Serializable {
         return sortEmployee;
     }
 
+    //Selection sort
+    public List<Rent> sortRentIDClient() {
+        List<Rent> sortRentID;
+        sortRentID = listRents;
+        for (int i = 0; i < sortRentID.size() - 1; i++) {
+            Rent menor = sortRentID.get(i);
+            int cual = i;
+            for (int j = i + 1; j < sortRentID.size(); j++) {
+                if (sortRentID.get(j).getClientR().getId() < menor.getClientR().getId()) {
+                    menor = sortRentID.get(j);
+                    cual = j;
+                }
+            }
+            Rent temp = sortRentID.get(i);
+            sortRentID.set(i, menor);
+            sortRentID.set(cual, temp);
+        }
+        return sortRentID;
+    }
+
+    public List<Rent> sortRentTicket() {
+        List<Rent> sortRentTicket;
+        sortRentTicket = listRents;
+        for (int i = 0; i < sortRentTicket.size() - 1; i++) {
+            Rent menor = sortRentTicket.get(i);
+            int cual = i;
+            for (int j = i + 1; j < sortRentTicket.size(); j++) {
+                if (sortRentTicket.get(j).getTicket() < menor.getTicket()) {
+                    menor = sortRentTicket.get(j);
+                    cual = j;
+                }
+            }
+            Rent temp = sortRentTicket.get(i);
+            sortRentTicket.set(i, menor);
+            sortRentTicket.set(cual, temp);
+        }
+        return sortRentTicket;
+    }
+
     //******************** Busqueda Binaria *****************\\
     public List<Client> binaryClient(boolean out, String name) {
         List<Client> selectedClient = new ArrayList<>();
@@ -1068,24 +1109,122 @@ public class RentingCar implements Serializable {
         }
         return selectedEmployee;
     }
-    //******************** Binary Employee *************\\
 
-    public List<Employee> searchTopEmployee(boolean out, String name) {
-        List<Employee> selectedTopEmployee = new ArrayList<>();
-        if (out) {
-            for (int i = 0; i < showRootName.size(); i++) {
-                if (showRootName.get(i).getName().equalsIgnoreCase(name)) {
-                    selectedTopEmployee.add(showRootName.get(i));
-                }
-            }
-        } else {
-            long id = Long.parseLong(name);
-            for (int i = 0; i < showRootName.size(); i++) {
-                if(showRootName.get(i).getId() == id){
-                    selectedTopEmployee.add(showRootName.get(i));
-                }
+    public List<City> searchCityName(String name) {
+        Collections.sort(listCities);
+        List<City> selectedCity = new ArrayList<>();
+        for (int i = 0; i < listCities.size(); i++) {
+            if (listCities.get(i).getNameCi().equalsIgnoreCase(name)) {
+                selectedCity.add(listCities.get(i));
             }
         }
-        return selectedTopEmployee;
+        return selectedCity;
+    }
+
+    public List<Brand> searchBrandName(String name) {
+        Collections.sort(listBrands);
+        List<Brand> selectedBrand = new ArrayList<>();
+        for (int i = 0; i < listBrands.size(); i++) {
+            if (listBrands.get(i).getNameTB().equalsIgnoreCase(name)) {
+                selectedBrand.add(listBrands.get(i));
+            }
+        }
+        return selectedBrand;
+    }
+
+    public List<TypeV> searchTypeName(String name) {
+        Collections.sort(listTypeV);
+        List<TypeV> selectedType = new ArrayList<>();
+        for (int i = 0; i < listTypeV.size(); i++) {
+            if (listTypeV.get(i).getNameTB().equalsIgnoreCase(name)) {
+                selectedType.add(listTypeV.get(i));
+            }
+        }
+        return selectedType;
+    }
+
+    public List<Car> searchPlateVehicle(String plate) {
+        Collections.sort(showRootCar);
+        List<Car> selectedCar = new ArrayList<>();
+        for (int i = 0; i < showRootCar.size(); i++) {
+            if (showRootCar.get(i).getPlate().equalsIgnoreCase(plate)) {
+                selectedCar.add(showRootCar.get(i));
+            }
+        }
+        return selectedCar;
+    }
+
+    public List<Rent> searchPlateVehicle(int ticket, List<Rent> sortRent) {
+        return null;
+    }
+
+    public List<Rent> searchIDCR(long id, List<Rent> sortRent) {
+        List<Rent> selectedRent = new ArrayList<>();
+        for (int i = 0; i < sortRent.size(); i++) {
+            if (sortRent.get(i).getClientR().getId() == id) {
+                selectedRent.add(sortRent.get(i));
+            }
+        }
+        return selectedRent;
+    }
+
+    //***************** Binary Rent **********************\\
+    public List<Rent> binaryRent(int ticket, List<Rent> sortRent) {
+        List<Rent> selectedRent = new ArrayList<>();
+        int pos = -1;
+        int i = 0;
+        int j = sortRent.size() - 1;
+        while (i <= j && pos < 0) {
+            int m = (i + j) / 2;
+            if (sortRent.get(m).getTicket() == ticket) {
+                selectedRent.add(sortRent.get(m));
+                pos = m;
+            } else if (sortRent.get(m).getTicket() > ticket) {
+                j = m - 1;
+            } else {
+                i = m + 1;
+            }
+        }
+        return selectedRent;
+    }
+
+    //***************** Export Client *****************\\
+    public void exportClient(boolean out, City city, String filename) throws FileNotFoundException {
+        List<Client> clientsExport = new ArrayList<>();
+        String msg;
+        if (out) {
+            for (int i = 0; i < listClients.size(); i++) {
+                clientsExport.add(listClients.get(i));
+            }
+            msg = "Reportes de todos los clientes";
+        } else {
+            for (int i = 0; i < listClients.size(); i++) {
+                if (listClients.get(i).getCityC().getCodeCi() == city.getCodeCi()) {
+                    clientsExport.add(listClients.get(i));
+                }
+            }
+            msg = "Reportes de clientes filtrado por la ciudad de " + city.getNameCi();
+        }
+        writeClient(clientsExport, filename, msg);
+    }
+
+    public void writeClient(List<Client> clients, String filename, String msg) throws FileNotFoundException {
+        int count = 1;
+        PrintWriter pw = new PrintWriter(filename);
+        pw.println("Sistema de reportes RentingCar");
+        pw.println(msg);
+        pw.println("Fecha: " + LocalDate.now());
+        for (int i = 0; i < clients.size(); i++) {
+            pw.println("-------------------------------------------------");
+            pw.println("Cliente en factura No. " + count);
+            count++;
+            pw.println("Codigo: " + clients.get(i).getCodeP() + "\nCedula: " + clients.get(i).getId() + "\nNombre: " + clients.get(i).getName()
+                    + "\nApellido: " + clients.get(i).getLastName() + "\nTelefono: " + clients.get(i).getPhoneC()
+                    + "\nDirección: " + clients.get(i).getAddressC() + "\nEmail: " + clients.get(i).getEmailC() + "\nCiudad :" + clients.get(i).getNameCity());
+        }
+        pw.println("-------------------------------------------------");
+        pw.println("Factura termianda");
+        pw.println("Total de clientes exportados " + clients.size());
+        pw.close();
     }
 }

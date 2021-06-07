@@ -51,6 +51,9 @@ public class FXCity implements Initializable {
     @FXML
     private JFXTextField txtNameCity;
 
+    @FXML
+    private JFXTextField txtSearchClient;
+
     //********* Button City *********\\
     @FXML
     private Button btnNewCity;
@@ -211,4 +214,28 @@ public class FXCity implements Initializable {
         initializeButtons();
         fxGUI.setSelectObjectCode(0);
     }
+
+    public void onTableSearchCity(String name) {
+        tblCity.getItems().clear();
+
+        List<City> cities = rc.searchCityName(name);
+        ObservableList<City> newTableCities;
+        newTableCities = FXCollections.observableArrayList(cities);
+
+        tblCity.setItems(newTableCities);
+        tblcCodeCity.setCellValueFactory(new PropertyValueFactory<>("codeCi"));
+        tblcNameCity.setCellValueFactory(new PropertyValueFactory<>("nameCi"));
+
+        tblCity.refresh();
+    }
+
+    @FXML
+    public void onSearchCity(ActionEvent event) {
+        if(!txtSearchClient.getText().equals("")){
+        onTableSearchCity(txtSearchClient.getText());
+        } else {
+            fxGUI.showAlert(false, "Por favor ingresa un criterio de busquedad", stackPane);
+        }
+    }
+
 }

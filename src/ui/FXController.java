@@ -313,6 +313,7 @@ public class FXController implements Serializable {
         Parent root = fxmlLoader.load();
         Stage rClientStage = newStage(root);
         xReport.setImagesClientReport();
+        xReport.setCbCities();
         if (out) {
             habilityPane(xMenu.getPane(), rClientStage);
         } else {
@@ -339,6 +340,7 @@ public class FXController implements Serializable {
         Parent root = fxmlLoader.load();
         Stage rVehicleStage = newStage(root);
         xReport.setImagesVehiclesReport();
+        xReport.setCbTypeV();
         if (out) {
             habilityPane(xMenu.getPane(), rVehicleStage);
         } else {

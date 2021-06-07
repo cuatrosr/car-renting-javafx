@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class City implements Serializable {
+public class City implements Serializable, Comparable<City> {
 
     private static final long serialVersionUID = 1;
     private int codeCi;
@@ -37,5 +37,10 @@ public class City implements Serializable {
 
     public void setRefCi(int refCi) {
         this.refCi = refCi;
+    }
+
+    @Override
+    public int compareTo(City o) {
+        return this.getNameCi().compareToIgnoreCase(o.getNameCi());
     }
 }
