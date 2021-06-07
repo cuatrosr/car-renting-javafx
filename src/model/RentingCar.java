@@ -1227,4 +1227,96 @@ public class RentingCar implements Serializable {
         pw.println("Total de clientes exportados " + clients.size());
         pw.close();
     }
+
+    //***************** Export Vehicle *****************\\
+    public void exportVehicle(boolean out, TypeV typeV, String filename) throws FileNotFoundException {
+        List<Car> carsExport = new ArrayList<>();
+        String msg;
+        if (out) {
+            for (int i = 0; i < showRootCar.size(); i++) {
+                carsExport.add(showRootCar.get(i));
+            }
+            msg = "Reportes de todos los carros";
+        } else {
+            for (int i = 0; i < showRootCar.size(); i++) {
+                if (showRootCar.get(i).getTypeV().getCodeA() == typeV.getCodeA()) {
+                    carsExport.add(showRootCar.get(i));
+                }
+            }
+            msg = "Reportes de carros filtrado por la ciudad de " + typeV.getNameTB();
+        }
+        writeCar(carsExport, filename, msg);
+    }
+
+    public void writeCar(List<Car> cars, String filename, String msg) throws FileNotFoundException {
+        int count = 1;
+        PrintWriter pw = new PrintWriter(filename);
+        pw.println("Sistema de reportes RentingCar");
+        pw.println(msg);
+        pw.println("Fecha: " + LocalDate.now());
+        for (int i = 0; i < cars.size(); i++) {
+            pw.println("-------------------------------------------------");
+            pw.println("Carro en factura No. " + count);
+            count++;
+            pw.println("Codigo: " + cars.get(i).getCodeV() + "\nPlaca: " + cars.get(i).getPlate() + "\nTipo de carro: " + cars.get(i).getNameType()
+                    + "\nModelo: " + cars.get(i).getModel() + "\nColor: " + cars.get(i).getColor() + "\nMarca: " + cars.get(i).getNameBrand()
+                    + "\nPrecio por día: " + cars.get(i).getPriceXDay() + "\nAño: " + cars.get(i).getYear());
+        }
+        pw.println("-------------------------------------------------");
+        pw.println("Factura termianda");
+        pw.println("Total de carros exportados " + cars.size());
+        pw.close();
+    }
+
+    //***************** Export Rent *****************\\
+    public void exportRent(boolean out, LocalDate init, LocalDate end, String filename) throws FileNotFoundException {
+        List<Rent> rentsExport = new ArrayList<>();
+        for (int i = 0; i < listRents.size(); i++) {
+            uptadeStatRent(listRents.get(i).getCodeR());
+        }
+        String msg;
+        if (out) {
+            for (int i = 0; i < listRents.size(); i++) {
+                rentsExport.add(listRents.get(i));
+            }
+            msg = "Reportes de todas las rentas";
+        } else {
+            for (int i = 0; i < listRents.size(); i++) {
+                if((init.isBefore(listRents.get(i).getFinitial()) || init.equals(listRents.get(i).getFinitial())) 
+                        && (end.isAfter(listRents.get(i).getFfinal()) || end.equals(listRents.get(i).getFfinal()))){
+                    rentsExport.add(listRents.get(i));
+                    System.out.println("Sapa hpta");
+                }
+            }
+            msg = "Reportes de rentas filtradas por fechas\nFecha inicial: "+init.toString()
+                    +"\nFecha final: "+end.toString();
+        }
+        writeRent(rentsExport, filename, msg);
+    }
+
+    public void writeRent(List<Rent> rents, String filename, String msg) throws FileNotFoundException {
+        int count = 1;
+        PrintWriter pw = new PrintWriter(filename);
+        pw.println("Sistema de reportes RentingCar");
+        pw.println(msg);
+        pw.println("Fecha Actual: " + LocalDate.now());
+        for (int i = 0; i < rents.size(); i++) {
+            pw.println("-------------------------------------------------");
+            pw.println("Renta en factura No. " + count);
+            count++;
+            pw.println("Codigo: " + rents.get(i).getCodeR() + "\nTicket: TRC" + rents.get(i).getTicket() + "\nFecha inicial: "+rents.get(i).getFinitial().toString()
+                    + "\nFecha final: " + rents.get(i).getFfinal()+"\nCedula del cliente: " + rents.get(i).getIdClient()
+                    + "\nNombre del cliente: " + rents.get(i).getNameClient() + "\nTelefono del cliente: " + rents.get(i).getPhoneClient() 
+                    + "\nID vehiculo: " + rents.get(i).getIdCar() + "\nPlaca del vehículo: " + rents.get(i).getPlateCar() 
+                    + "\nTipo de Carro: " + rents.get(i).getCarR().getNameType() + "\nMarca: " + rents.get(i).getCarR().getNameBrand()
+                    + "\nPrecio por día: " + rents.get(i).getCarR().getPriceXDay() + "\nDias de prestamo: " + rents.get(i).getDays()
+                    + "\nSubTotal: " + rents.get(i).getDays()*rents.get(i).getCarR().getPriceXDay()+"\nDías de atrazo: "+rents.get(i).getDelay() + "\nEstado: " + rents.get(i).getStatus()
+                    + "\nMulta: " + rents.get(i).getMult() + "\nTotal a pagar: " + rents.get(i).getPriceTotal());
+        }
+        pw.println("-------------------------------------------------");
+        pw.println("Factura termianda");
+        pw.println("Total de rentas exportados " + rents.size());
+        pw.close();
+    }
+
 }

@@ -1,11 +1,12 @@
 package ui;
 
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +28,12 @@ public class FXReport {
 
     @FXML
     private Pane pExportClient;
+
+    @FXML
+    private Pane pExportCar;
+    
+    @FXML
+    private Pane pExportRent;
 
     @FXML
     private StackPane stackPane;
@@ -65,6 +72,12 @@ public class FXReport {
 
     @FXML
     private JFXComboBox<String> cbFilterTypeCar;
+
+    @FXML
+    private JFXDatePicker dpInit;
+
+    @FXML
+    private JFXDatePicker dpFinal;
 
     private RentingCar rc;
     private FXController fxGUI;
@@ -174,21 +187,69 @@ public class FXReport {
 
     @FXML
     public void onFilterCityClient(ActionEvent event) {
-        if(cbFilterCityClient.getValue() != null){
-                exportClientSelection(false, rc.findCitySelected(cbFilterCityClient.getValue()));
-    
+        if (cbFilterCityClient.getValue() != null) {
+            exportClientSelection(false, rc.findCitySelected(cbFilterCityClient.getValue()));
+
         } else {
             fxGUI.showAlert(false, "Por favor selecciona una ciudad", stackPane);
         }
     }
 
+    public void exportCarSelection(boolean out, TypeV type) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Exportar carros");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        File f = fileChooser.showSaveDialog(pExportCar.getScene().getWindow());
+        if (f != null) {
+            try {
+                rc.exportVehicle(out, type, f.getAbsolutePath());
+                fxGUI.showAlert(true, "Se ha generado correctamente", stackPane);
+            } catch (FileNotFoundException e) {
+                fxGUI.showAlert(false, "No fue generado exitosamente. \\nVerifica que el archivo donde guardaras este vacio", stackPane);
+            }
+        }
+    }
+
     @FXML
     public void onExportAllCar(ActionEvent event) {
-
+        exportCarSelection(true, null);
     }
 
     @FXML
     public void onFilterTypeCar(ActionEvent event) {
+        if (cbFilterTypeCar.getValue() != null) {
+            exportCarSelection(false, rc.findTypeVSelected(cbFilterTypeCar.getValue()));
+        } else {
+            fxGUI.showAlert(false, "Por favor selecciona una tipo de vehículo", stackPane);
+        }
+    }
 
+    public void exportRentSelection(boolean out, LocalDate init, LocalDate end) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Exportar rentas");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        File f = fileChooser.showSaveDialog(pExportRent.getScene().getWindow());
+        if (f != null) {
+            try {
+                rc.exportRent(out, init, end, f.getAbsolutePath());
+                fxGUI.showAlert(true, "Se ha generado correctamente", stackPane);
+            } catch (FileNotFoundException e) {
+                fxGUI.showAlert(false, "No fue generado exitosamente. \\nVerifica que el archivo donde guardaras este vacio", stackPane);
+            }
+        }
+    }
+
+    @FXML
+    public void onFilterDateRent(ActionEvent event) {
+        if(dpFinal.getValue() != null && dpInit.getValue() != null){
+            exportRentSelection(false, dpInit.getValue(), dpFinal.getValue());
+        } else {
+            fxGUI.showAlert(false, "Por favor, selecciona una fecha inicial y una fecha final", stackPane);
+        }
+    }
+
+    @FXML
+    public void onShowAllReports(ActionEvent event) {
+        exportRentSelection(true, null, null);
     }
 }
