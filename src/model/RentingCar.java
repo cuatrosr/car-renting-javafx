@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import exception.*;
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
+import javafx.stage.FileChooser;
 
 public class RentingCar implements Serializable {
 
@@ -377,7 +381,9 @@ public class RentingCar implements Serializable {
                         n++;
                     }
                     listClients.add(n, newClient);
-                    plusRefCity(cityC);
+                    if (cityC != null) {
+                        plusRefCity(cityC);
+                    }
                     out = true;
                 } else {
                     out = false;
@@ -471,8 +477,10 @@ public class RentingCar implements Serializable {
     public boolean addCar(String model, String color, Brand brand, TypeV typeV, double priceXDay, int codeV, String plate, boolean dispV, String photo, int year) {
         if (!searchPlate(plate)) {
             Car newCar = new Car(model, color, brand, typeV, priceXDay, code++, plate, dispV, photo, year, 0);
-            plusRefBrand(brand);
-            plusRefTypeV(typeV);
+            if (brand != null && typeV != null) {
+                plusRefBrand(brand);
+                plusRefTypeV(typeV);
+            }
             addBinaryVehicle(newCar);
             if (firstC == null) {
                 firstC = newCar;
@@ -800,9 +808,9 @@ public class RentingCar implements Serializable {
 
     public boolean addRent(int codeR, int ticket, Client clientR, Car carR, LocalDate Finitial, LocalDate Ffinal, int days, Status status, int delay, int mult, int priceTotal) {
         if (days > 0) {
-        	if(clientR == null || carR == null) {
-        		return false;
-        	} else {
+            if (clientR == null || carR == null) {
+                return false;
+            } else {
                 Rent newRent = new Rent(code++, codeTicket++, clientR, carR, Finitial, Ffinal, days, status, delay, mult, priceTotal);
                 listRents.add(newRent);
                 plusComisionEmployeeEnlazada();
@@ -810,7 +818,7 @@ public class RentingCar implements Serializable {
                 plusRefClients(clientR.getCodeP());
                 plusRefCar(carR.getCodeV());
                 return true;
-        	}
+            }
         } else {
             return false;
         }
@@ -983,11 +991,11 @@ public class RentingCar implements Serializable {
         for (int i = 0; i < showRootName.size(); i++) {
             sortEmployee.add(showRootName.get(i));
         }
-        for(int i = 1; i<sortEmployee.size(); i++){
-            for(int j = i; j>0 && sortEmployee.get(j-1).getId() > sortEmployee.get(j).getId(); j--){
+        for (int i = 1; i < sortEmployee.size(); i++) {
+            for (int j = i; j > 0 && sortEmployee.get(j - 1).getId() > sortEmployee.get(j).getId(); j--) {
                 Employee temp = sortEmployee.get(j);
-                sortEmployee.set(j, sortEmployee.get(j-1));
-                sortEmployee.set((j-1), temp);
+                sortEmployee.set(j, sortEmployee.get(j - 1));
+                sortEmployee.set((j - 1), temp);
             }
         }
         return sortEmployee;
@@ -1319,7 +1327,7 @@ public class RentingCar implements Serializable {
         pw.println("Total de rentas exportados " + rents.size());
         pw.close();
     }
-    
+
     public String calculateCategorySpeed(int velocity) {
         String msg = "El vehiculo con velocidad " + velocity + " entra en la categoria de: ";
         if (velocity < 100) {
@@ -1332,5 +1340,67 @@ public class RentingCar implements Serializable {
             msg += "Corsa";
         }
         return msg;
+    }
+
+    public boolean importClient() {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(fileChooser()));
+            String line = br.readLine();
+            line = br.readLine();
+            while (line != null) {
+                String[] parts = line.split(",");
+                String name = parts[0];
+                String lastName = parts[1];
+                long id = Long.parseLong(parts[2]);
+                String emailC = parts[3];
+                String addressC = parts[4];
+                long phoneC = Long.parseLong(parts[5]);
+                boolean added = false;
+                try {
+                    added = addClient(addressC, phoneC, emailC, null, code, 0, name, lastName, id);
+                } catch (Email e) {
+                }
+                line = br.readLine();
+            }
+            br.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean importVehicle() {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(fileChooser()));
+            String line = br.readLine();
+            line = br.readLine();
+            System.out.println("a");
+            while (line != null) {
+                System.out.println("e");
+                String[] parts = line.split(",");
+                String model = parts[0];
+                String color = parts[1];
+                double priceXDay = Double.parseDouble(parts[2]);
+                String plate = parts[3];
+                int year = Integer.parseInt(parts[4]);
+                try {
+                    addCar(model, color, null, null, priceXDay, code, plate, true, "", year);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                line = br.readLine();
+            }
+            br.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public File fileChooser() {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Open File Client");
+        File file = fc.showOpenDialog(null);
+        return file;
     }
 }
