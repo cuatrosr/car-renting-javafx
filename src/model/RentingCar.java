@@ -1319,5 +1319,18 @@ public class RentingCar implements Serializable {
         pw.println("Total de rentas exportados " + rents.size());
         pw.close();
     }
-
+    
+    public String calculateCategorySpeed(int velocity) {
+        String msg = "El vehiculo con velocidad " + velocity + " entra en la categoria de: ";
+        if (velocity < 100) {
+            msg += "Casual";
+        } else if (velocity < 200) {
+            msg += "Exotico";
+        } else if (velocity < 300) {
+            msg += "Deportivo";
+        } else {
+            msg += "Corsa";
+        }
+        return msg;
+    }
 }

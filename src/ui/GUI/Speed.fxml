@@ -25,19 +25,24 @@
             <Pane layoutX="22.0" layoutY="50.0" prefHeight="53.0" prefWidth="1041.0" style="-fx-background-color: #f4efef;">
                <children>
                   <Label layoutX="172.0" layoutY="16.0" prefHeight="21.0" prefWidth="287.0" text="Ingresa la velocidad de tu vehiculo (km/h):" />
-                  <TextField layoutX="490.0" layoutY="11.0" />
-                  <JFXButton layoutX="741.0" layoutY="11.0" style="-fx-background-color: #009975;" text="Probar" textFill="WHITE">
+                  <TextField fx:id="txtSpeed" layoutX="490.0" layoutY="11.0" />
+                  <JFXButton layoutX="741.0" layoutY="11.0" onAction="#onTestBtn" style="-fx-background-color: #009975;" text="Probar" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </JFXButton>
                </children>
             </Pane>
-            <ImageView fitHeight="240.0" fitWidth="296.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ivCar" fitHeight="240.0" fitWidth="296.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../resources/Images/Wkisby.gif" />
                </image>
             </ImageView>
+            <Label fx:id="txtResult" alignment="CENTER" layoutX="14.0" layoutY="156.0" prefHeight="50.0" prefWidth="1041.0" text="Result" textFill="#009975">
+               <font>
+                  <Font name="System Bold Italic" size="22.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>
