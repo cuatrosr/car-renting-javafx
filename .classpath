@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="lib" path="dist/car-renting-javafx.jar"/>
+	<classpathentry kind="lib" path="dist/lib/jfoenix-0.0.0-SNAPSHOT-javadoc.jar"/>
+	<classpathentry kind="lib" path="dist/lib/jfoenix-0.0.0-SNAPSHOT-retrolambda.jar"/>
+	<classpathentry kind="lib" path="dist/lib/jfoenix-0.0.0-SNAPSHOT-sources.jar"/>
+	<classpathentry kind="lib" path="dist/lib/jfoenix-0.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="resources/auxLibs/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar"/>
+	<classpathentry kind="lib" path="resources/auxLibs/jfoenix-0.0.0-SNAPSHOT-javadoc.jar"/>
+	<classpathentry kind="lib" path="resources/auxLibs/jfoenix-0.0.0-SNAPSHOT-retrolambda.jar"/>
+	<classpathentry kind="lib" path="resources/auxLibs/jfoenix-0.0.0-SNAPSHOT-sources.jar"/>
+	<classpathentry kind="lib" path="resources/auxLibs/jfoenix-0.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="resources/auxLibs/junit_5/junit-jupiter-api-5.6.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="resources/auxLibs/junit_5/junit-jupiter-api-5.6.0-sources.jar"/>
+	<classpathentry kind="lib" path="resources/auxLibs/junit_5/junit-jupiter-api-5.6.0.jar"/>
+	<classpathentry kind="lib" path="resources/auxLibs/junit_5/junit-jupiter-engine-5.6.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="resources/auxLibs/junit_5/junit-jupiter-engine-5.6.0-sources.jar"/>
+	<classpathentry kind="lib" path="resources/auxLibs/junit_5/junit-jupiter-engine-5.6.0.jar"/>
+	<classpathentry kind="lib" path="resources/auxLibs/junit_5/junit-jupiter-params-5.6.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="resources/auxLibs/junit_5/junit-jupiter-params-5.6.0-sources.jar"/>
+	<classpathentry kind="lib" path="resources/auxLibs/junit_5/junit-jupiter-params-5.6.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

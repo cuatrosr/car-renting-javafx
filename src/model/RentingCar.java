@@ -778,13 +778,6 @@ public class RentingCar implements Serializable {
         }
     }
 
-    private Car minIterative(Car current) {
-        while (current.getLeft() != null) {
-            current = current.getLeft();
-        }
-        return current;
-    }
-
     public Car findCar(int code) {
         if (firstC.getCodeV() == code) {
             return firstC;
@@ -807,13 +800,17 @@ public class RentingCar implements Serializable {
 
     public boolean addRent(int codeR, int ticket, Client clientR, Car carR, LocalDate Finitial, LocalDate Ffinal, int days, Status status, int delay, int mult, int priceTotal) {
         if (days > 0) {
-            Rent newRent = new Rent(code++, codeTicket++, clientR, carR, Finitial, Ffinal, days, status, delay, mult, priceTotal);
-            listRents.add(newRent);
-            plusComisionEmployeeEnlazada();
-            //plusComisionEmployeeList();
-            plusRefClients(clientR.getCodeP());
-            plusRefCar(carR.getCodeV());
-            return true;
+        	if(clientR == null || carR == null) {
+        		return false;
+        	} else {
+                Rent newRent = new Rent(code++, codeTicket++, clientR, carR, Finitial, Ffinal, days, status, delay, mult, priceTotal);
+                listRents.add(newRent);
+                plusComisionEmployeeEnlazada();
+                //plusComisionEmployeeList();
+                plusRefClients(clientR.getCodeP());
+                plusRefCar(carR.getCodeV());
+                return true;
+        	}
         } else {
             return false;
         }
