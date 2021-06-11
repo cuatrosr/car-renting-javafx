@@ -43,6 +43,7 @@ public class FXController implements Serializable {
     private FXRent xRent;
     private FXDevol xDevol;
     private FXSpeed xSpeed;
+    private FXShapes xShapes;
     private int selectObjectCode;
     private int selectClientRent;
     private int selectCarRent;
@@ -64,6 +65,7 @@ public class FXController implements Serializable {
         xRent = new FXRent(this.rc, this);
         xDevol = new FXDevol(this.rc, this);
         xSpeed = new FXSpeed(this.rc, this);
+        xShapes = new FXShapes(this.rc, this);
     }
 
     public void loadData() throws FileNotFoundException {
@@ -407,5 +409,23 @@ public class FXController implements Serializable {
         Parent root = fxmlLoader.load();
         Stage testSpeed = newStage(root);
         habilityPane(xMenu.getPane(), testSpeed);
+    }
+
+    public void showPieChart() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/StatRent.fxml"));
+        fxmlLoader.setController(xShapes);
+        Parent root = fxmlLoader.load();
+        Stage pieChartStage = newStage(root);
+        xShapes.loadPieChart();
+        habilityPane(xMenu.getPane(), pieChartStage);
+    }
+
+    public void showBarChart() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/StatObjects.fxml"));
+        fxmlLoader.setController(xShapes);
+        Parent root = fxmlLoader.load();
+        Stage barChartStage = newStage(root);
+        xShapes.loadBarChart();
+        habilityPane(xMenu.getPane(), barChartStage);
     }
 }

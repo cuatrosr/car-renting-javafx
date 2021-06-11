@@ -174,14 +174,27 @@ public class FXMenu implements Initializable {
     }
 
     @FXML
-    void onImportClient(ActionEvent event) throws IOException {
+    public void onImportClient(ActionEvent event) throws IOException {
         rc.importClient();
         fxGUI.saveData();
     }
 
     @FXML
-    void onImportVehicle(ActionEvent event) throws IOException {
+    public void onImportVehicle(ActionEvent event) throws IOException {
         rc.importVehicle();
         fxGUI.saveData();
+    }
+    
+    
+    @FXML
+    public void onShowStatRent(ActionEvent event) throws IOException {
+        fxGUI.disablePane(pMainMenu, true);
+        fxGUI.showPieChart();
+    }
+
+    @FXML
+    public void onShowStatObject(ActionEvent event) throws IOException {
+        fxGUI.disablePane(pMainMenu, true);
+        fxGUI.showBarChart();
     }
 }

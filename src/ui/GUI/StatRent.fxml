@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="pStatRent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="853.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="43.0" prefWidth="853.0" style="-fx-background-color: #009975;">
+         <children>
+            <Label layoutX="313.0" layoutY="7.0" prefHeight="30.0" prefWidth="227.0" text="ESTADISTICAS RENTAS" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <PieChart fx:id="pieChart" layoutX="177.0" layoutY="43.0" title="Estado de renta" />
+   </children>
+</Pane>

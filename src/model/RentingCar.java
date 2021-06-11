@@ -1374,9 +1374,7 @@ public class RentingCar implements Serializable {
             BufferedReader br = new BufferedReader(new FileReader(fileChooser()));
             String line = br.readLine();
             line = br.readLine();
-            System.out.println("a");
             while (line != null) {
-                System.out.println("e");
                 String[] parts = line.split(",");
                 String model = parts[0];
                 String color = parts[1];
@@ -1402,5 +1400,32 @@ public class RentingCar implements Serializable {
         fc.setTitle("Open File Client");
         File file = fc.showOpenDialog(null);
         return file;
+    }
+    
+    public int [] amountStatRent(){
+        int [] amountStatRent = new int [4];
+        int amountDefered = 0;
+        int amountExpireToday = 0;
+        int amountExpire = 0;
+        int amountPaid = 0;
+        for (int i = 0; i < listRents.size(); i++) {
+            uptadeStatRent(listRents.get(i).getCodeR());
+        }
+        for (int i = 0; i < listRents.size(); i++) {
+            if(listRents.get(i).getStatus() == Status.DEFERRED){
+                amountDefered++;
+            } else if (listRents.get(i).getStatus() == Status.EXPIRES_TODAY){
+                amountExpireToday++;
+            } else if (listRents.get(i).getStatus() == Status.EXPIRED){
+                amountExpire++;
+            } else {
+                amountPaid++;
+            } 
+        }
+        amountStatRent[0] = amountDefered;
+        amountStatRent[1] = amountExpireToday;
+        amountStatRent[2] = amountExpire;
+        amountStatRent[3] = amountPaid;
+        return amountStatRent;
     }
 }

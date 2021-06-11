@@ -53,6 +53,12 @@
                   <MenuItem mnemonicParsing="false" onAction="#onTopEmployee" text="Top Empleados ⮞" />
                </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Estadisticas">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onShowStatRent" text="Rentas ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onShowStatObject" text="Numero de entidades ⮞" />
+               </items>
+            </Menu>
             <Menu mnemonicParsing="false" text="Salir">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#onExit" text="Salir" />
