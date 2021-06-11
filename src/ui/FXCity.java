@@ -83,16 +83,31 @@ public class FXCity implements Initializable {
     private RentingCar rc;
     private FXController fxGUI;
 
+    /**
+     * FXCity class constructor
+     *
+     * @param rc
+     * @param fxGUI
+     */
     public FXCity(RentingCar rc, FXController fxGUI) {
         this.rc = rc;
         this.fxGUI = fxGUI;
     }
 
+    /**
+     * Initialize the screen
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setImagesButton();
     }
 
+    /**
+     * Set images on buttons.
+     */
     public void setImagesButton() {
         Image iAddCityPNG = new Image("Images/add-file.png");
         Image iSaveCityPNG = new Image("Images/save-disk.png");
@@ -107,12 +122,23 @@ public class FXCity implements Initializable {
         initializeButtons();
     }
 
+    /**
+     * Option on new city
+     *
+     * @param event button pressed
+     */
     @FXML
     public void onNewCity(ActionEvent event) {
         txtCodeCity.setText(rc.getCode() + "");
         statButtonsWhenNew(true);
     }
 
+    /**
+     * On create a city, add city
+     *
+     * @param event button pressed
+     * @throws IOException
+     */
     @FXML
     public void onSaveCity(ActionEvent event) throws IOException {
         if (!txtNameCity.getText().equals("")) {
@@ -133,6 +159,11 @@ public class FXCity implements Initializable {
         }
     }
 
+    /**
+     * Stat of the buttons when the select option to add city.
+     *
+     * @param stat
+     */
     public void statButtonsWhenNew(boolean stat) {
         btnNewCity.setDisable(stat);
         btnSaveCity.setDisable(!stat);
@@ -141,6 +172,9 @@ public class FXCity implements Initializable {
         btnSearchCity.setDisable(stat);
     }
 
+    /**
+     * Stat buttons with the screen initialize.
+     */
     public void initializeButtons() {
         btnNewCity.setDisable(false);
         btnSaveCity.setDisable(true);
@@ -148,6 +182,9 @@ public class FXCity implements Initializable {
         btnEditCity.setDisable(true);
     }
 
+    /**
+     * Load all cities on the Table.
+     */
     public void onTableListCities() {
         List<City> cities = rc.getListCities();
         ObservableList<City> newTableCities;
@@ -160,6 +197,10 @@ public class FXCity implements Initializable {
         tblCity.refresh();
     }
 
+    /**
+     * Select a brand with two clicks on the table
+     * @param event mouse clicked
+     */
     @FXML
     public void onSelectCity(MouseEvent event) {
         City citySelected;
@@ -178,6 +219,11 @@ public class FXCity implements Initializable {
         }
     }
 
+    /**
+     * Remove city
+     * @param event button pressed
+     * @throws IOException 
+     */
     @FXML
     public void onRemoveCity(ActionEvent event) throws IOException {
         try {
@@ -196,6 +242,11 @@ public class FXCity implements Initializable {
         fxGUI.setSelectObjectCode(0);
     }
 
+    /**
+     * Edit city
+     * @param event button pressed
+     * @throws IOException 
+     */
     @FXML
     public void onEditCity(ActionEvent event) throws IOException {
         if (!txtNameCity.getText().equals("")) {
@@ -215,6 +266,10 @@ public class FXCity implements Initializable {
         fxGUI.setSelectObjectCode(0);
     }
 
+    /**
+     * Load Table with the elements searched
+     * @param name param to search
+     */
     public void onTableSearchCity(String name) {
         tblCity.getItems().clear();
 
@@ -229,10 +284,14 @@ public class FXCity implements Initializable {
         tblCity.refresh();
     }
 
+    /**
+     * Search City
+     * @param event button pressed 
+     */
     @FXML
     public void onSearchCity(ActionEvent event) {
-        if(!txtSearchClient.getText().equals("")){
-        onTableSearchCity(txtSearchClient.getText());
+        if (!txtSearchClient.getText().equals("")) {
+            onTableSearchCity(txtSearchClient.getText());
         } else {
             fxGUI.showAlert(false, "Por favor ingresa un criterio de busquedad", stackPane);
         }
