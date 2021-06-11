@@ -166,10 +166,22 @@ public class FXMenu implements Initializable {
             iLogo.setLayoutX(iLogo.getLayoutX() + 1);
         }
     }
-    
+
     @FXML
     public void onShowSpeed(ActionEvent event) throws IOException {
         fxGUI.disablePane(pMainMenu, true);
         fxGUI.showSpeed();
+    }
+
+    @FXML
+    void onImportClient(ActionEvent event) throws IOException {
+        rc.importClient();
+        fxGUI.saveData();
+    }
+
+    @FXML
+    void onImportVehicle(ActionEvent event) throws IOException {
+        rc.importVehicle();
+        fxGUI.saveData();
     }
 }

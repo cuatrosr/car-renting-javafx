@@ -43,8 +43,8 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Importar">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Clientes ⮞" />
-                  <MenuItem mnemonicParsing="false" text="Vehiculos ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onImportClient" text="Clientes ⮞" />
+                  <MenuItem mnemonicParsing="false" onAction="#onImportVehicle" text="Vehiculos ⮞" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Empleados">

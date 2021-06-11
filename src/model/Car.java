@@ -14,7 +14,7 @@ public class Car extends Vehicle implements Serializable {
     private int refV;
     private Car prev;
     private Car next;
-    
+
     private Car parent;
     private Car left;
     private Car right;
@@ -37,7 +37,7 @@ public class Car extends Vehicle implements Serializable {
     public void setRefV(int refV) {
         this.refV = refV;
     }
-    
+
     public Car getParent() {
         return parent;
     }
@@ -61,15 +61,15 @@ public class Car extends Vehicle implements Serializable {
     public void setRight(Car right) {
         this.right = right;
     }
-    
+
     public int getYear() {
         return year;
     }
-    
+
     public void setYear(int year) {
         this.year = year;
     }
-    
+
     public Car getPrev() {
         return prev;
     }
@@ -125,12 +125,20 @@ public class Car extends Vehicle implements Serializable {
     public void setPriceXDay(double priceXDay) {
         this.priceXDay = priceXDay;
     }
-    
-    public String getNameType(){
-        return typeV.getNameTB();
+
+    public String getNameType() {
+        if (typeV != null) {
+            return typeV.getNameTB();
+        } else {
+            return "";
+        }
     }
-    
+
     public String getNameBrand() {
-        return brand.getNameTB();
+        if (brand != null) {
+            return brand.getNameTB();
+        } else {
+            return "";
+        }
     }
 }

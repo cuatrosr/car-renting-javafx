@@ -51,7 +51,11 @@ public class Client extends Person implements Serializable, Comparable<Client> {
     }
 
     public String getNameCity() {
-        return cityC.getNameCi();
+        if (cityC == null) {
+            return "";
+        } else {
+            return cityC.getNameCi();
+        }
     }
 
     @Override

@@ -429,8 +429,16 @@ public class FXVehicle {
 
     public void changeTextFieldsSelecteds(Car carSelected) {
         txtCodeV.setText(carSelected.getCodeV() + "");
-        cbBrandV.setValue(carSelected.getBrand().getNameP());
-        cbTypeV.setValue(carSelected.getTypeV().getNameQ());
+        if (carSelected.getBrand() != null) {
+            cbBrandV.setValue(carSelected.getBrand().getNameP());
+        } else {
+            cbBrandV.setValue(null);
+        }
+        if (carSelected.getTypeV() != null) {
+            cbTypeV.setValue(carSelected.getTypeV().getNameQ());
+        } else {
+            cbTypeV.setValue(null);
+        }
         txtPlateV.setText(carSelected.getPlate());
         txtModelV.setText(carSelected.getModel());
         txtColorV.setText(carSelected.getColor());
