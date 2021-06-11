@@ -19,6 +19,10 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import model.*;
 
+/**
+ *
+ * @author DELL
+ */
 public class FXReport {
 
     private static final long serialVersionUID = 1;
@@ -31,7 +35,7 @@ public class FXReport {
 
     @FXML
     private Pane pExportCar;
-    
+
     @FXML
     private Pane pExportRent;
 
@@ -82,11 +86,19 @@ public class FXReport {
     private RentingCar rc;
     private FXController fxGUI;
 
+    /**
+     *
+     * @param rc
+     * @param fxGUI
+     */
     public FXReport(RentingCar rc, FXController fxGUI) {
         this.rc = rc;
         this.fxGUI = fxGUI;
     }
 
+    /**
+     *
+     */
     public void setImagesButton() {
         Image iReportVehiclePNG = new Image("Images/vehicles.png");
         Image iReportClientPNG = new Image("Images/clients.png");
@@ -96,26 +108,43 @@ public class FXReport {
         iReportRent.setImage(iReportRentPNG);
     }
 
+    /**
+     *
+     * @return
+     */
     public Image getImagePrint() {
         Image iPrintReport = new Image("Images/printer.png");
         return iPrintReport;
     }
 
+    /**
+     *
+     */
     public void setImagesClientReport() {
         iPrintAllClientReport.setImage(getImagePrint());
         iPrintFilterClientReport.setImage(getImagePrint());
     }
 
+    /**
+     *
+     */
     public void setImagesVehiclesReport() {
         iPrintAllVehiclesReport.setImage(getImagePrint());
         iPrintFilterVehiclesReport.setImage(getImagePrint());
     }
 
+    /**
+     *
+     */
     public void setImagesRentReport() {
         iPrintAllRentReport.setImage(getImagePrint());
         iPrintFilterRentReport.setImage(getImagePrint());
     }
 
+    /**
+     *
+     * @return
+     */
     public Pane getPane() {
         return reportPane;
     }
@@ -138,6 +167,9 @@ public class FXReport {
         fxGUI.showReportVehicles(false);
     }
 
+    /**
+     *
+     */
     public void setCbCities() {
         try {
             List<String> citiesName = new ArrayList<>();
@@ -151,6 +183,9 @@ public class FXReport {
         }
     }
 
+    /**
+     *
+     */
     public void setCbTypeV() {
         try {
             List<String> typeName = new ArrayList<>();
@@ -165,6 +200,11 @@ public class FXReport {
         }
     }
 
+    /**
+     *
+     * @param out
+     * @param cityFilter
+     */
     public void exportClientSelection(boolean out, City cityFilter) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Exportar clientes");
@@ -180,11 +220,19 @@ public class FXReport {
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onExportAllClients(ActionEvent event) {
         exportClientSelection(true, null);
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onFilterCityClient(ActionEvent event) {
         if (cbFilterCityClient.getValue() != null) {
@@ -195,6 +243,11 @@ public class FXReport {
         }
     }
 
+    /**
+     *
+     * @param out
+     * @param type
+     */
     public void exportCarSelection(boolean out, TypeV type) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Exportar carros");
@@ -210,11 +263,19 @@ public class FXReport {
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onExportAllCar(ActionEvent event) {
         exportCarSelection(true, null);
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onFilterTypeCar(ActionEvent event) {
         if (cbFilterTypeCar.getValue() != null) {
@@ -224,6 +285,12 @@ public class FXReport {
         }
     }
 
+    /**
+     *
+     * @param out
+     * @param init
+     * @param end
+     */
     public void exportRentSelection(boolean out, LocalDate init, LocalDate end) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Exportar rentas");
@@ -239,15 +306,23 @@ public class FXReport {
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onFilterDateRent(ActionEvent event) {
-        if(dpFinal.getValue() != null && dpInit.getValue() != null){
+        if (dpFinal.getValue() != null && dpInit.getValue() != null) {
             exportRentSelection(false, dpInit.getValue(), dpFinal.getValue());
         } else {
             fxGUI.showAlert(false, "Por favor, selecciona una fecha inicial y una fecha final", stackPane);
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onShowAllReports(ActionEvent event) {
         exportRentSelection(true, null, null);

@@ -9,6 +9,10 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
 import model.*;
 
+/**
+ *
+ * @author DELL
+ */
 public class FXShapes {
 
     @FXML
@@ -26,11 +30,19 @@ public class FXShapes {
     private RentingCar rc;
     private FXController fxGUI;
 
+    /**
+     *
+     * @param rc
+     * @param fxGUI
+     */
     public FXShapes(RentingCar rc, FXController fxGUI) {
         this.rc = rc;
         this.fxGUI = fxGUI;
     }
 
+    /**
+     *
+     */
     public void loadPieChart() {
         ObservableList<PieChart.Data> pieChartData
                 = FXCollections.observableArrayList(
@@ -42,6 +54,9 @@ public class FXShapes {
         pieChart.setData(pieChartData);
     }
 
+    /**
+     *
+     */
     public void loadBarChart() {
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("Ciudades");

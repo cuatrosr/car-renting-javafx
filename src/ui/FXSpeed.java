@@ -15,6 +15,10 @@ import model.RentingCar;
 import thread.ThreadCarMove;
 import thread.ThreadVelocity;
 
+/**
+ *
+ * @author DELL
+ */
 public class FXSpeed implements Initializable {
 
     @FXML
@@ -37,19 +41,36 @@ public class FXSpeed implements Initializable {
     private ThreadVelocity tv;
     private ThreadCarMove tc;
 
+    /**
+     *
+     * @param rc
+     * @param fxGUI
+     */
     public FXSpeed(RentingCar rc, FXController fxGUI) {
         this.rc = rc;
         this.fxGUI = fxGUI;
     }
 
+    /**
+     *
+     * @return
+     */
     public Pane getPane() {
         return pSpeed;
     }
 
+    /**
+     *
+     * @return
+     */
     public ThreadVelocity getTv() {
         return tv;
     }
 
+    /**
+     *
+     * @return
+     */
     public ThreadCarMove getTc() {
         return tc;
     }
@@ -59,11 +80,18 @@ public class FXSpeed implements Initializable {
         setImages();
     }
 
+    /**
+     *
+     */
     public void setImages() {
         ivCar.setImage(new Image("Images/Wkisby.gif"));
         txtResult.setVisible(false);
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onTestBtn(ActionEvent event) {
         ivCar.setLayoutX(0);
@@ -86,17 +114,27 @@ public class FXSpeed implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param msg
+     */
     public void showResult(String msg) {
         txtResult.setText(msg);
         txtResult.setVisible(true);
     }
 
+    /**
+     *
+     */
     public void moveCar() {
         ivCar.setLayoutX(ivCar.getLayoutX() + 1);
     }
-    
+
+    /**
+     *
+     */
     @SuppressWarnings("deprecation")
-	public void interrupThreads() {
+    public void interrupThreads() {
         tc.stop();
     }
 }

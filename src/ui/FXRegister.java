@@ -11,6 +11,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import thread.ThreadChangeWindow;
 
+/**
+ *
+ * @author DELL
+ */
 public class FXRegister {
 
     @FXML
@@ -40,16 +44,32 @@ public class FXRegister {
     private RentingCar rc;
     private FXController fxGUI;
 
+    /**
+     *
+     * @param rc
+     * @param fxGUI
+     * @throws IOException
+     */
     public FXRegister(RentingCar rc, FXController fxGUI) throws IOException {
         this.rc = rc;
         this.fxGUI = fxGUI;
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onIhaveAccount(ActionEvent event) throws IOException {
         fxGUI.showLogin();
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onRegister(ActionEvent event) throws IOException {
         boolean added = addRegister();
@@ -63,6 +83,10 @@ public class FXRegister {
         }
     }
 
+    /**
+     *
+     * @return @throws IOException
+     */
     public boolean addRegister() throws IOException {
         try {
             if (!txtRegisterName.getText().equals("") && !txtRegisterLastName.getText().equals("") && !txtRegisterID.getText().equals("")

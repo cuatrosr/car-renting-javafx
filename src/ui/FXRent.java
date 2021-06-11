@@ -17,6 +17,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import model.*;
 
+/**
+ *
+ * @author DELL
+ */
 public class FXRent {
 
     private static final long serialVersionUID = 1;
@@ -112,11 +116,19 @@ public class FXRent {
     private FXController fxGUI;
     DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+    /**
+     *
+     * @param rc
+     * @param fxGUI
+     */
     public FXRent(RentingCar rc, FXController fxGUI) {
         this.rc = rc;
         this.fxGUI = fxGUI;
     }
 
+    /**
+     *
+     */
     public void setImagesButton() {
         Image iAddRentPNG = new Image("Images/add-file.png");
         Image iRefreshRentPNG = new Image("Images/return-sign.png");
@@ -128,10 +140,17 @@ public class FXRent {
         iSelectVehicleRent.setImage(iSelectVehicleRentPNG);
     }
 
+    /**
+     *
+     * @return
+     */
     public Pane getPane() {
         return rPane;
     }
 
+    /**
+     *
+     */
     public void btnInitialize() {
         btnNewR.setDisable(false);
         btnReverseR.setDisable(true);
@@ -142,6 +161,10 @@ public class FXRent {
         btnAddRent.setDisable(true);
     }
 
+    /**
+     *
+     * @param stat
+     */
     public void statButtonsWhenNew(boolean stat) {
         btnNewR.setDisable(!stat);
         btnReverseR.setDisable(stat);
@@ -152,6 +175,10 @@ public class FXRent {
         btnAddRent.setDisable(stat);
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onNewR(ActionEvent event) {
         statButtonsWhenNew(false);
@@ -159,6 +186,11 @@ public class FXRent {
         dpDateIF.setText(formatDate.format(LocalDate.now()));
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onSearchClientsInRent(ActionEvent event) throws IOException {
         fxGUI.disablePane(rPane, true);
@@ -166,6 +198,11 @@ public class FXRent {
         fxGUI.setOtherWindowSelected(true);
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onSearchVehicleInRent(ActionEvent event) throws IOException {
         fxGUI.disablePane(rPane, true);
@@ -173,6 +210,10 @@ public class FXRent {
         fxGUI.setOtherWindowSelected(true);
     }
 
+    /**
+     *
+     * @param clientSelected
+     */
     public void setTextClient(Client clientSelected) {
         txtCodeCR.setText(clientSelected.getCodeP() + "");
         txtNameCR.setText(clientSelected.getNameLN());
@@ -180,6 +221,10 @@ public class FXRent {
         txtPhoneCR.setText(clientSelected.getPhoneC() + "");
     }
 
+    /**
+     *
+     * @param carSelected
+     */
     public void setTextCar(Car carSelected) {
         txtCodeVR.setText(carSelected.getCodeV() + "");
         txtPlateVR.setText(carSelected.getPlate());
@@ -188,6 +233,10 @@ public class FXRent {
         txtBrandVR.setText(carSelected.getNameBrand());
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onAddDateRent(ActionEvent event) {
         try {
@@ -205,6 +254,11 @@ public class FXRent {
         }
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onAddRent(ActionEvent event) throws IOException {
         if (!txtTicketR.getText().equals("") && !txtCodeCR.getText().equals("") && !txtCodeVR.getText().equals("") && !txtAmountDiasR.getText().equals("")) {
@@ -232,6 +286,10 @@ public class FXRent {
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onCleanDateRent(ActionEvent event) {
         dpDateFR.setValue(null);
@@ -239,6 +297,10 @@ public class FXRent {
         txtTotalPrice.setText(null);
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onReverseRent(ActionEvent event) {
         onCleanDateRent(event);

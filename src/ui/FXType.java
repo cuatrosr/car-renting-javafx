@@ -21,6 +21,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import model.*;
 
+/**
+ *
+ * @author DELL
+ */
 public class FXType implements Initializable {
 
     private static final long serialVersionUID = 1;
@@ -89,6 +93,11 @@ public class FXType implements Initializable {
     private RentingCar rc;
     private FXController fxGUI;
 
+    /**
+     *
+     * @param rc
+     * @param fxGUI
+     */
     public FXType(RentingCar rc, FXController fxGUI) {
         this.rc = rc;
         this.fxGUI = fxGUI;
@@ -101,6 +110,9 @@ public class FXType implements Initializable {
         onTableListTypeV();
     }
 
+    /**
+     *
+     */
     public void setImagesButton() {
         Image iAddTypePNG = new Image("Images/add-file.png");
         Image iSaveTypePNG = new Image("Images/save-disk.png");
@@ -114,6 +126,9 @@ public class FXType implements Initializable {
         iSearchType.setImage(iSearchTypePNG);
     }
 
+    /**
+     *
+     */
     public void btnInitializae() {
         btnNewTypeV.setDisable(false);
         btnSaveTypeV.setDisable(true);
@@ -122,6 +137,10 @@ public class FXType implements Initializable {
         btnSearchTypeV.setDisable(false);
     }
 
+    /**
+     *
+     * @param stat
+     */
     public void statButtonsWhenNew(boolean stat) {
         btnNewTypeV.setDisable(stat);
         btnSaveTypeV.setDisable(!stat);
@@ -130,12 +149,21 @@ public class FXType implements Initializable {
         btnSearchTypeV.setDisable(stat);
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onNewTypeV(ActionEvent event) {
         txtCodeTypeV.setText(rc.getCode() + "");
         statButtonsWhenNew(true);
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onSaveTypeV(ActionEvent event) throws IOException {
         if (!txtNameTypeV.getText().equals("") && !txtQuialityTypeV.getText().equals("")) {
@@ -161,6 +189,11 @@ public class FXType implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onEditTypeV(ActionEvent event) throws IOException {
         if (!txtNameTypeV.getText().equals("") && !txtQuialityTypeV.getText().equals("")) {
@@ -185,6 +218,11 @@ public class FXType implements Initializable {
         btnInitializae();
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onRemoveTypeV(ActionEvent event) throws IOException {
         try {
@@ -205,6 +243,10 @@ public class FXType implements Initializable {
         fxGUI.setSelectObjectCode(0);
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onSelectTypeV(MouseEvent event) {
         TypeV typeVSelected;
@@ -224,6 +266,9 @@ public class FXType implements Initializable {
         }
     }
 
+    /**
+     *
+     */
     public void onTableListTypeV() {
         List<TypeV> types = rc.getListTypeV();
         ObservableList<TypeV> newTableTypeV;
@@ -237,9 +282,13 @@ public class FXType implements Initializable {
         tblTypeV.refresh();
     }
 
+    /**
+     *
+     * @param name
+     */
     public void onTableSearchTypeV(String name) {
         tblTypeV.getItems().clear();
-        
+
         List<TypeV> types = rc.searchTypeName(name);
         ObservableList<TypeV> newTableTypeV;
         newTableTypeV = FXCollections.observableArrayList(types);
@@ -253,8 +302,8 @@ public class FXType implements Initializable {
     }
 
     @FXML
-    void onSearchTypeV(ActionEvent event) {
-        if(!txtSearchTypeV.getText().equals("")){
+    public void onSearchTypeV(ActionEvent event) {
+        if (!txtSearchTypeV.getText().equals("")) {
             onTableSearchTypeV(txtSearchTypeV.getText());
         } else {
             fxGUI.showAlert(false, "Por favor ingresa un criterio de busqueda", stackPane);

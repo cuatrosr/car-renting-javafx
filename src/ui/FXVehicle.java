@@ -28,8 +28,13 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import model.*;
 
+/**
+ *
+ * @author DELL
+ */
 public class FXVehicle {
 
+    //---------------------------- Attributes of FXVehicle class ----------------------------\\
     private static final long serialVersionUID = 1;
     @FXML
     private Pane vPane;
@@ -172,12 +177,22 @@ public class FXVehicle {
     private RentingCar rc;
     private FXController fxGUI;
 
+    //-------------------------- Constructor, getter and setter class --------------------------\\
+    /**
+     * FXVehicle class constructor, initialize all relations.
+     *
+     * @param rc
+     * @param fxGUI
+     */
     public FXVehicle(RentingCar rc, FXController fxGUI) {
         this.rc = rc;
         this.fxGUI = fxGUI;
         positionCar = 0;
     }
 
+    /**
+     *
+     */
     public void setImagesButton() {
         Image iAddVehiclePNG = new Image("Images/add-file.png");
         Image iSaveVehiclePNG = new Image("Images/save-disk.png");
@@ -197,33 +212,69 @@ public class FXVehicle {
         iSelectPhotoVehicle.setImage(iSelectPhotoVechiclePNG);
     }
 
+    /**
+     *
+     */
     public void setImagesList() {
         Image iSearchVehiclePNG = new Image("Images/search.png");
         iSearchInListVehicle.setImage(iSearchVehiclePNG);
     }
 
+    /**
+     *
+     * @return
+     */
     public Pane getPane() {
         return vPane;
     }
 
+    /**
+     *
+     * @return
+     */
+    public boolean getSelectedDisp() {
+        return rbDispVY.isSelected();
+    }
+
+    /**
+     * Show Brand GUI
+     *
+     * @param event ActionEvent's Object
+     * @throws IOException
+     */
     @FXML
     public void onGBrand(ActionEvent event) throws IOException {
         fxGUI.disablePane(vPane, true);
         fxGUI.showGBrand(false);
     }
 
+    /**
+     * Show Type GUI
+     *
+     * @param event ActionEvent's Object
+     * @throws IOException
+     */
     @FXML
     public void onGType(ActionEvent event) throws IOException {
         fxGUI.disablePane(vPane, true);
         fxGUI.showGType(false);
     }
 
+    /**
+     * Show List Vehicles GUI
+     *
+     * @param event ActionEvent's Object
+     * @throws IOException
+     */
     @FXML
     public void onListVehicle(ActionEvent event) throws IOException {
         fxGUI.disablePane(vPane, true);
         fxGUI.showListVehicle(true);
     }
 
+    /**
+     * Set brand list
+     */
     public void showBrandDisp() {
         try {
             List<String> brandName = new ArrayList<>();
@@ -238,6 +289,9 @@ public class FXVehicle {
         }
     }
 
+    /**
+     * Set Type list
+     */
     public void showTypeDisp() {
         try {
             List<String> typeName = new ArrayList<>();
@@ -252,6 +306,11 @@ public class FXVehicle {
         }
     }
 
+    /**
+     * Select Image of Vehicle
+     *
+     * @param event ActionEvent's Object
+     */
     @FXML
     public void onSelectImageV(ActionEvent event) {
         try {
@@ -273,6 +332,12 @@ public class FXVehicle {
         }
     }
 
+    /**
+     * Convert String to Image
+     *
+     * @param image String's Object, string can't be null
+     * @return
+     */
     public Image stringToImage(String image) {
         try {
             File f = new File(image);
@@ -283,6 +348,11 @@ public class FXVehicle {
         return null;
     }
 
+    /**
+     * Set code when add new Vehicle
+     *
+     * @param event ActionEvent's Object
+     */
     @FXML
     void onNewV(ActionEvent event) {
         clearTextField();
@@ -291,6 +361,11 @@ public class FXVehicle {
         iPhotoV.setImage(null);
     }
 
+    /**
+     * Disable or enable when add new Vehicle
+     *
+     * @param stat
+     */
     public void statButtonsWhenNew(boolean stat) {
         btnNewV.setDisable(stat);
         btnSaveV.setDisable(!stat);
@@ -302,6 +377,9 @@ public class FXVehicle {
         btnImageV.setDisable(!stat);
     }
 
+    /**
+     * Disable or enable all buttons when initialize
+     */
     public void btnInitialize() {
         btnNewV.setDisable(false);
         btnSaveV.setDisable(true);
@@ -313,6 +391,12 @@ public class FXVehicle {
         btnListV.setDisable(false);
     }
 
+    /**
+     * Save the new Vehicle
+     *
+     * @param event ActionEvent's Object
+     * @throws IOException
+     */
     @FXML
     public void onSaveV(ActionEvent event) throws IOException {
         if (!txtCodeV.getText().equals("") && cbBrandV.getValue() != null && cbTypeV.getValue() != null && !txtPlateV.getText().equals("")
@@ -343,10 +427,9 @@ public class FXVehicle {
         iPhotoV.setImage(null);
     }
 
-    public boolean getSelectedDisp() {
-        return rbDispVY.isSelected();
-    }
-
+    /**
+     * Clear the text field
+     */
     public void clearTextField() {
         txtCodeV.clear();
         cbBrandV.setValue(null);
@@ -360,6 +443,9 @@ public class FXVehicle {
         rbDispVY.setSelected(false);
     }
 
+    /**
+     * Set the table view
+     */
     public void onTableVehicle() {
         rc.showBinaryTreeVehicle(rc.getRootNameC());
 
@@ -381,6 +467,11 @@ public class FXVehicle {
         tblVehicle.refresh();
     }
 
+    /**
+     * Select a vehicle
+     *
+     * @param event
+     */
     @FXML
     public void onSelecteVehicle(MouseEvent event) {
         Car selectedCar;
@@ -407,6 +498,11 @@ public class FXVehicle {
         }
     }
 
+    /**
+     * get a next Vehicle from the linked list
+     *
+     * @param event ActionEvent's object
+     */
     @FXML
     void onNextV(ActionEvent event) {
         try {
@@ -417,6 +513,11 @@ public class FXVehicle {
         }
     }
 
+    /**
+     * get a preview Vehicle from the linked list
+     *
+     * @param event ActionEvent's object
+     */
     @FXML
     void onPrevV(ActionEvent event) {
         try {
@@ -427,6 +528,11 @@ public class FXVehicle {
         }
     }
 
+    /**
+     * Change the text field selected
+     *
+     * @param carSelected Car's object, car can't be null
+     */
     public void changeTextFieldsSelecteds(Car carSelected) {
         txtCodeV.setText(carSelected.getCodeV() + "");
         if (carSelected.getBrand() != null) {
@@ -454,6 +560,12 @@ public class FXVehicle {
         }
     }
 
+    /**
+     * Delete selected vehicle
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onRemoveEdit(ActionEvent event) throws IOException {
         try {
@@ -471,6 +583,12 @@ public class FXVehicle {
         iPhotoV.setImage(null);
     }
 
+    /**
+     * Edit selected vehicle
+     *
+     * @param event ActionEvent's object, car can't be null
+     * @throws IOException
+     */
     @FXML
     public void onEditV(ActionEvent event) throws IOException {
         if (!txtCodeV.getText().equals("") && cbBrandV.getValue() != null && cbTypeV.getValue() != null && !txtPlateV.getText().equals("")
@@ -497,6 +615,11 @@ public class FXVehicle {
         imagePath = "";
     }
 
+    /**
+     * set table view
+     *
+     * @param plate
+     */
     public void onTableSearchPlate(String plate) {
         tblVehicle.getItems().clear();
 
@@ -518,6 +641,10 @@ public class FXVehicle {
         tblVehicle.refresh();
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onShowAllV(ActionEvent event) {
         tblVehicle.getItems().clear();
@@ -525,6 +652,10 @@ public class FXVehicle {
         onTableVehicle();
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onSearchPlateV(ActionEvent event) {
         if (!txtSearchPlateV.getText().equals("")) {

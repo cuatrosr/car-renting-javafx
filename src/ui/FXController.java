@@ -23,8 +23,13 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.*;
 
+/**
+ *
+ * @author DELL
+ */
 public class FXController implements Serializable {
 
+    //---------------------------- Attributes of FXController class ----------------------------\\
     @FXML
     private Pane pMain;
     private static final long serialVersionUID = 1;
@@ -49,6 +54,13 @@ public class FXController implements Serializable {
     private int selectCarRent;
     private boolean otherWindowSelected;
 
+    //-------------------------- Constructor, getter and setter class --------------------------\\
+    /**
+     * FXController class constructor, initialize all relations.
+     *
+     * @throws IOException
+     * @param rc object's RentingCar
+     */
     public FXController(RentingCar rc) throws IOException {
         this.rc = rc;
         loadData();
@@ -68,6 +80,84 @@ public class FXController implements Serializable {
         xShapes = new FXShapes(this.rc, this);
     }
 
+    /**
+     *
+     * @return
+     */
+    public Pane getPMain() {
+        return pMain;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getSelectObjectCode() {
+        return selectObjectCode;
+    }
+
+    /**
+     *
+     * @param code
+     */
+    public void setSelectObjectCode(int code) {
+        this.selectObjectCode = code;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getSelectClientRent() {
+        return selectClientRent;
+    }
+
+    /**
+     *
+     * @param selectClientRent
+     */
+    public void setSelectClientRent(int selectClientRent) {
+        this.selectClientRent = selectClientRent;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getSelectCarRent() {
+        return selectCarRent;
+    }
+
+    /**
+     *
+     * @param selectCarRent
+     */
+    public void setSelectCarRent(int selectCarRent) {
+        this.selectCarRent = selectCarRent;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isOtherWindowSelected() {
+        return otherWindowSelected;
+    }
+
+    /**
+     *
+     * @param otherWindowSelected
+     */
+    public void setOtherWindowSelected(boolean otherWindowSelected) {
+        this.otherWindowSelected = otherWindowSelected;
+    }
+
+    //-------------------------- Save and load data --------------------------\\
+    /**
+     * Load the data from a file with extension .CGD
+     *
+     * @throws FileNotFoundException
+     */
     public void loadData() throws FileNotFoundException {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE)));
@@ -78,12 +168,23 @@ public class FXController implements Serializable {
         }
     }
 
+    /**
+     * Save the data to a file with extension .CGD
+     * @throws java.io.IOException
+     */
     public void saveData() throws IOException {
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE));
         oos.writeObject(this.rc);
         oos.close();
     }
 
+    //-------------------------- Gestion stages, panes --------------------------\\
+    /**
+     * Open a new Stage
+     *
+     * @param root Parent's object to initiallize the scene. a Parent not null
+     * @return 
+     */
     public Stage newStage(Parent root) {
         Stage newStage = new Stage();
         Scene scene = new Scene(root);
@@ -94,15 +195,32 @@ public class FXController implements Serializable {
         return newStage;
     }
 
+    /**
+     * Close a new Stage
+     *
+     * @param bpMain Pane's object to be closed. Pane not null
+     */
     public void closeStage(Pane bpMain) {
         Stage stage = (Stage) bpMain.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Disable a Pane
+     *
+     * @param bpMain Pane's object to be disable. Pane not null
+     * @param status Pane's next status (True = disable | False = enable)
+     */
     public void disablePane(Pane bpMain, boolean status) {
         bpMain.setDisable(status);
     }
 
+    /**
+     * Hability Pane
+     *
+     * @param bpMain Pane's object to be enable. Pane not null
+     * @param closed Pane's closed
+     */
     public void habilityPane(Pane bpMain, Stage closed) {
         closed.setOnCloseRequest((WindowEvent event) -> {
             disablePane(bpMain, false);
@@ -128,42 +246,12 @@ public class FXController implements Serializable {
         });
     }
 
-    public Pane getPMain() {
-        return pMain;
-    }
-
-    public int getSelectObjectCode() {
-        return selectObjectCode;
-    }
-
-    public void setSelectObjectCode(int code) {
-        this.selectObjectCode = code;
-    }
-
-    public int getSelectClientRent() {
-        return selectClientRent;
-    }
-
-    public void setSelectClientRent(int selectClientRent) {
-        this.selectClientRent = selectClientRent;
-    }
-
-    public int getSelectCarRent() {
-        return selectCarRent;
-    }
-
-    public void setSelectCarRent(int selectCarRent) {
-        this.selectCarRent = selectCarRent;
-    }
-
-    public boolean isOtherWindowSelected() {
-        return otherWindowSelected;
-    }
-
-    public void setOtherWindowSelected(boolean otherWindowSelected) {
-        this.otherWindowSelected = otherWindowSelected;
-    }
-
+    //-------------------------- Show GUI Methods --------------------------\\
+    /**
+     * Show Login GUI
+     *
+     * @throws IOException
+     */
     public void showLogin() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/Login.fxml"));
         fxmlLoader.setController(xLogin);
@@ -171,6 +259,11 @@ public class FXController implements Serializable {
         pMain.getChildren().setAll(root);
     }
 
+    /**
+     * Show Register GUI
+     *
+     * @throws IOException
+     */
     public void showRegister() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/Register.fxml"));
         fxmlLoader.setController(xRegister);
@@ -178,6 +271,11 @@ public class FXController implements Serializable {
         pMain.getChildren().setAll(root);
     }
 
+    /**
+     * Show Menu GUI
+     *
+     * @throws IOException
+     */
     public void showMenu() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/Menu.fxml"));
         fxmlLoader.setController(xMenu);
@@ -185,6 +283,11 @@ public class FXController implements Serializable {
         newStage(root);
     }
 
+    /**
+     * Show Client GUI
+     *
+     * @throws IOException
+     */
     public void showGClient() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/AddClient.fxml"));
         fxmlLoader.setController(xClient);
@@ -196,6 +299,11 @@ public class FXController implements Serializable {
         habilityPane(xMenu.getPane(), clientStage);
     }
 
+    /**
+     * Show Vehicle GUI
+     *
+     * @throws IOException
+     */
     public void showGVehicle() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/AddVehicle.fxml"));
         fxmlLoader.setController(xVehicle);
@@ -208,6 +316,12 @@ public class FXController implements Serializable {
         habilityPane(xMenu.getPane(), vehicleStage);
     }
 
+    /**
+     * Show City GUI
+     *
+     * @param out
+     * @throws IOException
+     */
     public void showGCity(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/AddCity.fxml"));
         fxmlLoader.setController(xCity);
@@ -221,6 +335,12 @@ public class FXController implements Serializable {
         }
     }
 
+    /**
+     * Show Brand GUI
+     *
+     * @param out
+     * @throws IOException
+     */
     public void showGBrand(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/AddBrand.fxml"));
         fxmlLoader.setController(xBrand);
@@ -233,6 +353,12 @@ public class FXController implements Serializable {
         }
     }
 
+    /**
+     * Show Type GUI
+     *
+     * @param out
+     * @throws IOException
+     */
     public void showGType(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/AddType.fxml"));
         fxmlLoader.setController(xType);
@@ -245,6 +371,11 @@ public class FXController implements Serializable {
         }
     }
 
+    /**
+     * Show Rent GUI
+     *
+     * @throws IOException
+     */
     public void showGRent() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/Rent.fxml"));
         fxmlLoader.setController(xRent);
@@ -255,6 +386,11 @@ public class FXController implements Serializable {
         habilityPane(xMenu.getPane(), rentStage);
     }
 
+    /**
+     * Show Devolution GUI
+     *
+     * @throws IOException
+     */
     public void showGDevolution() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/Devolution.fxml"));
         fxmlLoader.setController(xDevol);
@@ -264,6 +400,12 @@ public class FXController implements Serializable {
         habilityPane(xMenu.getPane(), devolStage);
     }
 
+    /**
+     * Show List Client GUI
+     *
+     * @param out
+     * @throws IOException
+     */
     public void showListClient(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ListClients.fxml"));
         fxmlLoader.setController(xClient);
@@ -278,6 +420,11 @@ public class FXController implements Serializable {
         }
     }
 
+    /**
+     * Show List Employee GUI
+     *
+     * @throws IOException
+     */
     public void showListEmployee() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ListEmployee.fxml"));
         fxmlLoader.setController(xEmployee);
@@ -290,6 +437,11 @@ public class FXController implements Serializable {
         habilityPane(xMenu.getPane(), listEmployeeStage);
     }
 
+    /**
+     * Show List Rent GUI
+     *
+     * @throws IOException
+     */
     public void showListRent() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ListRent.fxml"));
         fxmlLoader.setController(xDevol);
@@ -300,6 +452,12 @@ public class FXController implements Serializable {
         habilityPane(xDevol.getPane(), listRentStage);
     }
 
+    /**
+     * Show List Vehicle GUI
+     *
+     * @param out
+     * @throws IOException
+     */
     public void showListVehicle(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ListVehicles.fxml"));
         fxmlLoader.setController(xVehicle);
@@ -315,6 +473,12 @@ public class FXController implements Serializable {
         }
     }
 
+    /**
+     * Show Report Client GUI
+     *
+     * @param out
+     * @throws IOException
+     */
     public void showReportClient(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ReportClients.fxml"));
         fxmlLoader.setController(xReport);
@@ -329,6 +493,12 @@ public class FXController implements Serializable {
         }
     }
 
+    /**
+     * Show Report Rent GUI
+     *
+     * @param out
+     * @throws IOException
+     */
     public void showReportRent(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ReportRent.fxml"));
         fxmlLoader.setController(xReport);
@@ -342,6 +512,12 @@ public class FXController implements Serializable {
         }
     }
 
+    /**
+     * Show Report Vehicle GUI
+     *
+     * @param out
+     * @throws IOException
+     */
     public void showReportVehicles(boolean out) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/ReportVehicles.fxml"));
         fxmlLoader.setController(xReport);
@@ -356,6 +532,11 @@ public class FXController implements Serializable {
         }
     }
 
+    /**
+     * Show Select Report GUI
+     *
+     * @throws IOException
+     */
     public void showSelectReport() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/SelectReport.fxml"));
         fxmlLoader.setController(xReport);
@@ -365,6 +546,11 @@ public class FXController implements Serializable {
         habilityPane(xMenu.getPane(), sReportStage);
     }
 
+    /**
+     * Show Top Employee GUI
+     *
+     * @throws IOException
+     */
     public void showTopEmployee() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/TopEmployee.fxml"));
         fxmlLoader.setController(xEmployee);
@@ -376,6 +562,11 @@ public class FXController implements Serializable {
         habilityPane(xMenu.getPane(), topEmployeeStage);
     }
 
+    /**
+     * Show Save Pay on Devol GUI
+     *
+     * @throws IOException
+     */
     public void showSavePay() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/SavePay.fxml"));
         fxmlLoader.setController(xDevol);
@@ -384,6 +575,14 @@ public class FXController implements Serializable {
         habilityPane(xDevol.getPane(), savePayStage);
     }
 
+    /**
+     * Show Alert GUI
+     *
+     * @param success
+     * @param msg
+     * @param stackPane
+     * @throws IOException
+     */
     public void showAlert(boolean success, String msg, StackPane stackPane) {
         JFXDialogLayout content = new JFXDialogLayout();
         JFXButton button = new JFXButton("Okay");
@@ -403,6 +602,11 @@ public class FXController implements Serializable {
         }
     }
 
+    /**
+     * Show Speed Test GUI
+     *
+     * @throws IOException
+     */
     public void showSpeed() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/Speed.fxml"));
         fxmlLoader.setController(xSpeed);
@@ -411,6 +615,11 @@ public class FXController implements Serializable {
         habilityPane(xMenu.getPane(), testSpeed);
     }
 
+    /**
+     * Show Pie Chart GUI
+     *
+     * @throws IOException
+     */
     public void showPieChart() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/StatRent.fxml"));
         fxmlLoader.setController(xShapes);
@@ -420,6 +629,11 @@ public class FXController implements Serializable {
         habilityPane(xMenu.getPane(), pieChartStage);
     }
 
+    /**
+     * Show Bar Chart GUI
+     *
+     * @throws IOException
+     */
     public void showBarChart() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/StatObjects.fxml"));
         fxmlLoader.setController(xShapes);

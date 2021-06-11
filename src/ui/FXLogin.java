@@ -11,6 +11,10 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
+/**
+ *
+ * @author DELL
+ */
 public class FXLogin {
 
     private static final long serialVersionUID = 1;
@@ -29,16 +33,32 @@ public class FXLogin {
     private RentingCar rc;
     private FXController fxGUI;
 
+    /**
+     *
+     * @param rc
+     * @param fxGUI
+     * @throws IOException
+     */
     public FXLogin(RentingCar rc, FXController fxGUI) throws IOException {
         this.rc = rc;
         this.fxGUI = fxGUI;
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onCreateAccount(ActionEvent event) throws IOException {
         fxGUI.showRegister();
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onLogIn(ActionEvent event) throws IOException {
         boolean login = checkLogin();

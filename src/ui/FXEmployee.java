@@ -14,6 +14,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.*;
 
+/**
+ *
+ * @author DELL
+ */
 public class FXEmployee {
 
     private static final long serialVersionUID = 1;
@@ -76,24 +80,42 @@ public class FXEmployee {
     private RentingCar rc;
     private FXController fxGUI;
 
+    /**
+     *
+     * @param rc
+     * @param fxGUI
+     */
     public FXEmployee(RentingCar rc, FXController fxGUI) {
         this.rc = rc;
         this.fxGUI = fxGUI;
     }
 
+    /**
+     *
+     * @return
+     */
     public Image getImageButton() {
         Image iSearchEmployee = new Image("Images/search.png");
         return iSearchEmployee;
     }
 
+    /**
+     *
+     */
     public void setImageEmployee() {
         iSearchEmployee.setImage(getImageButton());
     }
 
+    /**
+     *
+     */
     public void setImageTopEmployee() {
         iSearchTopEmployee.setImage(getImageButton());
     }
 
+    /**
+     *
+     */
     public void onTableEmployeeName() {
         tblEmployee.getItems().clear();
 
@@ -114,6 +136,11 @@ public class FXEmployee {
         lblTotalEmployee.setText(lblTotalEmployee.getText() + " " + rc.getShowRootName().size());
     }
 
+    /**
+     *
+     * @param out
+     * @param name
+     */
     public void onTableEmployeeSearch(boolean out, String name) {
         tblEmployee.getItems().clear();
 
@@ -129,6 +156,10 @@ public class FXEmployee {
         tblcUserEmployee.setCellValueFactory(new PropertyValueFactory<>("username"));
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onSearchEmployee(ActionEvent event) {
         try {
@@ -139,6 +170,10 @@ public class FXEmployee {
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onShowAllEmployee(ActionEvent event) {
         rc.setShowRootName();
@@ -146,6 +181,9 @@ public class FXEmployee {
         onTableEmployeeName();
     }
 
+    /**
+     *
+     */
     public void onTableTopEmployee() {
         rc.showBinaryTreeNameEmployee(rc.getRootNameE());
         List<Employee> employeestest = rc.getShowRootName();
@@ -162,6 +200,11 @@ public class FXEmployee {
         tblcComisionTopE.setCellValueFactory(new PropertyValueFactory<>("vComision"));
     }
 
+    /**
+     *
+     * @param out
+     * @param name
+     */
     public void onTableTopEmployeeSearch(boolean out, String name) {
         tblTopEmployee.getItems().clear();
 
@@ -177,6 +220,10 @@ public class FXEmployee {
         tblcComisionTopE.setCellValueFactory(new PropertyValueFactory<>("vComision"));
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onSearchTopE(ActionEvent event) {
         try {
@@ -187,6 +234,10 @@ public class FXEmployee {
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onShowAllTopE(ActionEvent event) {
         rc.setShowRootName();
