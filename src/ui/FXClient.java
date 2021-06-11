@@ -21,6 +21,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import model.*;
 
+/**
+ *
+ * @author usuario
+ */
 public class FXClient {
 
     private static final long serialVersionUID = 1;
@@ -134,11 +138,19 @@ public class FXClient {
     private RentingCar rc;
     private FXController fxGUI;
 
+    /**
+     *
+     * @param rc
+     * @param fxGUI
+     */
     public FXClient(RentingCar rc, FXController fxGUI) {
         this.rc = rc;
         this.fxGUI = fxGUI;
     }
 
+    /**
+     *
+     */
     public void setImagesButton() {
         Image iAddClientPNG = new Image("Images/add-file.png");
         Image iSaveClientPNG = new Image("Images/save-disk.png");
@@ -154,15 +166,25 @@ public class FXClient {
         iSearchClient.setImage(iSearchClientPNG);
     }
 
+    /**
+     *
+     */
     public void setImagesList() {
         Image iSearchClientPNG = new Image("Images/search.png");
         iSearchInListClient.setImage(iSearchClientPNG);
     }
 
+    /**
+     *
+     * @return
+     */
     public Pane getPane() {
         return pClient;
     }
 
+    /**
+     *
+     */
     public void btnInitialize() {
         btnNewClient.setDisable(false);
         btnSaveClient.setDisable(true);
@@ -173,6 +195,10 @@ public class FXClient {
         cbCityClient.setDisableAnimation(true);
     }
 
+    /**
+     *
+     * @param stat
+     */
     public void statButtonsWhenNew(boolean stat) {
         btnNewClient.setDisable(stat);
         btnSaveClient.setDisable(!stat);
@@ -182,6 +208,9 @@ public class FXClient {
         btnListClients.setDisable(stat);
     }
 
+    /**
+     *
+     */
     public void finishedAction() {
         fxGUI.setSelectObjectCode(0);
         txtCodeClient.clear();
@@ -196,18 +225,32 @@ public class FXClient {
         btnInitialize();
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onGCity(ActionEvent event) throws IOException {
         fxGUI.disablePane(pClient, true);
         fxGUI.showGCity(false);
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onListClients(ActionEvent event) throws IOException {
         fxGUI.disablePane(pClient, true);
         fxGUI.showListClient(true);
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onNewClient(ActionEvent event) {
         statButtonsWhenNew(true);
@@ -215,6 +258,11 @@ public class FXClient {
         showCitiesDisp();
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onSaveClient(ActionEvent event) throws IOException {
         if (!txtIDClient.getText().equals("") && !txtNameClient.getText().equals("") && !txtLastNameClient.getText().equals("")
@@ -252,6 +300,11 @@ public class FXClient {
         }
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onEditClient(ActionEvent event) throws IOException {
         if (!txtIDClient.getText().equals("") && !txtNameClient.getText().equals("") && !txtLastNameClient.getText().equals("")
@@ -277,6 +330,11 @@ public class FXClient {
         finishedAction();
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onRemoveClient(ActionEvent event) throws IOException {
         try {
@@ -289,6 +347,10 @@ public class FXClient {
         finishedAction();
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onSelecteClient(MouseEvent event) {
         Client clientSelected;
@@ -305,6 +367,10 @@ public class FXClient {
         }
     }
 
+    /**
+     *
+     * @param clientSelected
+     */
     public void test(Client clientSelected) {
         fxGUI.setSelectObjectCode(clientSelected.getCodeP());
         txtCodeClient.setText(clientSelected.getCodeP() + "");
@@ -322,6 +388,9 @@ public class FXClient {
         btnCityClient.setDisable(true);
     }
 
+    /**
+     *
+     */
     public void onTableListClient() {
         List<Client> clients = rc.getListClients();
         ObservableList<Client> newTableClient;
@@ -340,6 +409,9 @@ public class FXClient {
         tblClient.refresh();
     }
 
+    /**
+     *
+     */
     public void showCitiesDisp() {
         try {
             List<String> citiesName = new ArrayList<>();
@@ -354,6 +426,11 @@ public class FXClient {
         }
     }
 
+    /**
+     *
+     * @param out
+     * @param name
+     */
     public void searchTableClient(boolean out, String name) {
         tblClient.getItems().clear();
 
@@ -372,8 +449,12 @@ public class FXClient {
         tblcEmailClient.setCellValueFactory(new PropertyValueFactory<>("emailC"));
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML
-    void onSearchClient(ActionEvent event) {
+    public void onSearchClient(ActionEvent event) {
         try {
             Long id = Long.parseLong(txtParamSearchC.getText());
             searchTableClient(false, txtParamSearchC.getText());
@@ -382,8 +463,12 @@ public class FXClient {
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML
-    void onShowAllClients(ActionEvent event) {
+    public void onShowAllClients(ActionEvent event) {
         tblClient.getItems().clear();
         onTableListClient();
     }

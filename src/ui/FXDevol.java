@@ -21,6 +21,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import model.*;
 
+/**
+ *
+ * @author usuario
+ */
 public class FXDevol {
 
     private static final long serialVersionUID = 1;
@@ -192,11 +196,19 @@ public class FXDevol {
     private RentingCar rc;
     private FXController fxGUI;
 
+    /**
+     *
+     * @param rc
+     * @param fxGUI
+     */
     public FXDevol(RentingCar rc, FXController fxGUI) {
         this.rc = rc;
         this.fxGUI = fxGUI;
     }
 
+    /**
+     *
+     */
     public void setImagesButton() {
         Image iSelectRentDevolPNG = new Image("Images/car-key.png");
         Image iPayDevolPNG = new Image("Images/pay-check.png");
@@ -204,22 +216,39 @@ public class FXDevol {
         iPayDevol.setImage(iPayDevolPNG);
     }
 
+    /**
+     *
+     */
     public void setImagesList() {
         Image iSearchRentPNG = new Image("Images/search.png");
         iSearchIDRent.setImage(iSearchRentPNG);
         iSearchTicketRent.setImage(iSearchRentPNG);
     }
 
+    /**
+     *
+     * @return
+     */
     public Pane getPane() {
         return dPane;
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onListRentoinDevol(ActionEvent event) throws IOException {
         fxGUI.disablePane(dPane, true);
         fxGUI.showListRent();
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onSavePay(ActionEvent event) throws IOException {
         if (rc.findRentSelected(codeToPay) != null) {
@@ -238,6 +267,9 @@ public class FXDevol {
         }
     }
 
+    /**
+     *
+     */
     public void onTableListRent() {
         List<Rent> rents = rc.sortRentTicket();
         ObservableList<Rent> newTableRent;
@@ -257,6 +289,11 @@ public class FXDevol {
 
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onSelectRent(MouseEvent event) throws IOException {
         Rent rentSelected;
@@ -273,6 +310,11 @@ public class FXDevol {
         }
     }
 
+    /**
+     *
+     * @param code
+     * @throws IOException
+     */
     public void showSelectedRentInTable(int code) throws IOException {
         List<Rent> rentSelect = new ArrayList<>();
         rentSelect.add(rc.findRentSelected(code));
@@ -300,6 +342,10 @@ public class FXDevol {
         }
     }
 
+    /**
+     *
+     * @param selected
+     */
     public void setTextDevolPay(Rent selected) {
         txtDaysD.setText(selected.getDays() + "");
         txtPriceCD.setText(selected.getCarR().getPriceXDay() + "");
@@ -309,6 +355,11 @@ public class FXDevol {
         txtPriceTotalD.setText(selected.getPriceTotal() + "");
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void onPayDevol(ActionEvent event) throws IOException {
         if (rc.findRentSelected(codeToPay).getStatus() == Status.PAID) {
@@ -319,6 +370,9 @@ public class FXDevol {
 
     }
 
+    /**
+     *
+     */
     public void selectOption() {
         if (rbCardP.isSelected()) {
             try {
@@ -343,6 +397,10 @@ public class FXDevol {
         }
     }
 
+    /**
+     *
+     * @throws Payed
+     */
     public void optionCard() throws Payed {
         if (!txtNameTCP.getText().equals("") && !txtCodeSegurityCP.getText().equals("") && !txtValueCP.getText().equals("")) {
             try {
@@ -355,6 +413,10 @@ public class FXDevol {
         }
     }
 
+    /**
+     *
+     * @throws Payed
+     */
     public void optionMoney() throws Payed {
         if (!txtNameMP.getText().equals("") && !txtValueMP.getText().equals("")) {
             try {
@@ -367,18 +429,30 @@ public class FXDevol {
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onSelectCard(MouseEvent event) {
         paneCardP.setDisable(false);
         paneMoneyP.setDisable(true);
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onSelectMoney(MouseEvent event) {
         paneCardP.setDisable(true);
         paneMoneyP.setDisable(false);
     }
 
+    /**
+     *
+     * @param id
+     */
     public void onTableSearchIDCR(long id) {
         tblRent.getItems().clear();
 
@@ -399,6 +473,10 @@ public class FXDevol {
         tblcTotalR.setCellValueFactory(new PropertyValueFactory<>("priceTotal"));
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onSearchIDCR(ActionEvent event) {
         if (!txtSearchIDCR.getText().equals("")) {
@@ -412,12 +490,20 @@ public class FXDevol {
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void onShowAllRent(ActionEvent event) {
         tblRent.getItems().clear();
         onTableListRent();
     }
 
+    /**
+     *
+     * @param ticket
+     */
     public void onTableSearchTicket(int ticket) {
         tblRent.getItems().clear();
 
@@ -438,6 +524,10 @@ public class FXDevol {
         tblcTotalR.setCellValueFactory(new PropertyValueFactory<>("priceTotal"));
     }
 
+    /**
+     * Search Ticke rent 
+     * @param event
+     */
     @FXML
     public void onSearchTicketR(ActionEvent event) {
         if(!txtSearchTicketR.getText().equals("")){

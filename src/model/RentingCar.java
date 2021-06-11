@@ -265,7 +265,7 @@ public class RentingCar implements Serializable {
      * @param codeCi city's code
      * @param nameCi city's name, a string not null
      * @param refCi city's reference = 0
-     * @return
+     * @return boolean to know if the city was added orn ot
      */
     public boolean addCity(int codeCi, String nameCi, int refCi) {
         int count = 0;
@@ -294,7 +294,7 @@ public class RentingCar implements Serializable {
      *
      * @param code city's code
      * @param name city's name, a string not null to update.
-     * @return boolean to know if the city was add or not
+     * @return boolean to know if the city was updated or not
      */
     public boolean uptadeCity(int code, String name) {
         int count = 0;
@@ -337,11 +337,12 @@ public class RentingCar implements Serializable {
     /**
      * add a type of vehicle to the list, the type must have a different name
      * and quality of the other type of vehicle
+     *
      * @param quality typev's quality, a integer
      * @param refTv typev's reference = 0
      * @param codeA typev's code
      * @param nameTB typev's name, a string not null
-     * @return boolean to know if the type was add or not
+     * @return boolean to know if the type was added or not
      */
     public boolean addTypeV(int quality, int refTv, int codeA, String nameTB) {
         int count = 0;
@@ -366,11 +367,13 @@ public class RentingCar implements Serializable {
     }
 
     /**
-     * Update the type, the type's name and quality must be different of the other type
+     * Update the type, the type's name and quality must be different of the
+     * other type
+     *
      * @param code type's code
      * @param name typev's name, a string not null
      * @param quality typev's quality, a integer
-     * @return 
+     * @return boolean to know if the type was updated
      */
     public boolean uptadeTypeV(int code, String name, int quality) {
         int count = 0;
@@ -392,6 +395,12 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Remove a type, this type must have the reference equals to 0
+     *
+     * @param code typev's code
+     * @throws Reference
+     */
     public void removTypeV(int code) throws Reference {
         for (int i = 0; i < listTypeV.size(); i++) {
             if (listTypeV.get(i).getCodeA() == code) {
@@ -404,6 +413,17 @@ public class RentingCar implements Serializable {
         }
     }
 
+    //-------------------------- Gestion Brand  --------------------------\\
+    /**
+     * Add a brand to the list, the brand must have a different name and country
+     * of the other brand
+     *
+     * @param country brand's country, a string not null
+     * @param refB brand's reference = 0
+     * @param codeA brand's code
+     * @param nameTB brand's name, a string not null
+     * @return boolean to know if the brand was added
+     */
     public boolean addBrand(String country, int refB, int codeA, String nameTB) {
         int count = 0;
         if (listBrands.isEmpty()) {
@@ -426,6 +446,15 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Update the brand, the brand's name and country must be differetn of the
+     * other brand
+     *
+     * @param code brand's code
+     * @param name brand's name, a string not null
+     * @param country brand's country, a string not null
+     * @return boolean to know if the brand was updated
+     */
     public boolean uptadeBrand(int code, String name, String country) {
         int count = 0;
         for (int i = 0; i < listBrands.size(); i++) {
@@ -446,6 +475,12 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Remove a brand, this brand must have the reference equals to 0
+     *
+     * @param code brand's code
+     * @throws Reference
+     */
     public void removeBrand(int code) throws Reference {
         for (int i = 0; i < listBrands.size(); i++) {
             if (listBrands.get(i).getCodeA() == code) {
@@ -458,6 +493,23 @@ public class RentingCar implements Serializable {
         }
     }
 
+    //-------------------------- Gestion Client  --------------------------\\
+    /**
+     * Add a client to the list, the client must have a different id to the
+     * other client
+     *
+     * @param addressC client's address, a string not null
+     * @param phoneC client's phone, a long not null
+     * @param emailC client's email, a string that contains a @ in the string
+     * @param cityC clients city, a city not null in the list cities
+     * @param codeP client's code
+     * @param refP client's reference = 0
+     * @param name client's name, a string not null
+     * @param lastName client's last name, a string not null
+     * @param id client's identification, a long not null
+     * @return boolean to know if the client was added or not
+     * @throws Email
+     */
     public boolean addClient(String addressC, long phoneC, String emailC, City cityC, int codeP, int refP, String name, String lastName, long id) throws Email {
         boolean out = false;
         int count = 0;
@@ -500,6 +552,12 @@ public class RentingCar implements Serializable {
         return out;
     }
 
+    /**
+     * Find a city to vincule with a client
+     *
+     * @param nameCity city's name, this city get of combobox.
+     * @return City selectedif the city was not found return null
+     */
     public City findCitySelected(String nameCity) {
         for (int i = 0; i < listCities.size(); i++) {
             if (listCities.get(i).getNameCi().equals(nameCity)) {
@@ -509,6 +567,11 @@ public class RentingCar implements Serializable {
         return null;
     }
 
+    /**
+     * Plus reference in city vincule to client
+     *
+     * @param cityPlus client's city to plus its reference
+     */
     public void plusRefCity(City cityPlus) {
         for (int i = 0; i < listCities.size(); i++) {
             if (listCities.get(i).getCodeCi() == cityPlus.getCodeCi()) {
@@ -517,6 +580,21 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Update the client, the client's id must be different to other client's id
+     * to update
+     *
+     * @param addressC client's address, a string not null
+     * @param phoneC client's phone, a long not null
+     * @param emailC client's email, a string that contains one @
+     * @param cityC client's city, a city not null
+     * @param code client's code
+     * @param name client's name, a string not null
+     * @param lastName client's list name, a string not null
+     * @param id client's identification, a long not null
+     * @return boolean to know if the client was updated or not
+     * @throws Email
+     */
     public boolean uptadeClient(String addressC, long phoneC, String emailC, City cityC, int code, String name, String lastName, long id) throws Email {
         boolean out = false;
         boolean sameID = false;
@@ -558,6 +636,11 @@ public class RentingCar implements Serializable {
         return out;
     }
 
+    /**
+     * Rest reference in city vincule to client
+     *
+     * @param city ex client's city to rest its reference
+     */
     public void restRefCity(City city) {
         for (int j = 0; j < listCities.size(); j++) {
             if (listCities.get(j) == city) {
@@ -566,6 +649,12 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Remove the client, this client must have the reference equals to 0
+     *
+     * @param code client's code
+     * @throws Reference
+     */
     public void removeClient(int code) throws Reference {
         for (int i = 0; i < listClients.size(); i++) {
             if (listClients.get(i).getCodeP() == code) {
@@ -578,6 +667,23 @@ public class RentingCar implements Serializable {
         }
     }
 
+    //-------------------------- Gestion Car  --------------------------\\
+    /**
+     * Add a car to the linked list, the car's plate must be different to other
+     * car's plate, recursive
+     *
+     * @param model car's model, a string not null
+     * @param color car's color, a string not null
+     * @param brand car's brand, a brand from the listbrands, not null
+     * @param typeV car's type, a type from the listType, not null
+     * @param priceXDay car's price for day, a double not null
+     * @param codeV car's code
+     * @param plate car's plate, a string not null
+     * @param dispV car's disponibility, a boolean
+     * @param photo car's photo, a string from a path
+     * @param year car's year, a integer not null
+     * @return
+     */
     public boolean addCar(String model, String color, Brand brand, TypeV typeV, double priceXDay, int codeV, String plate, boolean dispV, String photo, int year) {
         if (!searchPlate(plate)) {
             Car newCar = new Car(model, color, brand, typeV, priceXDay, code++, plate, dispV, photo, year, 0);
@@ -599,6 +705,13 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Support to add car to the linked list, recursive
+     *
+     * @param current car next to set its next
+     * @param newCar car to add
+     * @return
+     */
     private boolean addCar(Car current, Car newCar) {
         if (current.getNext() == firstC) {
             current.setNext(newCar);
@@ -611,6 +724,13 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Search a plate to know if this plate is repeat in other car, with
+     * recursive
+     *
+     * @param plate car's plate, a string not null
+     * @return boolean to know if the plate is repeat or not
+     */
     public boolean searchPlate(String plate) {
         if (firstC == null) {
             return false;
@@ -619,6 +739,13 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Suport to search a plate, recursive
+     *
+     * @param plate car's plate, a string not null
+     * @param current next car to compare its plate
+     * @return boolean to know if the plate is repeat or not
+     */
     private boolean searchPlate(String plate, Car current) {
         if (current.getPlate().equals(plate)) {
             return true;
@@ -631,6 +758,12 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Find a type of vehicle to vincule with a car
+     *
+     * @param nameTypeV type's name to search
+     * @return car selected if the car was not found return null
+     */
     public TypeV findTypeVSelected(String nameTypeV) {
         String[] nameSplit = nameTypeV.split(" ");
         for (int i = 0; i < listTypeV.size(); i++) {
@@ -641,6 +774,11 @@ public class RentingCar implements Serializable {
         return null;
     }
 
+    /**
+     * Plus reference type vincule to car
+     *
+     * @param typeVPlus car's type, a type from the list types
+     */
     public void plusRefTypeV(TypeV typeVPlus) {
         for (int i = 0; i < listTypeV.size(); i++) {
             if (listTypeV.get(i).getCodeA() == typeVPlus.getCodeA()) {
@@ -649,6 +787,11 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Rest reference type vincule to car
+     *
+     * @param typeVRest ex car's type, a type from the list type
+     */
     public void restRefType(TypeV typeVRest) {
         for (int i = 0; i < listTypeV.size(); i++) {
             if (listTypeV.get(i).getCodeA() == typeVRest.getCodeA()) {
@@ -657,6 +800,12 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Find a brand to vincule with a car
+     *
+     * @param nameBrand brand's name to search
+     * @return brand selected, if the brand selecte was not found return null
+     */
     public Brand findBrandSelected(String nameBrand) {
         String[] nameSplit = nameBrand.split(" ");
         for (int i = 0; i < listBrands.size(); i++) {
@@ -667,6 +816,11 @@ public class RentingCar implements Serializable {
         return null;
     }
 
+    /**
+     * Plus reference brand vincule to car
+     *
+     * @param brandPlus car's brand, a brand from the list brands
+     */
     public void plusRefBrand(Brand brandPlus) {
         for (int i = 0; i < listBrands.size(); i++) {
             if (listBrands.get(i).getCodeA() == brandPlus.getCodeA()) {
@@ -675,6 +829,11 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Rest reference brand vincule to car
+     *
+     * @param brandRest ex car's brand, a brand from the list brands
+     */
     public void restRefBrand(Brand brandRest) {
         for (int i = 0; i < listBrands.size(); i++) {
             if (listBrands.get(i).getCodeA() == brandRest.getCodeA()) {
@@ -683,76 +842,22 @@ public class RentingCar implements Serializable {
         }
     }
 
-    public void addBinaryVehicle(Car f) {
-        if (rootNameC == null) {
-            rootNameC = f;
-        } else {
-            addBinaryVehicle(rootNameC, f);
-        }
-    }
-
-    private void addBinaryVehicle(Car current, Car next) {
-        if (current.compareTo(next) < 0) {
-            if (current.getRight() == null) {
-                current.setRight(next);
-                next.setParent(current);
-            } else {
-                addBinaryVehicle(current.getRight(), next);
-            }
-        } else {
-            if (current.getLeft() == null) {
-                current.setLeft(next);
-                next.setParent(current);
-            } else {
-                addBinaryVehicle(current.getLeft(), next);
-            }
-        }
-    }
-
-    public void showBinaryTreeVehicle(Car root) {
-        if (root != null) {
-            showBinaryTreeVehicle(root.getLeft());
-            showRootCar.add(root);
-            showBinaryTreeVehicle(root.getRight());
-        }
-    }
-
-    public Car findVehicletoShowNext(int position) {
-        if (firstC == null) {
-            return null;
-        } else {
-            Car temp = firstC;
-            int count = 0;
-            while (count < position) {
-                temp = temp.getNext();
-                count++;
-            }
-            if (count != position) {
-                return null;
-            } else {
-                return temp;
-            }
-        }
-    }
-
-    public Car findVehicletoShowPrev(int position) {
-        if (firstC == null) {
-            return null;
-        } else {
-            Car temp = firstC;
-            int count = 0;
-            while (count < position) {
-                temp = temp.getPrev();
-                count++;
-            }
-            if (count != position) {
-                return null;
-            } else {
-                return temp;
-            }
-        }
-    }
-
+    /**
+     * Update a car, car's plate must be differnte to the othre car's plates,
+     * recursive
+     *
+     * @param code car's car's
+     * @param model car's model, a string not null
+     * @param color car's color, a string not null
+     * @param brand car's brand, a brand from the list brand
+     * @param typeV car's tuype, a type from the list type
+     * @param priceXDay car's price for day, a double not null
+     * @param plate car's plate, a stirng not null
+     * @param dispV car's disponibility, a boolean
+     * @param photo car's photo, a string from a path
+     * @param year car's year, a integer not null
+     * @return boolean to know if the car was updated or not
+     */
     public boolean uptadeCar(int code, String model, String color, Brand brand, TypeV typeV, double priceXDay, String plate, boolean dispV, String photo, int year) {
         boolean out1 = false;
         boolean out2 = false;
@@ -786,6 +891,12 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Verify if the new car's plate is the same as the new one, recurive
+     *
+     * @param code car's code
+     * @return car's plate
+     */
     public String verifySameCar(int code) {
         if (firstC == null) {
             return "";
@@ -794,6 +905,13 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Support to verify the plates, recursive
+     *
+     * @param code car's code
+     * @param current next car to verify
+     * @return car's plate
+     */
     private String verifySameCar(int code, Car current) {
         if (current.getCodeV() == code) {
             return current.getPlate();
@@ -806,6 +924,13 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Remove the car from the linked list, the car must have its reference
+     * equals to 0, recurive
+     *
+     * @param code car's code
+     * @throws Reference
+     */
     public void removeCar(int code) throws Reference {
         Car carRemove = findCar(code);
         int ref = findCar(code).getRefV();
@@ -829,6 +954,112 @@ public class RentingCar implements Serializable {
         }
     }
 
+    //-------------------------- Add car to binary tree --------------------------\\
+    /**
+     * Add a car to the binary tree, recursive
+     *
+     * @param f car to add to tree
+     */
+    public void addBinaryVehicle(Car f) {
+        if (rootNameC == null) {
+            rootNameC = f;
+        } else {
+            addBinaryVehicle(rootNameC, f);
+        }
+    }
+
+    /**
+     * Suport add car to binary tree, recursive
+     *
+     * @param current car to comapre with the new car
+     * @param next new car to add to tree
+     */
+    private void addBinaryVehicle(Car current, Car next) {
+        if (current.compareTo(next) < 0) {
+            if (current.getRight() == null) {
+                current.setRight(next);
+                next.setParent(current);
+            } else {
+                addBinaryVehicle(current.getRight(), next);
+            }
+        } else {
+            if (current.getLeft() == null) {
+                current.setLeft(next);
+                next.setParent(current);
+            } else {
+                addBinaryVehicle(current.getLeft(), next);
+            }
+        }
+    }
+
+    /**
+     * Convert the binary tree to arraylist in the car
+     *
+     * @param root binary tree's root
+     */
+    public void showBinaryTreeVehicle(Car root) {
+        if (root != null) {
+            showBinaryTreeVehicle(root.getLeft());
+            showRootCar.add(root);
+            showBinaryTreeVehicle(root.getRight());
+        }
+    }
+
+    /**
+     * Find a vehicle according to its position, next.
+     *
+     * @param position car's position in the linked list
+     * @return car find, if the car was not found return null
+     */
+    public Car findVehicletoShowNext(int position) {
+        if (firstC == null) {
+            return null;
+        } else {
+            Car temp = firstC;
+            int count = 0;
+            while (count < position) {
+                temp = temp.getNext();
+                count++;
+            }
+            if (count != position) {
+                return null;
+            } else {
+                return temp;
+            }
+        }
+    }
+
+    /**
+     * Find a vehicle accorgin to its position, prev.
+     *
+     * @param position car's position in the linked list
+     * @return caf ind, if the car was not found return null
+     */
+    public Car findVehicletoShowPrev(int position) {
+        if (firstC == null) {
+            return null;
+        } else {
+            Car temp = firstC;
+            int count = 0;
+            while (count < position) {
+                temp = temp.getPrev();
+                count++;
+            }
+            if (count != position) {
+                return null;
+            } else {
+                return temp;
+            }
+        }
+    }
+
+    /**
+     * Remove the car from the binary tree, the car must have its reference
+     * equasl to 0, recursive
+     *
+     * @param code car's code
+     * @throws Reference
+     */
     public void removeCarBinaryTree(int code) throws Reference {
         Car rCar = findCar(code);
         if (rCar.getRefV() == 0) {
@@ -838,6 +1069,11 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Support to remove a car, recursive
+     *
+     * @param rmvCar car to remove
+     */
     public void removeCarBinaryTree(Car rmvCar) {
         if (rmvCar != null) {
             if (rmvCar.getLeft() == null && rmvCar.getRight() == null) {
@@ -882,6 +1118,12 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Get the minimous plate car, recursive
+     *
+     * @param current car minimous
+     * @return car to settear
+     */
     private Car min(Car current) {
         if (current.getLeft() == null) {
             return current;
@@ -890,6 +1132,12 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Find a car according to its code, recursive
+     *
+     * @param code code to find car, a integer
+     * @return car found
+     */
     public Car findCar(int code) {
         if (firstC.getCodeV() == code) {
             return firstC;
@@ -898,6 +1146,13 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Support a find car, recursive
+     *
+     * @param code code to find car, a integer
+     * @param next next car to compare and find
+     * @return car found
+     */
     private Car findCar(int code, Car next) {
         if (next.getCodeV() == code) {
             return next;
@@ -910,6 +1165,26 @@ public class RentingCar implements Serializable {
         }
     }
 
+    //-------------------------- Gestion Rent --------------------------\\
+    /**
+     * Add a rent, the rent final date must be bigger than the first date, the
+     * client and the car aren't null
+     *
+     * @param codeR rent's code
+     * @param ticket rent's ticket, a integer not null
+     * @param clientR rent's client, a client not null from the list clients
+     * @param carR rent's car, a client not null form the linked list car
+     * @param Finitial rent's initial date, a local date not null, localdate now
+     * @param Ffinal rent's final date, a local date not null
+     * @param days rent's days, difference between initial date and final date
+     * @param status rent's status, stat like as deffered, expire today, expire,
+     * paid
+     * @param delay rent's dalay, if the date now is bigger than the final date,
+     * rest between these dates
+     * @param mult rent's mult, days of dealy for the car's price
+     * @param priceTotal rent's price total, the value to pay
+     * @return boolean to know if the rent was added or not
+     */
     public boolean addRent(int codeR, int ticket, Client clientR, Car carR, LocalDate Finitial, LocalDate Ffinal, int days, Status status, int delay, int mult, int priceTotal) {
         if (days > 0) {
             if (clientR == null || carR == null) {
@@ -918,7 +1193,6 @@ public class RentingCar implements Serializable {
                 Rent newRent = new Rent(code++, codeTicket++, clientR, carR, Finitial, Ffinal, days, status, delay, mult, priceTotal);
                 listRents.add(newRent);
                 plusComisionEmployeeEnlazada();
-                //plusComisionEmployeeList();
                 plusRefClients(clientR.getCodeP());
                 plusRefCar(carR.getCodeV());
                 return true;
@@ -928,6 +1202,12 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Search a client to add in a rent
+     *
+     * @param code client's code to search
+     * @return client selected
+     */
     public Client searchClientSelected(int code) {
         for (int i = 0; i < listClients.size(); i++) {
             if (listClients.get(i).getCodeP() == code) {
@@ -937,6 +1217,10 @@ public class RentingCar implements Serializable {
         return null;
     }
 
+    /**
+     * Plus commision to employee active if this do a rent in the linked list,
+     * recursive.
+     */
     public void plusComisionEmployeeEnlazada() {
         if (empActive.getCodeP() == firstE.getCodeP()) {
             firstE.setnSold(firstE.getNSold() + 1);
@@ -945,6 +1229,11 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Support to plus comision in employee active
+     *
+     * @param current next employee
+     */
     private void plusComisionEmployee(Employee current) {
         if (current.getCodeP() == empActive.getCodeP()) {
             current.setnSold(current.getNSold() + 1);
@@ -953,14 +1242,11 @@ public class RentingCar implements Serializable {
         }
     }
 
-    public void plusComisionEmployeeList() {
-        for (int i = 0; i < showRootName.size(); i++) {
-            if (showRootName.get(i).getCodeP() == empActive.getCodeP()) {
-                showRootName.get(i).setnSold(showRootName.get(i).getNSold() + 1);
-            }
-        }
-    }
-
+    /**
+     * Plus reference client in the rent
+     *
+     * @param code client's code in the rent
+     */
     public void plusRefClients(int code) {
         for (int i = 0; i < listCities.size(); i++) {
             if (listClients.get(i).getCodeP() == code) {
@@ -969,6 +1255,11 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Plus reference car in the rent, recursive
+     *
+     * @param code car's code in the rent
+     */
     public void plusRefCar(int code) {
         if (firstC.getCodeV() == code) {
             firstC.setRefV(firstC.getRefV() + 1);
@@ -977,6 +1268,12 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Support to plus reference.
+     *
+     * @param current next car
+     * @param code car's code in the rent
+     */
     private void plusRefCar(Car current, int code) {
         if (current.getCodeV() == code) {
             current.setRefV(current.getRefV() + 1);
@@ -985,6 +1282,12 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Find a rent in the list rent according a code
+     *
+     * @param code rent's code to find
+     * @return rent found
+     */
     public Rent findRentSelected(int code) {
         for (int i = 0; i < listRents.size(); i++) {
             if (listRents.get(i).getCodeR() == code) {
@@ -994,6 +1297,11 @@ public class RentingCar implements Serializable {
         return null;
     }
 
+    /**
+     * Update the stat of the rent according the rent
+     *
+     * @param code rent's code to update stat
+     */
     public void uptadeStatRent(int code) {
         for (int i = 0; i < listRents.size(); i++) {
             if (listRents.get(i).getCodeR() == code) {
@@ -1005,6 +1313,12 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Update the stat of the rent according the days, set the mult and delay
+     *
+     * @param rentSelected rent to update stat
+     * @param days amount of day, rest between final date and now date
+     */
     public void setStatRent(Rent rentSelected, long days) {
         if (days > 0) {
             rentSelected.setMult(0);
@@ -1029,12 +1343,22 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Pay a rent according its code
+     *
+     * @param code rent's code to pay
+     */
     public void payRent(int code) {
         findRentSelected(code).setStatus(Status.PAID);
         restRefClient(findRentSelected(code).getClientR().getCodeP());
         restRefCar(findRentSelected(code).getCarR().getCodeV());
     }
 
+    /**
+     * Rest client in the rent paid
+     *
+     * @param code client's code in the rent
+     */
     public void restRefClient(int code) {
         for (int i = 0; i < listClients.size(); i++) {
             if (listClients.get(i).getCodeP() == code) {
@@ -1043,6 +1367,11 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Rest car in the rent paid, recursive
+     *
+     * @param code car's code in the rent
+     */
     public void restRefCar(int code) {
         if (firstC.getCodeV() == code) {
             firstC.setRefV(firstC.getRefV() - 1);
@@ -1051,6 +1380,12 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Support to rest car in the rent paid, recursive
+     *
+     * @param current next car
+     * @param code car's code in the rent
+     */
     private void restRefCar(Car current, int code) {
         if (current.getCodeV() == code) {
             current.setRefV(current.getRefV() - 1);
@@ -1059,6 +1394,16 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Add card to pay a rent selecetd
+     *
+     * @param cSegurity car's segurity code, a interger not null
+     * @param balance car's value of moneu, a double not null
+     * @param namePay car's name person to pay
+     * @param ammountPay rent's total value
+     * @return Car to know if the pay was correct
+     * @throws Payed
+     */
     public Card addCard(int cSegurity, double balance, String namePay, double ammountPay) throws Payed {
         if (balance >= ammountPay) {
             Card newCard = new Card(cSegurity, balance, namePay);
@@ -1068,6 +1413,15 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Add Money to pay a rent selected
+     *
+     * @param valueMoney money value
+     * @param namePay person to pay
+     * @param ammountPay rent's total value
+     * @return Money to know if the pay was corred
+     * @throws Payed
+     */
     public Money addMoney(double valueMoney, String namePay, double ammountPay) throws Payed {
         if (valueMoney >= ammountPay) {
             Money newMoney = new Money(valueMoney, namePay);
@@ -1077,7 +1431,10 @@ public class RentingCar implements Serializable {
         }
     }
 
-    //********************** Algoritmos de ordenamiento *******************\\
+    //-------------------------- Sorting algorithms --------------------------\\
+    /*
+    Sort Client's id, Comparable
+     */
     public void sortIDClient() {
         @SuppressWarnings("Convert2Lambda")
         Comparator<Client> employeeComparator = new Comparator<Client>() {
@@ -1090,7 +1447,11 @@ public class RentingCar implements Serializable {
         Collections.sort(listClients, employeeComparator);
     }
 
-    //******* Inserction *************\\
+    /**
+     * Sort Employee's Id, inserction
+     *
+     * @return a sort ID client arraylist
+     */
     public List<Employee> sortIDEmployee() {
         List<Employee> sortEmployee = new ArrayList<>();
         for (int i = 0; i < showRootName.size(); i++) {
@@ -1106,7 +1467,11 @@ public class RentingCar implements Serializable {
         return sortEmployee;
     }
 
-    //Bubble Sort
+    /**
+     * Sort Employee's comision, Bubble
+     *
+     * @return a sort Comision employee ArrayList
+     */
     public List<Employee> sortComisionEmployee() {
         List<Employee> sortEmployeeComision = new ArrayList<>();
         for (int i = 0; i < showRootName.size(); i++) {
@@ -1124,7 +1489,11 @@ public class RentingCar implements Serializable {
         return sortEmployeeComision;
     }
 
-    //Selection sort
+    /**
+     * Sort Rent's Id, Selection
+     *
+     * @return a sort Id Client Rent ArrayList
+     */
     public List<Rent> sortRentIDClient() {
         List<Rent> sortRentID;
         sortRentID = listRents;
@@ -1144,6 +1513,11 @@ public class RentingCar implements Serializable {
         return sortRentID;
     }
 
+    /**
+     * Sort Rent's ticket, Selecction
+     *
+     * @return a sort Rent ticket arraylist
+     */
     public List<Rent> sortRentTicket() {
         List<Rent> sortRentTicket;
         sortRentTicket = listRents;
@@ -1163,7 +1537,14 @@ public class RentingCar implements Serializable {
         return sortRentTicket;
     }
 
-    //******************** Busqueda Binaria *****************\\
+    //-------------------------- Binary Search, and search --------------------------\\
+    /**
+     * Binary search in the client, search for name and id
+     *
+     * @param out centinel to know if the search is for name or id
+     * @param name param to search
+     * @return a arrayList with elements search
+     */
     public List<Client> binaryClient(boolean out, String name) {
         List<Client> selectedClient = new ArrayList<>();
         if (out) {
@@ -1193,7 +1574,13 @@ public class RentingCar implements Serializable {
         return selectedClient;
     }
 
-    //***************** Binary Employee **********************\\
+    /**
+     * Binary search in the employee search for name and id
+     *
+     * @param out centinel to know if the search is for name or id
+     * @param name param to search
+     * @return a arrayList with elements search
+     */
     public List<Employee> binaryEmployee(boolean out, String name) {
         List<Employee> selectedEmployee = new ArrayList<>();
         if (out) {
@@ -1224,6 +1611,12 @@ public class RentingCar implements Serializable {
         return selectedEmployee;
     }
 
+    /**
+     * Search cities for name
+     *
+     * @param name param to search
+     * @return a arraylist with elements search
+     */
     public List<City> searchCityName(String name) {
         Collections.sort(listCities);
         List<City> selectedCity = new ArrayList<>();
@@ -1235,6 +1628,12 @@ public class RentingCar implements Serializable {
         return selectedCity;
     }
 
+    /**
+     * Search brands for name
+     *
+     * @param name param to search
+     * @return a arraylist with elements search
+     */
     public List<Brand> searchBrandName(String name) {
         Collections.sort(listBrands);
         List<Brand> selectedBrand = new ArrayList<>();
@@ -1246,6 +1645,12 @@ public class RentingCar implements Serializable {
         return selectedBrand;
     }
 
+    /**
+     * Search types for name
+     *
+     * @param name param to search
+     * @return a arraylist with elements search
+     */
     public List<TypeV> searchTypeName(String name) {
         Collections.sort(listTypeV);
         List<TypeV> selectedType = new ArrayList<>();
@@ -1257,6 +1662,12 @@ public class RentingCar implements Serializable {
         return selectedType;
     }
 
+    /**
+     * Search cars for plate
+     *
+     * @param name param to search
+     * @return a arraylist with elements search
+     */
     public List<Car> searchPlateVehicle(String plate) {
         Collections.sort(showRootCar);
         List<Car> selectedCar = new ArrayList<>();
@@ -1268,10 +1679,13 @@ public class RentingCar implements Serializable {
         return selectedCar;
     }
 
-    public List<Rent> searchPlateVehicle(int ticket, List<Rent> sortRent) {
-        return null;
-    }
-
+    /**
+     * Search rents for client's id
+     *
+     * @param id param to search
+     * @param sortRent sort ArrayList
+     * @return
+     */
     public List<Rent> searchIDCR(long id, List<Rent> sortRent) {
         List<Rent> selectedRent = new ArrayList<>();
         for (int i = 0; i < sortRent.size(); i++) {
@@ -1282,7 +1696,13 @@ public class RentingCar implements Serializable {
         return selectedRent;
     }
 
-    //***************** Binary Rent **********************\\
+    /**
+     * Binary Search rents for ticket
+     *
+     * @param ticket param to search
+     * @param sortRent sort Arraylist
+     * @return rents searched
+     */
     public List<Rent> binaryRent(int ticket, List<Rent> sortRent) {
         List<Rent> selectedRent = new ArrayList<>();
         int pos = -1;
@@ -1302,7 +1722,14 @@ public class RentingCar implements Serializable {
         return selectedRent;
     }
 
-    //***************** Export Client *****************\\
+    //-------------------------- Export elements --------------------------\\
+    /**
+     * Export clients, all clients or clients filter for city
+     * @param out centinel to know if the export all of filter it.
+     * @param city city to filter
+     * @param filename file to save the information
+     * @throws FileNotFoundException 
+     */
     public void exportClient(boolean out, City city, String filename) throws FileNotFoundException {
         List<Client> clientsExport = new ArrayList<>();
         String msg;
@@ -1322,6 +1749,13 @@ public class RentingCar implements Serializable {
         writeClient(clientsExport, filename, msg);
     }
 
+    /**
+     * Write the information in the file
+     * @param clients clients to export
+     * @param filename file to save the information
+     * @param msg a string to show in the information file
+     * @throws FileNotFoundException 
+     */
     public void writeClient(List<Client> clients, String filename, String msg) throws FileNotFoundException {
         int count = 1;
         PrintWriter pw = new PrintWriter(filename);
@@ -1342,7 +1776,13 @@ public class RentingCar implements Serializable {
         pw.close();
     }
 
-    //***************** Export Vehicle *****************\\
+    /**
+     * Export vehicles, all vehicles or vehicles filter for type
+     * @param out centiniel to know if the export all of filter it
+     * @param typeV type to filter
+     * @param filename file to save the information
+     * @throws FileNotFoundException 
+     */
     public void exportVehicle(boolean out, TypeV typeV, String filename) throws FileNotFoundException {
         List<Car> carsExport = new ArrayList<>();
         String msg;
@@ -1362,6 +1802,13 @@ public class RentingCar implements Serializable {
         writeCar(carsExport, filename, msg);
     }
 
+    /**
+     * Write the information in the file
+     * @param cars cars to export
+     * @param filename file to save the information
+     * @param msg a string to show in the information file
+     * @throws FileNotFoundException 
+     */
     public void writeCar(List<Car> cars, String filename, String msg) throws FileNotFoundException {
         int count = 1;
         PrintWriter pw = new PrintWriter(filename);
@@ -1382,7 +1829,14 @@ public class RentingCar implements Serializable {
         pw.close();
     }
 
-    //***************** Export Rent *****************\\
+    /**
+     * Export rents, all rents or rents filter for dates
+     * @param out centinel to know if the export all or filter it.
+     * @param init init date to filer
+     * @param end end date to filter
+     * @param filename file to save information
+     * @throws FileNotFoundException 
+     */
     public void exportRent(boolean out, LocalDate init, LocalDate end, String filename) throws FileNotFoundException {
         List<Rent> rentsExport = new ArrayList<>();
         for (int i = 0; i < listRents.size(); i++) {
@@ -1408,6 +1862,13 @@ public class RentingCar implements Serializable {
         writeRent(rentsExport, filename, msg);
     }
 
+    /**
+     * Write the information in the file
+     * @param rents rents to export
+     * @param filename file to save the information
+     * @param msg a string to show in the information file
+     * @throws FileNotFoundException 
+     */
     public void writeRent(List<Rent> rents, String filename, String msg) throws FileNotFoundException {
         int count = 1;
         PrintWriter pw = new PrintWriter(filename);
@@ -1433,6 +1894,11 @@ public class RentingCar implements Serializable {
         pw.close();
     }
 
+    /**
+     * Calculate the test of the velocity
+     * @param velocity param to determinted the category
+     * @return a string with the category of the car
+     */
     public String calculateCategorySpeed(int velocity) {
         String msg = "El vehiculo con velocidad " + velocity + " entra en la categoria de: ";
         if (velocity < 100) {
@@ -1447,6 +1913,10 @@ public class RentingCar implements Serializable {
         return msg;
     }
 
+    /**
+     * Import clients
+     * @return boolean to know if the import was corrected
+     */
     public boolean importClient() {
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileChooser()));
@@ -1474,6 +1944,10 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Import vehicles
+     * @return boolean to know if the import was corrected
+     */
     public boolean importVehicle() {
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileChooser()));
@@ -1500,6 +1974,10 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Open the file choseer
+     * @return file to save the information
+     */
     public File fileChooser() {
         FileChooser fc = new FileChooser();
         fc.setTitle("Open File Client");
@@ -1507,6 +1985,10 @@ public class RentingCar implements Serializable {
         return file;
     }
 
+   /**
+    * Determine array to show the pie shart
+    * @return array with the values to show in the pie chart
+    */
     public int[] amountStatRent() {
         int[] amountStatRent = new int[4];
         int amountDefered = 0;

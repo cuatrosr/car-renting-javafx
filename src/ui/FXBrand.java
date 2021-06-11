@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXTextField;
 import exception.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -94,16 +93,29 @@ public class FXBrand implements Initializable {
     private RentingCar rc;
     private FXController fxGUI;
 
+    /**
+     * FXBrand class constructor
+     * @param rc
+     * @param fxGUI 
+     */
     public FXBrand(RentingCar rc, FXController fxGUI) {
         this.rc = rc;
         this.fxGUI = fxGUI;
     }
 
+    /**
+     * Initialize the brand's screen
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setImagesButton();
     }
 
+    /**
+     * Set the images en the buttons.
+     */
     public void setImagesButton() {
         Image iAddBrandPNG = new Image("Images/add-file.png");
         Image iSaveBrandPNG = new Image("Images/save-disk.png");
@@ -119,6 +131,9 @@ public class FXBrand implements Initializable {
         onTableListBrand();
     }
 
+    /**
+     * Stat of the buttons when the initialize screen.
+     */
     public void btnInitialize() {
         btnNewBrand.setDisable(false);
         btnSaveBrand.setDisable(true);
@@ -127,6 +142,9 @@ public class FXBrand implements Initializable {
         btnSearchBrand.setDisable(false);
     }
 
+    /**
+    * Stat of the buttons when the select option to add brand.
+    */
     public void statButtonsWhenNew(boolean stat) {
         btnNewBrand.setDisable(stat);
         btnSaveBrand.setDisable(!stat);
@@ -135,12 +153,20 @@ public class FXBrand implements Initializable {
         btnSearchBrand.setDisable(stat);
     }
 
+    /**
+    * Option to new brand.
+    */
     @FXML
     public void onNewBrand(ActionEvent event) {
         statButtonsWhenNew(true);
         txtCodeBrand.setText(rc.getCode() + "");
     }
 
+    /**
+     * Save the brand, create a brand
+     * @param event button pressed
+     * @throws IOException 
+     */
     @FXML
     public void onSaveBrand(ActionEvent event) throws IOException {
         if (!txtNameBrand.getText().equals("") && !txtCountryBrand.getText().equals("")) {
@@ -161,6 +187,11 @@ public class FXBrand implements Initializable {
         }
     }
 
+    /**
+     * Edit the brand, update a brand
+     * @param event button pressed
+     * @throws IOException 
+     */
     @FXML
     public void onEditBrand(ActionEvent event) throws IOException {
         if (!txtNameBrand.getText().equals("") && !txtCountryBrand.getText().equals("")) {
@@ -181,6 +212,11 @@ public class FXBrand implements Initializable {
         btnInitialize();
     }
 
+    /**
+     * Remove the brand
+     * @param event button pressed
+     * @throws IOException 
+     */
     @FXML
     public void onRemoveBrand(ActionEvent event) throws IOException {
         try {
@@ -200,6 +236,10 @@ public class FXBrand implements Initializable {
         btnInitialize();
     }
 
+    /**
+     * Load table with the brands searched
+     * @param name param to search
+     */
     public void onTableSearchBrand(String name) {
         tblBrand.getItems().clear();
 
@@ -215,6 +255,10 @@ public class FXBrand implements Initializable {
         tblBrand.refresh();
     }
 
+    /**
+     * Search a brand
+     * @param event button pressed
+     */
     @FXML
     public void onSearchBrand(ActionEvent event) {
         if(!txtSearchBrand.getText().equals("")){
@@ -224,6 +268,10 @@ public class FXBrand implements Initializable {
         }
     }
 
+    /**
+     * Select a brand with two clicks on the table
+     * @param event mouse clicked
+     */
     @FXML
     public void onSelectBrand(MouseEvent event) {
         Brand brandSelected;
@@ -243,6 +291,9 @@ public class FXBrand implements Initializable {
         }
     }
 
+    /**
+     * Load all brands.
+     */
     public void onTableListBrand() {
         List<Brand> brands = rc.getListBrand();
         ObservableList<Brand> newTableBrand;
