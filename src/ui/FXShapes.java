@@ -48,7 +48,7 @@ public class FXShapes {
         series1.getData().add(new XYChart.Data("", rc.getListCities().size()));
 
         XYChart.Series series2 = new XYChart.Series();
-        series2.setName("Tipos de vehículos");
+        series2.setName("Tipos de vehiculos");
         series2.getData().add(new XYChart.Data("", rc.getListTypeV().size()));
 
         XYChart.Series series3 = new XYChart.Series();
@@ -60,7 +60,7 @@ public class FXShapes {
         series4.getData().add(new XYChart.Data("", rc.getListClients().size()));
 
         XYChart.Series series5 = new XYChart.Series();
-        series5.setName("Vehículos");
+        series5.setName("Vehiculos");
         series5.getData().add(new XYChart.Data("", rc.getShowRootCar().size()));
 
         XYChart.Series series6 = new XYChart.Series();
@@ -74,36 +74,4 @@ public class FXShapes {
         barChart.getData().add(series5);
         barChart.getData().add(series6);
     }
-
-    /*
-    public void showBarChart() {
-		brChart.setTitle("Bar Chart");
-		XYChart.Series series1 = new XYChart.Series();
-		series1.setName("Yes");
-		
-		series1.getData().add(new XYChart.Data("1",23));
-		series1.getData().add(new XYChart.Data("2", 14));
-        series1.getData().add(new XYChart.Data("3", 34));
-        series1.getData().add(new XYChart.Data("4", 36));
-        
-		XYChart.Series series2 = new XYChart.Series();
-		series2.setName("No");
-		
-		series2.getData().add(new XYChart.Data("1",15));
-		series2.getData().add(new XYChart.Data("2", 24));
-		series2.getData().add(new XYChart.Data("3", 22));
-        series2.getData().add(new XYChart.Data("4", 45));
-        
-		XYChart.Series series3 = new XYChart.Series();
-		series3.setName("F");
-		
-		series3.getData().add(new XYChart.Data("1",18));
-		series3.getData().add(new XYChart.Data("2", 12));
-		series3.getData().add(new XYChart.Data("3", 25));
-        series3.getData().add(new XYChart.Data("4", 30));
-		
-		brChart.getData().add(series1);
-		brChart.getData().add(series2);
-		brChart.getData().add(series3);
-     */
 }

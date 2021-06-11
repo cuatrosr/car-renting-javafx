@@ -17,6 +17,8 @@ import javafx.stage.FileChooser;
 public class RentingCar implements Serializable {
 
     private static final long serialVersionUID = 1;
+
+    //---------------------------- Attributes of the rentingCar class ----------------------------\\
     public int code;
     public int codeTicket;
     public Employee firstE;
@@ -32,6 +34,10 @@ public class RentingCar implements Serializable {
     public List<Brand> listBrands;
     public List<Rent> listRents;
 
+    //-------------------------- Constructor, getter and setter class --------------------------\\
+    /**
+     * RentingCar class constructor, initialize all relations.
+     */
     public RentingCar() {
         code = 1;
         codeTicket = 1;
@@ -112,11 +118,30 @@ public class RentingCar implements Serializable {
         return listRents;
     }
 
+    //-------------------------- Gestion employee, add and login --------------------------\\
+    /**
+     * Create a employee and add in the linkedlist
+     *
+     * @param username employee's username, a string not null
+     * @param password employee's password, a string not null
+     * @param nSold employee's amount of sold = 0
+     * @param vComision employee's value of comision = 0
+     * @param codeP employee's code
+     * @param refP employee's reference = 0
+     * @param name employee's name, a string not null
+     * @param lastName employee's, a string not null
+     * @param id employee's id, a long not null.
+     */
     public void addEmployee(String username, String password, int nSold, double vComision, int codeP, int refP, String name, String lastName, long id) {
         Employee emp = new Employee(username, password, nSold, vComision, code++, refP, name, lastName, id);
         addEmp(emp);
     }
 
+    /**
+     * Add employe whit recurive.
+     *
+     * @param emp employee to add to linkedlist
+     */
     public void addEmp(Employee emp) {
         if (firstE == null) {
             firstE = emp;
@@ -127,6 +152,13 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Support to add employe with recursive.
+     *
+     * @param emp employee to add to linkedlist
+     * @param current next employe, if this is null, add, if isn't null to pass
+     * next.
+     */
     private void addEmp(Employee emp, Employee current) {
         if (current.getNext() == null) {
             current.setNext(emp);
@@ -137,6 +169,49 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Check if the username and password are correct with recursive.
+     *
+     * @param userName employee's username
+     * @param password employee's password
+     * @return
+     */
+    public boolean loginEmployee(String userName, String password) {
+        if (firstE.getUsername().equals(userName) && firstE.getPassword().equals(password)) {
+            empActive = firstE;
+            return true;
+        } else if (firstE.getNext() != null) {
+            return loginEmployee(firstE.getNext(), userName, password);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Suport to check the username and passoword with recursive.
+     *
+     * @param current next employee
+     * @param userName employee's username
+     * @param password employee's password
+     * @return
+     */
+    private boolean loginEmployee(Employee current, String userName, String password) {
+        if (current.getUsername().equals(userName) && current.getPassword().equals(password)) {
+            empActive = current;
+            return true;
+        } else if (current.getNext() != null) {
+            return loginEmployee(current.getNext(), userName, password);
+        } else {
+            return false;
+        }
+    }
+
+    //-------------------------- Add employee to binary tree --------------------------\\
+    /**
+     * Add employee to binary tree with recursive.
+     *
+     * @param nextTest employee to add to tree
+     */
     public void addBinaryEmployee(Employee nextTest) {
         if (rootNameE == null) {
             rootNameE = nextTest;
@@ -145,6 +220,12 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Suport to add employee to add, with recursive
+     *
+     * @param current employee to compare
+     * @param next employee to add
+     */
     private void addBinaryEmployee(Employee current, Employee next) {
         if (current.compareTo(next) < 0) {
             if (current.getRight() == null) {
@@ -163,6 +244,11 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Convert the binary tree to arraylist in the employee
+     *
+     * @param root root of the binary tree
+     */
     public void showBinaryTreeNameEmployee(Employee root) {
         if (root != null) {
             showBinaryTreeNameEmployee(root.getLeft());
@@ -171,28 +257,16 @@ public class RentingCar implements Serializable {
         }
     }
 
-    public boolean loginEmployee(String userName, String password) {
-        if (firstE.getUsername().equals(userName) && firstE.getPassword().equals(password)) {
-            empActive = firstE;
-            return true;
-        } else if (firstE.getNext() != null) {
-            return loginEmployee(firstE.getNext(), userName, password);
-        } else {
-            return false;
-        }
-    }
-
-    private boolean loginEmployee(Employee current, String userName, String password) {
-        if (current.getUsername().equals(userName) && current.getPassword().equals(password)) {
-            empActive = current;
-            return true;
-        } else if (current.getNext() != null) {
-            return loginEmployee(current.getNext(), userName, password);
-        } else {
-            return false;
-        }
-    }
-
+    //-------------------------- Gestion City --------------------------\\
+    /**
+     * Add a city to the list, the city must have a different name of the other
+     * cities.
+     *
+     * @param codeCi city's code
+     * @param nameCi city's name, a string not null
+     * @param refCi city's reference = 0
+     * @return
+     */
     public boolean addCity(int codeCi, String nameCi, int refCi) {
         int count = 0;
         if (listCities.isEmpty()) {
@@ -215,6 +289,13 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Update the city, the city's name must be different of the other city
+     *
+     * @param code city's code
+     * @param name city's name, a string not null to update.
+     * @return boolean to know if the city was add or not
+     */
     public boolean uptadeCity(int code, String name) {
         int count = 0;
         for (int i = 0; i < listCities.size(); i++) {
@@ -234,6 +315,12 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Remove a city, this city must have the reference equals to 0
+     *
+     * @param code city's code
+     * @throws Reference
+     */
     public void removeCity(int code) throws Reference {
         for (int i = 0; i < listCities.size(); i++) {
             if (listCities.get(i).getCodeCi() == code) {
@@ -246,6 +333,16 @@ public class RentingCar implements Serializable {
         }
     }
 
+    //-------------------------- Gestion Type vehicle --------------------------\\
+    /**
+     * add a type of vehicle to the list, the type must have a different name
+     * and quality of the other type of vehicle
+     * @param quality typev's quality, a integer
+     * @param refTv typev's reference = 0
+     * @param codeA typev's code
+     * @param nameTB typev's name, a string not null
+     * @return boolean to know if the type was add or not
+     */
     public boolean addTypeV(int quality, int refTv, int codeA, String nameTB) {
         int count = 0;
         if (listTypeV.isEmpty()) {
@@ -268,6 +365,13 @@ public class RentingCar implements Serializable {
         }
     }
 
+    /**
+     * Update the type, the type's name and quality must be different of the other type
+     * @param code type's code
+     * @param name typev's name, a string not null
+     * @param quality typev's quality, a integer
+     * @return 
+     */
     public boolean uptadeTypeV(int code, String name, int quality) {
         int count = 0;
         for (int i = 0; i < listTypeV.size(); i++) {
@@ -975,6 +1079,7 @@ public class RentingCar implements Serializable {
 
     //********************** Algoritmos de ordenamiento *******************\\
     public void sortIDClient() {
+        @SuppressWarnings("Convert2Lambda")
         Comparator<Client> employeeComparator = new Comparator<Client>() {
             @Override
             public int compare(Client e1, Client e2) {
@@ -1401,9 +1506,9 @@ public class RentingCar implements Serializable {
         File file = fc.showOpenDialog(null);
         return file;
     }
-    
-    public int [] amountStatRent(){
-        int [] amountStatRent = new int [4];
+
+    public int[] amountStatRent() {
+        int[] amountStatRent = new int[4];
         int amountDefered = 0;
         int amountExpireToday = 0;
         int amountExpire = 0;
@@ -1412,15 +1517,15 @@ public class RentingCar implements Serializable {
             uptadeStatRent(listRents.get(i).getCodeR());
         }
         for (int i = 0; i < listRents.size(); i++) {
-            if(listRents.get(i).getStatus() == Status.DEFERRED){
+            if (listRents.get(i).getStatus() == Status.DEFERRED) {
                 amountDefered++;
-            } else if (listRents.get(i).getStatus() == Status.EXPIRES_TODAY){
+            } else if (listRents.get(i).getStatus() == Status.EXPIRES_TODAY) {
                 amountExpireToday++;
-            } else if (listRents.get(i).getStatus() == Status.EXPIRED){
+            } else if (listRents.get(i).getStatus() == Status.EXPIRED) {
                 amountExpire++;
             } else {
                 amountPaid++;
-            } 
+            }
         }
         amountStatRent[0] = amountDefered;
         amountStatRent[1] = amountExpireToday;

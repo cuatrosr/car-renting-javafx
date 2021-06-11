@@ -4,9 +4,19 @@ import java.io.Serializable;
 
 public class Accessory implements Serializable {
     
+    
+    //---------------------------- Attributes of the Accessory class ----------------------------\\
+
     private int codeA;
     private String nameTB;
-
+    
+    //-------------------------- Constructor, getter and setter class --------------------------\\
+    
+    /**
+     * Accseroy class constructor
+     * @param codeA Accesory's code
+     * @param nameTB Accesory's code
+     */
     public Accessory(int codeA, String nameTB) {
         this.codeA = codeA;
         this.nameTB = nameTB;

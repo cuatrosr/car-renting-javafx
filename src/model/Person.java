@@ -5,12 +5,23 @@ import java.io.Serializable;
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1;
+
+    //---------------------------- Attributes of the Person class ----------------------------\\
     private int codeP;
     private int refP;
     private String name;
     private String lastName;
     private long id;
 
+    //-------------------------- Constructor, getter and setter class --------------------------\\
+    /**
+     * Person class constructor
+     * @param codeP object's code
+     * @param refP object's reference
+     * @param name object's name
+     * @param lastName object's last name
+     * @param id object's identification
+     */
     public Person(int codeP, int refP, String name, String lastName, long id) {
         this.codeP = codeP;
         this.refP = refP;

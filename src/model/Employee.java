@@ -5,16 +5,32 @@ import java.io.Serializable;
 public class Employee extends Person implements Serializable, Comparable<Employee> {
 
     private static final long serialVersionUID = 1;
-    private Employee next;
+
+    //---------------------------- Attributes of the Employee class ----------------------------\\
     private String username;
     private String password;
     private int nSold;
     private double vComision;
-    
+    private Employee next;
+
+    //---------------------------- Binary tree Employee class ----------------------------\\
     private Employee left;
     private Employee right;
     private Employee parent;
 
+    //-------------------------- Constructor, getter and setter class --------------------------\\
+    /**
+     * Employee class constructor
+     * @param username object's username
+     * @param password object's password
+     * @param nSold object's amount of sold
+     * @param vComision object's value of comision
+     * @param codeP object's code
+     * @param refP object's reference
+     * @param name object's name
+     * @param lastName object's last name
+     * @param id object's identification
+     */
     public Employee(String username, String password, int nSold, double vComision, int codeP, int refP, String name, String lastName, long id) {
         super(codeP, refP, name, lastName, id);
         this.username = username;
@@ -57,7 +73,7 @@ public class Employee extends Person implements Serializable, Comparable<Employe
 
     public void setnSold(int nSold) {
         this.nSold = nSold;
-        this.vComision = this.nSold*10000;
+        this.vComision = this.nSold * 10000;
     }
 
     public double getVComision() {
@@ -91,7 +107,7 @@ public class Employee extends Person implements Serializable, Comparable<Employe
     public void setParent(Employee parent) {
         this.parent = parent;
     }
-    
+
     @Override
     public int compareTo(Employee o) {
         return this.getName().compareToIgnoreCase(o.getName());

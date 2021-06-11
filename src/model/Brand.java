@@ -5,10 +5,21 @@ import java.io.Serializable;
 public class Brand extends Accessory implements Serializable, Comparable<Brand> {
 
     private static final long serialVersionUID = 1;
+
+    //---------------------------- Attributes of the Brand class ----------------------------\\
     
     private String country;
     private int refB;
 
+    //-------------------------- Constructor, getter and setter class --------------------------\\
+
+    /**
+     * Brand class constructor.
+     * @param country object's country
+     * @param refB object's reference
+     * @param codeA object's code
+     * @param nameTB object's name
+     */
     public Brand(String country, int refB, int codeA, String nameTB) {
         super(codeA, nameTB);
         this.country = country;
@@ -30,8 +41,8 @@ public class Brand extends Accessory implements Serializable, Comparable<Brand> 
     public void setRefB(int refB) {
         this.refB = refB;
     }
-    
-    public String getNameP(){
+
+    public String getNameP() {
         return this.getNameTB() + " " + country;
     }
 

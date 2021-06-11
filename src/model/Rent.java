@@ -7,6 +7,8 @@ public class Rent implements Serializable {
 
     private static final long serialVersionUID = 1;
     private final String PREFTICKET = "TRC";
+
+    //---------------------------- Attributes of the Rent class ----------------------------\\
     private int codeR;
     private int ticket;
     private Client clientR;
@@ -19,6 +21,21 @@ public class Rent implements Serializable {
     private int mult;
     private int priceTotal;
 
+    //-------------------------- Constructor, getter and setter class --------------------------\\
+    /**
+     * Rent class constructor
+     * @param codeR object's code
+     * @param ticket object's ticket
+     * @param clientR object's client to rent
+     * @param carR object's car to rent
+     * @param Finitial object's initial date
+     * @param Ffinal object's final date
+     * @param days object's days to rent
+     * @param status object's stat
+     * @param delay object's day of delay
+     * @param mult object's value of mult
+     * @param priceTotal object's price total to pay
+     */
     public Rent(int codeR, int ticket, Client clientR, Car carR, LocalDate Finitial, LocalDate Ffinal, int days, Status status, int delay, int mult, int priceTotal) {
         this.codeR = codeR;
         this.ticket = ticket;
@@ -44,10 +61,10 @@ public class Rent implements Serializable {
     public int getTicket() {
         return ticket;
     }
-    
-    public String getNameTicket(){
+
+    public String getNameTicket() {
         String nameTicket;
-        nameTicket = PREFTICKET+ticket;
+        nameTicket = PREFTICKET + ticket;
         return nameTicket;
     }
 
@@ -62,16 +79,16 @@ public class Rent implements Serializable {
     public void setClientR(Client clientR) {
         this.clientR = clientR;
     }
-    
-    public Long getIdClient(){
+
+    public Long getIdClient() {
         return clientR.getId();
     }
-    
-    public String getNameClient(){
+
+    public String getNameClient() {
         return clientR.getName();
     }
-    
-    public Long getPhoneClient(){
+
+    public Long getPhoneClient() {
         return clientR.getPhoneC();
     }
 
@@ -82,28 +99,28 @@ public class Rent implements Serializable {
     public void setCarR(Car carR) {
         this.carR = carR;
     }
-    
-    public int getIdCar(){
+
+    public int getIdCar() {
         return carR.getCodeV();
     }
-    
+
     public String getPlateCar() {
         return carR.getPlate();
     }
-    
-    public String getNameType(){
+
+    public String getNameType() {
         return carR.getNameType();
     }
-    
-    public String getNameModel(){
+
+    public String getNameModel() {
         return carR.getModel();
     }
 
     public LocalDate getFinitial() {
         return Finitial;
     }
-    
-    public String getStringFinitial(){
+
+    public String getStringFinitial() {
         return Finitial.toString();
     }
 
@@ -114,8 +131,8 @@ public class Rent implements Serializable {
     public LocalDate getFfinal() {
         return Ffinal;
     }
-    
-    public String getStringFfinal(){
+
+    public String getStringFfinal() {
         return Ffinal.toString();
     }
 

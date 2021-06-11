@@ -5,12 +5,22 @@ import java.io.Serializable;
 public class Vehicle implements Serializable, Comparable<Vehicle> {
 
     private static final long serialVersionUID = 1;
+
+    //---------------------------- Attributes of the vehicle class ----------------------------\\
     private Vehicle next;
     private int codeV;
     private String plate;
     private boolean dispV;
     private String photo;
 
+    //-------------------------- Constructor, getter and setter class --------------------------\\
+    /**
+     * Vehicle class constructor
+     * @param codeV object's code
+     * @param plate object's plate
+     * @param dispV object's disponibility
+     * @param photo object's photo
+     */
     public Vehicle(int codeV, String plate, boolean dispV, String photo) {
         this.codeV = codeV;
         this.plate = plate;

@@ -5,11 +5,26 @@ import java.io.Serializable;
 public class Client extends Person implements Serializable, Comparable<Client> {
 
     private static final long serialVersionUID = 1;
+
+    //---------------------------- Attributes of the Client class ----------------------------\\
     private String addressC;
     private long phoneC;
     private String emailC;
     private City cityC;
 
+    //-------------------------- Constructor, getter and setter class --------------------------\\
+    /**
+     * Client class constructor
+     * @param addressC object's address
+     * @param phoneC  object's phone
+     * @param emailC object's email
+     * @param cityC object's city
+     * @param codeP object's code
+     * @param refP object's reference
+     * @param name object's name
+     * @param lastName object's last name
+     * @param id object's identification
+     */
     public Client(String addressC, long phoneC, String emailC, City cityC, int codeP, int refP, String name, String lastName, long id) {
         super(codeP, refP, name, lastName, id);
         this.addressC = addressC;
