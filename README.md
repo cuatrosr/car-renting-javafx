@@ -32,6 +32,17 @@ _We used [GitHub](https://github.com/) to the versioned. For all the updates of 
 ```
 /resources/image/
 ```
+   
+## <b>_Execution_</b> 📦
+
+_We have two forms to execute the software: an .exe, and a .jar._
+
+* _In order to execute the software by his .exe, you need to double click on a file called car-renting-javafx.exe on app path. Then, the software will start. <br><br> this .exe will not be able to be copied and pasted on the desktop, what if you can do, is to create a shortcut of it._<br>
+   
+* _To run the program from its .jar, you must have a minimum JRE of: "jre1.8.0_281" in which it was developed. Then, you should follow these steps: <br><br> 1️⃣ Run your command console. <br> 2️⃣ Navigate to the App folder.<br> 3️⃣ Execute the following command to execute it, ignore any error displayed in the console:_<br>
+```
+java -jar car-renting-javafx.jar
+```
 
 ## <b>_Functionalities_</b> 📱📹
 
