@@ -7,9 +7,9 @@ import ui.*;
 public class ThreadChangeWindow extends Thread {
 
     @SuppressWarnings("unused")
-	private FXLogin xLogin;
+    private FXLogin xLogin;
     @SuppressWarnings("unused")
-	private FXRegister xRegister;
+    private FXRegister xRegister;
     private FXController xController;
 
     public ThreadChangeWindow(FXLogin xLogin, FXController xController) {
