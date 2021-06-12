@@ -38,7 +38,9 @@ _We used [GitHub](https://github.com/) to the versioned. For all the updates of 
 _You can check out all the functionalities of the program with images of the app [here](https://github.com/cuatrosr/car-renting-javafx/blob/master/resources/docs/Entregas/Car%20Renting%20V1.pdf)_<br>
   
 _You can check the actual functionalities of the software already programed [here](https://github.com/cuatrosr/car-renting-javafx/blob/master/resources/docs/Entregas/Car%20Renting%20V2.pdf)_<br>
-  
+
+_You can check the final functionalities of the software [here](https://github.com/cuatrosr/car-renting-javafx/blob/master/resources/docs/Entregas/Car%20Renting%20V3.pdf)_<br>   
+   
 _You can see all the functionalities in a video, click [here](https://youtu.be/uGZYgUPjJF4)_<br> 
 
 ## <b>_Expressions of Gratitude_</b> 🎁
